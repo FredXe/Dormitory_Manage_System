@@ -41,6 +41,7 @@ CREATE TABLE Users
   `phnumber` char(10) NOT NULL,
   `sex` char(1) NOT NULL DEFAULT 'N',
   `eroll_year` INT NOT NULL,
+  `privilege` char(1) NOT NULL DEFAULT 'G',
   PRIMARY KEY (`UserID`)
 );
 
