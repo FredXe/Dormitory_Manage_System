@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+const { json } = require("stream/consumers");
 
 // Connection that log in with 'admin'
 const adminConnection = mysql.createConnection({
@@ -7,6 +8,16 @@ const adminConnection = mysql.createConnection({
 	password: 'a1095500',
 	database: 'dormitory'
 });
+
+/**
+ * Convert Rows into Object with JSON's 
+ * static functions
+ * @param {*} rows Rows input
+ * @returns Object that `rows` expressed
+ */
+function decodeRows(rows) {
+	return Object.values(JSON.parse(JSON.stringify(rows)));
+}
 
 const Db = {
 	/**
@@ -19,7 +30,8 @@ const Db = {
 	Admin: {
 		/**
 		 * Insert the Data into TABLE `Users`
-		 * NOTE: UserID and Password is required.
+		 * @param {*} UserID Required
+		 * @param {*} Password Required
 		 */
 		insertUsers: ({
 			UserID,
@@ -31,23 +43,44 @@ const Db = {
 			eroll_year = 2019,
 			privilege = 'G' }) => {
 
-			/**
-			 * Fill the SQL query with parameters
-			 */
-
 			// SQL query send to DB
-			const sqlString = `INSERT INTO \`Users\` ` +
-				`VALUES ('${UserID}', '${Password}', '${name}', '${email}'` +
-				`, '${phnumber}', '${sex}', ${eroll_year}, '${privilege}'); `;
+			const queryString = `INSERT INTO \`Users\`
+				VALUES ('${UserID}', '${Password}', '${name}', '${email}',
+				'${phnumber}', '${sex}', ${eroll_year}, '${privilege}'); `;
 
 			// Send the query with Admin account
-			adminConnection.query(sqlString, (err, result, field) => {
+			adminConnection.query(queryString, (err, rows, field) => {
 				if (err) {
-					console.error("", err.sqlMessage);
+					console.error(err.sqlMessage);
 				}
-				console.log(result);
-			})
+				console.log(rows);
+			});
 		}
+	},
+
+	/**
+	 * Check if the account is inside the
+	 * Database.
+	 * @param {*} account UserID in Database
+	 */
+	login: (account, password, callback) => {
+
+		// SQL query send to DB
+		const queryString = `SELECT \`UserID\` \`account\`, 
+			\`privilege\` FROM \`Users\` 
+			WHERE \`UserID\`='${account}' AND \`Password\`='${password}';`;
+
+		// Send the query with Admin account
+		adminConnection.query(queryString, (err, rows, field) => {
+			if (err) {
+				console.error(err.sqlMessage);
+			}
+			console.log(decodeRows(rows));
+		});
+	},
+
+	close: () => {
+		adminConnection.end();
 	}
 }
 

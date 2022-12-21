@@ -1,3 +1,7 @@
+/*
+* File for directly operating Database
+*/
+
 CREATE USER 'admin'@'%' IDENTIFIED BY 'a1095500';
 GRANT ALL PRIVILEGES ON `dormitory`.* TO 'admin';
 SHOW DATABASES;
