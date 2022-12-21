@@ -1,6 +1,6 @@
 const mysql = require("mysql");
 
-// const Tables = require("./tables");
+// Connection that log in with 'admin'
 const adminConnection = mysql.createConnection({
 	host: 'tupao.one',
 	user: 'admin',
@@ -9,6 +9,9 @@ const adminConnection = mysql.createConnection({
 });
 
 const Db = {
+	/**
+	 * Initialize the connections to Database
+	 */
 	init: () => {
 		adminConnection.connect();
 	},
@@ -45,12 +48,7 @@ const Db = {
 				console.log(result);
 			})
 		}
-
-
-
-
 	}
-
 }
 
 module.exports = Db;

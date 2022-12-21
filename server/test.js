@@ -2,7 +2,7 @@
  * File for test the 
  */
 
-const db = require("./server/db");
+const db = require("./lib/db");
 
 db.init();
 
