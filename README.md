@@ -3,5 +3,6 @@
 
 ## usage
 ```bash
+# Put up test server
 node server/test.js
 ```
