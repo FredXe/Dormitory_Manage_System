@@ -2,7 +2,7 @@
 	"name": "dormitory_manage_system",
 	"version": "1.0.0",
 	"description": "> A Web server based on Node.js",
-	"main": "app.js",
+	"main": "app/app.js",
 	"dependencies": {
 		"inherits": "^2.0.4",
 		"bignumber.js": "^9.0.0",
@@ -18,8 +18,8 @@
 	},
 	"devDependencies": {},
 	"scripts": {
-		"server": "node app.js",
-		"test": "node test.js"
+		"server": "node app/app.js",
+		"test": "node app/test.js"
 	},
 	"repository": {
 		"type": "git",

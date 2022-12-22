@@ -1,8 +1,8 @@
 /**
- * File for test the 
+ * File for testing
  */
 
-const Db = require("./model/db");
+const Db = require("./model/user");
 
 const db = new Db();
 
