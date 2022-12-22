@@ -3,6 +3,9 @@
 
 ## usage
 ```bash
+# Put up the server
+npm run server
+
 # Put up test server
-node server/test.js
+npm test
 ```
