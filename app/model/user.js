@@ -30,6 +30,7 @@ class Db {
 			 * Insert the Data into TABLE `Users`
 			 * @param {*} UserID Required
 			 * @param {*} Password Required
+			 * @returns A Promise OBJ that resolve rows
 			 */
 			insertUsers: function ({
 				UserID,
@@ -66,6 +67,7 @@ class Db {
 		 * Check if the account is inside the
 		 * Database.
 		 * @param {*} account UserID in Database
+		 * @returns A Promise OBJ that resolve User Object
 		 */
 		this.login = (account, password) => {
 
