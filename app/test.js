@@ -2,19 +2,27 @@
  * File for testing
  */
 
-const Db = require("./model/user");
+const User = require("./model/user");
+const Connections = require("./model/connections");
 
-const db = new Db();
+const user = new User();
 
-db.Admin.insertUsers({
-	UserID: 'fortest', Password: 'test', eroll_year: 2019
-}).then((rows) => {
+Connections.init();
+
+function handler(err, rows) {
+	if (err) {
+		console.error(err);
+	}
 	console.log(rows);
-});
+}
 
-db.login("fred", "test").then((ret) => {
-	console.log(ret);
-});
+// user.Admin.regist({
+// 	UserID: 'fortest', Password: 'test', name: 'Test', eroll_year: 2019, userType: "student"
+// }, (err, rows) => {
+// 	if (err) {
+// 		console.error(err);
+// 	}
+// 	console.log("Inserted: ", rows);
+// });
 
-
-db.close();
+user.login({ account: "testadmin", password: "csie" }, handler);

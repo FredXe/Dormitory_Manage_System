@@ -40,8 +40,7 @@ CREATE TABLE Users
   `email` varchar(50) NOT NULL DEFAULT 'default@example.host',
   `phnumber` char(10) NOT NULL,
   `sex` char(1) NOT NULL DEFAULT 'N',
-  `eroll_year` INT NOT NULL,
-  `privilege` char(1) NOT NULL DEFAULT 'G',
+  `eroll_year` YEAR NOT NULL,
   PRIMARY KEY (`UserID`)
 );
 
@@ -54,7 +53,15 @@ CREATE TABLE HouseMaster
 
 CREATE TABLE Admin
 (
-  `UserID` varchar(30) NOT NULL,
+  `UserID` VARCHAR(30) NOT NULL,
+  PRIMARY KEY (`UserID`),
+  FOREIGN KEY (`UserID`) REFERENCES Users(`UserID`) ON DELETE CASCADE
+);
+
+CREATE TABLE Student
+(
+  `UserID` VARCHAR(30) NOT NULL,
+  `a_ID` CHAR(10) NOT NULL UNIQUE KEY,
   PRIMARY KEY (`UserID`),
   FOREIGN KEY (`UserID`) REFERENCES Users(`UserID`) ON DELETE CASCADE
 );
@@ -86,7 +93,7 @@ CREATE TABLE Equipment
   `r_number` INT,
   `d_name` varchar(30),
   PRIMARY KEY (`e_ID`),
-  FOREIGN KEY (`r_number`, `d_name`) REFERENCES Room(`r_number`, `d_name`)  ON DELETE SET NULL
+  FOREIGN KEY (`r_number`, `d_name`) REFERENCES `Room`(`r_number`, `d_name`)  ON DELETE SET NULL
 );
 
 CREATE TABLE Bulletin_Board
@@ -103,9 +110,10 @@ CREATE TABLE Application
   `a_Date` DATETIME NOT NULL,
   `a_approved` CHAR(1) NOT NULL DEFAULT 'N',
   `a_Paid` CHAR(1) NOT NULL DEFAULT 'N',
-  `UserID` VARCHAR(30) NOT NULL,
+  `UserID` VARCHAR(30),
   PRIMARY KEY (`a_ID`),
-  FOREIGN KEY (`UserID`) REFERENCES Admin(`UserID`) ON DELETE CASCADE
+  -- FOREIGN KEY (`a_ID`) REFERENCES Student(`a_ID`) ON DELETE CASCADE,
+  FOREIGN KEY (`UserID`) REFERENCES Admin(`UserID`) ON DELETE SET NULL
 );
 
 CREATE TABLE Chat
@@ -135,15 +143,6 @@ CREATE TABLE manage_HB
   PRIMARY KEY (`UserID`, `b_ID`),
   FOREIGN KEY (`UserID`) REFERENCES HouseMaster(`UserID`) ON DELETE CASCADE,
   FOREIGN KEY (`b_ID`) REFERENCES Bulletin_Board(`b_ID`) ON DELETE CASCADE
-);
-
-CREATE TABLE Student
-(
-  `UserID` VARCHAR(30) NOT NULL,
-  `a_ID` CHAR(10),
-  PRIMARY KEY (`UserID`),
-  FOREIGN KEY (`UserID`) REFERENCES Users(`UserID`) ON DELETE CASCADE,
-  FOREIGN KEY (`a_ID`) REFERENCES Application(`a_ID`) ON DELETE SET NULL
 );
 
 CREATE TABLE Boarder

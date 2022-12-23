@@ -1,12 +1,7 @@
-const mysql = require("mysql");
-
-// Connection that log in with 'admin'
-const adminConnection = mysql.createConnection({
-	host: 'tupao.one',
-	user: 'admin',
-	password: 'a1095500',
-	database: 'dormitory'
-});
+/**
+ * Module control the TABLE `Users`
+ */
+const Connections = require("./connections");
 
 /**
  * Convert Rows into Object with JSON's 
@@ -18,48 +13,70 @@ function decodeRows(rows) {
 	return Object.values(JSON.parse(JSON.stringify(rows)));
 }
 
-class Db {
+class User {
 	/**
 	 * Initialize the connections to Database
 	 */
 	constructor() {
-		adminConnection.connect();
 
 		this.Admin = {
+
 			/**
 			 * Insert the Data into TABLE `Users`
-			 * @param {*} UserID Required
-			 * @param {*} Password Required
-			 * @returns A Promise OBJ that resolve rows
+			 * @param {*} UserID Account (required)
+			 * @param {*} Password (required)
+			 * @returns Async function, return value by callback
 			 */
-			insertUsers: function ({
+			regist: function ({
 				UserID,
 				Password,
-				name = 'test',
+				name = 'Nodejs',
 				email = 'default@node.js',
 				phnumber = '0912345678',
 				sex = 'N',
 				eroll_year = 2019,
-				privilege = 'G' }) {
+				userType = 'Student',
+				a_ID = 'NODEJSA_ID'
+			}, callback) {
 
-				return new Promise((resolve, reject) => {
-					// SQL query send to DB
-					const queryString = `INSERT INTO \`Users\`
-					VALUES ('${UserID}', '${Password}', '${name}', '${email}',
-					'${phnumber}', '${sex}', ${eroll_year}, '${privilege}'); `;
+				// Check if usertype is valid
+				userType = userType.toLowerCase();
+				if (["student", "housemaster", "admin"].includes(userType) == false) {
+					console.error("userType invalid");
+				}
 
-					// Send the query with Admin account
-					adminConnection.query(queryString, (err, rows, field) => {
+				// Insert data into `Users`
+				const queryString = `INSERT INTO \`Users\` 
+					VALUES ('${UserID}', '${Password}', '${name}', '${email}', 
+					'${phnumber}', '${sex}', ${eroll_year}); `;
+
+				// Function that insert User to specific User Type
+				function insertUserType(err, rows) {
+					if (err) {
+						callback(err.message, rows);
+						return;
+					}
+
+					// Match the userType to the Table's name
+					userType = userType.charAt(0).toUpperCase() + userType.slice(1);
+
+					// Insert 
+					const queryString = `INSERT INTO \`${userType}\`
+									VALUES ('${UserID}', '${a_ID}'); `;
+
+					// Send SQL query to DB
+					Connections.admin.query(queryString, (err, rows) => {
 						if (err) {
-							reject(err);
+							callback(err.message, rows);
+							return;
 						}
-						resolve(rows);
+						callback(err, rows);
 					});
-				})
-					// 
-					.catch((err) => {
-						console.error("Using throw: ", err);
-					})
+				}
+
+				// Send SQL query to DB
+				Connections.admin.query(queryString, insertUserType);
+
 			}
 		}
 
@@ -67,35 +84,33 @@ class Db {
 		 * Check if the account is inside the
 		 * Database.
 		 * @param {*} account UserID in Database
-		 * @returns A Promise OBJ that resolve User Object
+		 * @returns Privilege of the user,
+		 * Empty array if the parameter doesn't matches the user
+		 * Return by callback.
 		 */
-		this.login = (account, password) => {
+		this.login = ({ account, password }, callback) => {
+			/**
+			 * SELECT the UserID which matches the input,
+			 * using switch to return the user's previlege
+			 * if the user is inside the table. 
+			 */
+			const queryString = `SELECT (CASE WHEN U.UserID IN (SELECT UserID FROM \`Student\`) THEN 'Student'
+			WHEN U.UserID IN (SELECT UserID FROM \`HouseMaster\`) THEN 'HouseMaster'
+			WHEN U.UserID IN (SELECT UserID FROM \`Admin\`) THEN 'Admin'
+			ELSE 'Unknown' END) AS privilege, a_ID FROM \`Users\` AS U LEFT JOIN \`Student\` AS S ON U.\`UserID\` = S.\`UserID\`
+			WHERE U.\`UserID\`='${account}' AND \`Password\`='${password}';`;
 
-			return new Promise((resolve, reject) => {
-				// SQL query send to DB
-				const queryString = `SELECT \`UserID\` \`account\`, 
-				\`privilege\` FROM \`Users\` 
-				WHERE \`UserID\`='${account}' AND \`Password\`='${password}';`;
-
-				// Send the query with Admin account
-				adminConnection.query(queryString, (err, rows, field) => {
-					if (err) {
-						reject(err);
-					}
-					resolve(decodeRows(rows));
-				});
-			})
-				// 
-				.catch((err) => {
-					console.error(err);
-				})
-		}
-
-		this.close = () => {
-			adminConnection.end();
+			// Send the query with Admin account
+			Connections.admin.query(queryString, (err, rows) => {
+				if (err) {
+					callback(err.message, rows);
+					return;
+				}
+				callback(err, decodeRows(rows));
+			});
 		}
 
 	}
 }
 
-module.exports = Db;
+module.exports = User;
