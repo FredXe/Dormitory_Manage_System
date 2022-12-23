@@ -1,12 +1,15 @@
 # Dermitory Manage System
 > A Web server based on Node.js
+## NOTE
+1. All the scripts run under repo's root directory (`Dormitory_Manage_System`)
+2. You should always config `.env` instead of `.env-d`.
 
-## usage
-Initialize `.env`:
-``` console
-( ls app/model/.env && echo '.env is already exist' ) || cat app/model/.env-d > app/model/.env;
+## initialize
+1. Initialize `.env`:
+``` bash
+( ls app/model/.env && echo '.env is already exist' ) || cat app/model/.env-d > app/model/.env
 ```
-Then, configure `.env`:
+2. Then, configure `.env` in `app/model/`:
 ``` properties
 DB_HOST='<host_name>'
 DB_PORT='3306'
@@ -15,19 +18,19 @@ DB_ADMIN_PASSWORD='<password>'
 DATABASE='dormitory'
 ```
 You should change `<host_name>`, `<admin_account>` and `<password>` to your database's settings.
-NOTE: You should always config `.env` instead of `.env-d`.
 
+## usage
 Install the dependencies:
-``` console
+``` bash
 npm install
 ```
 
 Put up the server:
-``` console
+``` bash
 npm run server
 ```
 
-Put up test server:
-``` console
+Put up the test server:
+``` bash
 npm test
 ```
