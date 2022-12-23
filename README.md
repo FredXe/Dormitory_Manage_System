@@ -1,6 +1,6 @@
 # Wellcome to Dermitory Manage System
-> Final project of `Database System`
-> A Web server based on Node.js
+> - Final project of `Database System`
+> - A Web server based on Node.js
 ## NOTE
 1. All the scripts run under repo's root directory (`Dormitory_Manage_System`)
 2. You should always config `.env` instead of `.env-d`.
@@ -19,6 +19,7 @@ DB_ADMIN_PASSWORD='<password>'
 DATABASE='dormitory'
 ```
 You should change `<host_name>`, `<admin_account>` and `<password>` to your database's settings.
+> NOTE: 2. You should always config `.env` instead of `.env-d`.
 
 ## usage
 Install the dependencies:
