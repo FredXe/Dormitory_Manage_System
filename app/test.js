@@ -7,8 +7,6 @@ const Connections = require("./model/connections");
 
 const user = new User();
 
-Connections.init();
-
 function handler(err, rows) {
 	if (err) {
 		console.error(err);
@@ -26,3 +24,6 @@ function handler(err, rows) {
 // });
 
 user.login({ account: "testadmin", password: "csie" }, handler);
+
+Connections.close();
+

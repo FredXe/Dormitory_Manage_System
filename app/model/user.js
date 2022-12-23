@@ -88,7 +88,7 @@ class User {
 		 * Empty array if the parameter doesn't matches the user
 		 * Return by callback.
 		 */
-		this.login = ({ account, password }, callback) => {
+		this.login = function ({ account, password }, callback) {
 			/**
 			 * SELECT the UserID which matches the input,
 			 * using switch to return the user's previlege
