@@ -1,4 +1,5 @@
-# Dermitory Manage System
+# Wellcome to Dermitory Manage System
+> Final project of `Database System`
 > A Web server based on Node.js
 ## NOTE
 1. All the scripts run under repo's root directory (`Dormitory_Manage_System`)
