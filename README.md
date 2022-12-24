@@ -1,6 +1,6 @@
 # Wellcome to Dermitory Manage System
 > - Final project of `Database System`
-> - A Web server based on Node.js 123:D
+> - A Web server based on Node.js 12345
 ## NOTE
 1. All the scripts run under repo's root directory (`Dormitory_Manage_System`)
 2. You should always [config](#config) `.env` instead of `.env-d`.
