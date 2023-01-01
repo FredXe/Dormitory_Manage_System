@@ -46,7 +46,7 @@ class User {
 				}
 
 				// Insert data into `Users`
-				const queryString = `INSERT INTO \`Users\` 
+				const queryString = `INSERT INTO \`users\` (UserID, Password, name, email, phnumber, sex, eroll_year)
 					VALUES ('${UserID}', '${Password}', '${name}', '${email}', 
 					'${phnumber}', '${sex}', ${eroll_year}); `;
 
@@ -94,10 +94,10 @@ class User {
 			 * using switch to return the user's previlege
 			 * if the user is inside the table. 
 			 */
-			const queryString = `SELECT (CASE WHEN U.UserID IN (SELECT UserID FROM \`Student\`) THEN 'Student'
-			WHEN U.UserID IN (SELECT UserID FROM \`HouseMaster\`) THEN 'HouseMaster'
-			WHEN U.UserID IN (SELECT UserID FROM \`Admin\`) THEN 'Admin'
-			ELSE 'Unknown' END) AS privilege, a_ID FROM \`Users\` AS U LEFT JOIN \`Student\` AS S ON U.\`UserID\` = S.\`UserID\`
+			const queryString = `SELECT (CASE WHEN U.UserID IN (SELECT UserID FROM \`student\`) THEN 'student'
+			WHEN U.UserID IN (SELECT UserID FROM \`houseMaster\`) THEN 'houseMaster'
+			WHEN U.UserID IN (SELECT UserID FROM \`admin\`) THEN 'admin'
+			ELSE 'Unknown' END) AS privilege, a_ID FROM \`users\` AS U LEFT JOIN \`student\` AS S ON U.\`UserID\` = S.\`UserID\`
 			WHERE U.\`UserID\`='${account}' AND \`Password\`='${password}';`;
 
 			// Send the query with Admin account

@@ -14,16 +14,16 @@ function handler(err, rows) {
 	console.log(rows);
 }
 
-// user.Admin.regist({
-// 	UserID: 'fortest', Password: 'test', name: 'Test', eroll_year: 2019, userType: "student"
-// }, (err, rows) => {
-// 	if (err) {
-// 		console.error(err);
-// 	}
-// 	console.log("Inserted: ", rows);
-// });
+user.Admin.regist({
+	UserID: 'a1095500', Password: 'test', name: 'Test', eroll_year: 2019, userType: "student"
+}, (err, rows) => {
+	if (err) {
+		console.error(err);
+	}
+	console.log("Inserted: ", rows);
+});
 
-user.login({ account: "testadmin", password: "csie" }, handler);
+user.login({ account: "test", password: "csie" }, handler);
 
 Connections.close();
 
