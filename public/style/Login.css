@@ -1,57 +1,67 @@
-.grandparent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
-}
-
-.total {
-    background-image: url(../image/Login.jpg);
+.test {
+    /* background-color: #f3e0e2; */
+    background-color: #CFD69C;
     background-size: 100% auto;
-    /* 寬度強制100% 高度維持等比例不變形 */
+
 }
 
-.account {
-    /* http: //kevin.hwai.edu.tw/~kevin/material/WebDesign2018/DIV/CSSborderWidth.htm */
-    border-color: #525293;
-    border-style: solid;
-    border-width: 3px;
-    padding: 1px;
-    margin-bottom: 5px;
-}
-
-.password {
-    border-color: #525293;
-    border-style: solid;
-    border-width: 3px;
-    /* padding -> 區塊的內容和邊框的距離 */
-    padding: 1px;
-    margin-bottom: 10px;
-}
-
-.font_size {
-    font-size: 23px;
-    font-family: DFKai-sb;
-    text-align: center;
-}
-
-.title {
-
+.test_nuk {
     font-weight: bold;
-    font-size: 30px;
-    font-family: DFKai-sb;
+    font-size: 20px;
+    font-family: cursive;
+    position: absolute;
+    top: 70px;
+    left: 35px
 }
 
 .test_1 {
+
     position: absolute;
-    top: 80px;
-    left: 490px;
-    /* display: flex;
-    justify-content: center; */
+    top: 110px;
+    left: 450px;
+
+    /*登入背景*/
+    box-shadow: 10px -10px #D0D0D0;
+    border-radius: 10px;
+    height: 400px;
+    width: 300px;
+    background-color: #f6f5fa;
 
 }
 
+
 .test_2 {
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    top: 200px;
+    left: 65px
+}
+
+.test_3 {
+    background-color: #E0E0E0;
+    text-align: center;
+    padding: 10px;
+    border-width: 0px;
+}
+
+
+.account_block {
+    margin-bottom: 9px;
+}
+
+
+
+.login_block {
+    margin-top: 18px;
+    position: absolute;
+    top: 90px;
+    left: 40px
+}
+
+.login_text {
+    background-color: #FF7575;
+    width: 95px;
+    padding: 6px;
+    border-width: 0px;
+    border-radius: 80px;
+
 }
