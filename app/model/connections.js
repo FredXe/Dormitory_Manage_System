@@ -20,13 +20,6 @@ class Connections {
 	}
 }
 
-console.log(process.env.DB_HOST,
-	process.env.DB_PORT,
-	process.env.DB_ADMIN,
-	process.env.DB_ADMIN_PASSWORD,
-	process.env.DATABASE
-);
-
 Connections.admin.connect();
 
 module.exports = Connections;

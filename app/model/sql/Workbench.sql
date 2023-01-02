@@ -3,23 +3,27 @@ GRANT ALL PRIVILEGES ON `dormitory`.* TO 'admin';
 SHOW DATABASES;
 use dormitory;
 SHOW TABLES;
-DESCRIBE Users;
+DESCRIBE users;
 DESCRIBE Admin;
 DESCRIBE HouseMaster;
 DESCRIBE Student;
-SELECT * FROM `Users`;
-SELECT * FROM `Student`;
+SELECT * FROM `users`;
+SELECT * FROM `student`;
 DELETE FROM Users WHERE UserID='fortest' AND Password='test';
-DELETE FROM Student WHERE UserID='fortest';
-INSERT INTO Users VALUES ('test', 'csie', 'Cindy', 'test@example.com', '0912345678', 'F', 2019);
+INSERT INTO users (UserID, Password, name, email, phnumber, sex, eroll_year) VALUES ('test', 'csie', 'Cindy', 'test@example.com', '0912345678', 'F', 2019);
 INSERT INTO `Student` VALUES ('test', 'a1095500');
-INSERT INTO Users VALUES ('testAdmin', 'csie', 'Cindy', 'test@example.com', '0912345678', 'F', 2019);
+INSERT INTO users VALUES ('a1095500', 'csie', 'Cindy', 'test@example.com', '0912345678', 'F', 2019, 123);
+UPDATE users SET sex='D' WHERE UserID = 'a1095500';
+DELETE FROM users WHERE UserID = 'a1095500';
+DELETE FROM student WHERE UserID='a1095500';
 INSERT INTO `Admin` VALUES ('testAdmin');
 SELECT `UserID` `account`, `privilege` FROM `Users` WHERE `UserID`='fred' AND `Password`='test';
 SELECT (CASE WHEN UserID IN (SELECT UserID FROM `Student`) THEN 'Student'
 WHEN UserID IN (SELECT UserID FROM `HouseMaster`) THEN 'HouseMaster'
 WHEN UserID IN (SELECT UserID FROM `Admin`) THEN 'Admin'
 ELSE 'Unknown' END) AS privilege FROM `Users` WHERE `UserID`='testAdmin' AND `Password`='csie';
+
+SET GLOBAL time_zone = 'Asia/Taipei';
 
 SELECT (CASE WHEN U.UserID IN (SELECT U.UserID FROM `Student`) THEN 'Student'
                         WHEN U.UserID IN (SELECT UserID FROM `HouseMaster`) THEN 'HouseMaster'
@@ -32,3 +36,24 @@ SELECT * FROM Users WHERE UserID='test' AND Password='csie';
 HELP 'datatypes';
 DESCRIBE Application;
 
+
+-- DROP all tables before create
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE if EXISTS users,
+	houseMaster,
+	admin,
+	dormitory,
+	room,
+	equipment,
+	bulletinBoard,
+	application,
+	chat,
+	manage_HD,
+	manage_HB,
+	student,
+	boarder,
+	non_Boarder,
+	violation_Record,
+	manage_HV,
+	edit;
+SET FOREIGN_KEY_CHECKS = 1;

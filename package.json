@@ -4,6 +4,7 @@
 	"description": "> A Web server based on Node.js",
 	"main": "app/app.js",
 	"dependencies": {
+		"bcrypt": "^5.1.0",
 		"bignumber.js": "^9.0.0",
 		"core-util-is": "^1.0.3",
 		"dotenv": "^16.0.3",
