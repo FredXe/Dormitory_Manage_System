@@ -1,57 +1,57 @@
 .grandparent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 90vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 90vh;
 }
 
 .total {
-    background-image: url(../image/Login.jpg);
-    background-size: 100% auto;
-    /* 寬度強制100% 高度維持等比例不變形 */
+	background-image: url(/public/image/Login.jpg);
+	background-size: 100% auto;
+	/* 寬度強制100% 高度維持等比例不變形 */
 }
 
 .account {
-    /* http: //kevin.hwai.edu.tw/~kevin/material/WebDesign2018/DIV/CSSborderWidth.htm */
-    border-color: #525293;
-    border-style: solid;
-    border-width: 3px;
-    padding: 1px;
-    margin-bottom: 5px;
+	/* http: //kevin.hwai.edu.tw/~kevin/material/WebDesign2018/DIV/CSSborderWidth.htm */
+	border-color: #525293;
+	border-style: solid;
+	border-width: 3px;
+	padding: 1px;
+	margin-bottom: 5px;
 }
 
 .password {
-    border-color: #525293;
-    border-style: solid;
-    border-width: 3px;
-    /* padding -> 區塊的內容和邊框的距離 */
-    padding: 1px;
-    margin-bottom: 10px;
+	border-color: #525293;
+	border-style: solid;
+	border-width: 3px;
+	/* padding -> 區塊的內容和邊框的距離 */
+	padding: 1px;
+	margin-bottom: 10px;
 }
 
 .font_size {
-    font-size: 23px;
-    font-family: DFKai-sb;
-    text-align: center;
+	font-size: 23px;
+	font-family: DFKai-sb;
+	text-align: center;
 }
 
 .title {
 
-    font-weight: bold;
-    font-size: 30px;
-    font-family: DFKai-sb;
+	font-weight: bold;
+	font-size: 30px;
+	font-family: DFKai-sb;
 }
 
 .test_1 {
-    position: absolute;
-    top: 80px;
-    left: 490px;
-    /* display: flex;
+	position: absolute;
+	top: 80px;
+	left: 490px;
+	/* display: flex;
     justify-content: center; */
 
 }
 
 .test_2 {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
