@@ -8,14 +8,14 @@ DESCRIBE Admin;
 DESCRIBE HouseMaster;
 DESCRIBE Student;
 SELECT * FROM `users`;
-SELECT * FROM `Student`;
+SELECT * FROM `student`;
 DELETE FROM Users WHERE UserID='fortest' AND Password='test';
-DELETE FROM Student WHERE UserID='fortest';
 INSERT INTO users (UserID, Password, name, email, phnumber, sex, eroll_year) VALUES ('test', 'csie', 'Cindy', 'test@example.com', '0912345678', 'F', 2019);
 INSERT INTO `Student` VALUES ('test', 'a1095500');
 INSERT INTO users VALUES ('a1095500', 'csie', 'Cindy', 'test@example.com', '0912345678', 'F', 2019, 123);
 UPDATE users SET sex='D' WHERE UserID = 'a1095500';
-DELETE FROM users WHERE UserID = 'test';
+DELETE FROM users WHERE UserID = 'a1095500';
+DELETE FROM student WHERE UserID='a1095500';
 INSERT INTO `Admin` VALUES ('testAdmin');
 SELECT `UserID` `account`, `privilege` FROM `Users` WHERE `UserID`='fred' AND `Password`='test';
 SELECT (CASE WHEN UserID IN (SELECT UserID FROM `Student`) THEN 'Student'

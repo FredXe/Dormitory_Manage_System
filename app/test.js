@@ -12,10 +12,14 @@ function handler(err, rows) {
 		console.error(err);
 	}
 	console.log(rows);
+
+
 }
 
+
+
 user.Admin.regist({
-	UserID: 'a1095500', Password: 'test', name: 'Test', eroll_year: 2019, userType: "student"
+	UserID: 'a1095532', Password: 'qwe', name: 'Fred', eroll_year: 2019, userType: "student"
 }, (err, rows) => {
 	if (err) {
 		console.error(err);
@@ -23,7 +27,11 @@ user.Admin.regist({
 	console.log("Inserted: ", rows);
 });
 
-user.login({ account: "test", password: "csie" }, handler);
+// user.login({ account: "a1095500", password: "test" }, handler);
+user.login({ account: "a1095532", password: "qwe" }, handler);
 
-Connections.close();
+setTimeout(() => {
+	Connections.close();
+}, 1000);
+
 

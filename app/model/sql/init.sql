@@ -15,7 +15,7 @@ USE dormitory;
 CREATE TABLE IF NOT EXISTS users
 (
   `UserID` char(8) NOT NULL,
-  `Password` varchar(80) NOT NULL,
+  `Password` char(60) NOT NULL,
   `name` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL DEFAULT 'default@example.host',
   `phnumber` char(10) NOT NULL,
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS admin
 CREATE TABLE IF NOT EXISTS student
 (
   `UserID` char(8) NOT NULL,
-  `a_ID` CHAR(10) NOT NULL UNIQUE KEY,
+  `a_ID` char(8) NOT NULL UNIQUE KEY,
   PRIMARY KEY (`UserID`),
   FOREIGN KEY (`UserID`) REFERENCES users(`UserID`) ON DELETE CASCADE
 );
