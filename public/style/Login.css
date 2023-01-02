@@ -11,7 +11,7 @@
 	font-family: cursive;
 	position: absolute;
 	top: 70px;
-	left: 35px
+	left: 35px;
 }
 
 .test_1 {
@@ -33,7 +33,7 @@
 .test_2 {
 	position: absolute;
 	top: 200px;
-	left: 65px
+	left: 65px;
 }
 
 .test_3 {
@@ -54,7 +54,7 @@
 	margin-top: 18px;
 	position: absolute;
 	top: 90px;
-	left: 40px
+	left: 40px;
 }
 
 .login_text {

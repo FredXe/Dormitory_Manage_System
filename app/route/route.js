@@ -13,6 +13,7 @@ app.use(express.static('public'));
 
 const sendResponse = (filename, statuscode, res) => {
 	fs.readFile(`${filename}`, (error, data) => {
+		console.log(filename);
 		if (error) {
 			res.statuscode = 500;
 			res.setHeader('Content-Type', 'text/plain');
@@ -33,11 +34,10 @@ app.get('/login', (req, res) => {
 	sendResponse("./view/login.html", 200, res);
 });
 
-app.get('/public/*', (req, res) => {
-	const url = '.' + req.url;
-	console.log(url);
-	sendResponse(url, 200, res);
-});
+// app.get('/public/*', (req, res) => {
+// 	const url = '.' + req.url;
+// 	sendResponse(url, 200, res);
+// });
 
 app.post('/Login.html', urlencodedParser, (req, res) => {
 	const { account: userID, password } = req.body;
