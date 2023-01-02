@@ -1,7 +1,9 @@
 /**
  * Module control the TABLE `Users`
  */
+const { hash } = require("bcrypt");
 const Connections = require("./connections");
+const Hash = require("./hash");
 
 /**
  * Convert Rows into Object with JSON's 
@@ -11,6 +13,13 @@ const Connections = require("./connections");
  */
 function decodeRows(rows) {
 	return Object.values(JSON.parse(JSON.stringify(rows)));
+}
+
+function getPasswd(UserID, callback) {
+	const queryString = `SELECT password FROM users WHERE UserID = '${UserID}'`;
+
+	// Function that insert User to specific User Type
+	Connections.admin.query(queryString, callback);
 }
 
 class User {
@@ -35,8 +44,8 @@ class User {
 				phnumber = '0912345678',
 				sex = 'N',
 				eroll_year = 2019,
-				userType = 'Student',
-				a_ID = 'NODEJSA_ID'
+				userType = 'student',
+				a_ID = 'NODEJS.D'
 			}, callback) {
 
 				// Check if usertype is valid
@@ -45,37 +54,42 @@ class User {
 					console.error("userType invalid");
 				}
 
-				// Insert data into `Users`
-				const queryString = `INSERT INTO \`Users\` 
-					VALUES ('${UserID}', '${Password}', '${name}', '${email}', 
-					'${phnumber}', '${sex}', ${eroll_year}); `;
-
-				// Function that insert User to specific User Type
-				function insertUserType(err, rows) {
+				Hash.hashPasswd(Password, function (err, hash) {
 					if (err) {
-						callback(err.message, rows);
+						callback(err.message);
 						return;
 					}
 
-					// Match the userType to the Table's name
-					userType = userType.charAt(0).toUpperCase() + userType.slice(1);
+					// Insert data into `Users`
+					const queryString = `INSERT INTO \`users\` (UserID, Password, name, email, phnumber, sex, eroll_year)
+						VALUES ('${UserID}', '${hash}', '${name}', '${email}', 
+						'${phnumber}', '${sex}', ${eroll_year}); `;
 
-					// Insert 
-					const queryString = `INSERT INTO \`${userType}\`
-									VALUES ('${UserID}', '${a_ID}'); `;
-
-					// Send SQL query to DB
-					Connections.admin.query(queryString, (err, rows) => {
+					// Function that insert User to specific User Type
+					function insertUserType(err, rows) {
 						if (err) {
 							callback(err.message, rows);
 							return;
 						}
-						callback(err, rows);
-					});
-				}
 
-				// Send SQL query to DB
-				Connections.admin.query(queryString, insertUserType);
+						// Insert 
+						const queryString = `INSERT INTO \`${userType}\`
+										VALUES ('${UserID}', '${a_ID}'); `;
+
+						// Send SQL query to DB
+						Connections.admin.query(queryString, (err, rows) => {
+							if (err) {
+								callback(err.message, rows);
+								return;
+							}
+							callback(err, rows);
+						});
+					}
+
+					// Send SQL query to DB
+					Connections.admin.query(queryString, insertUserType);
+				});
+
 
 			}
 		}
@@ -89,16 +103,24 @@ class User {
 		 * Return by callback.
 		 */
 		this.login = function ({ account, password }, callback) {
+
+			// function hashCB(err, hash) {
+			// 	if (err) {
+			// 		callback(err.message);
+			// 		return;
+			// 	}
+			// 	console.log(hash);
+
 			/**
 			 * SELECT the UserID which matches the input,
 			 * using switch to return the user's previlege
 			 * if the user is inside the table. 
 			 */
-			const queryString = `SELECT (CASE WHEN U.UserID IN (SELECT UserID FROM \`Student\`) THEN 'Student'
-			WHEN U.UserID IN (SELECT UserID FROM \`HouseMaster\`) THEN 'HouseMaster'
-			WHEN U.UserID IN (SELECT UserID FROM \`Admin\`) THEN 'Admin'
-			ELSE 'Unknown' END) AS privilege, a_ID FROM \`Users\` AS U LEFT JOIN \`Student\` AS S ON U.\`UserID\` = S.\`UserID\`
-			WHERE U.\`UserID\`='${account}' AND \`Password\`='${password}';`;
+			const queryString = `SELECT U.password, (CASE WHEN U.UserID IN (SELECT UserID FROM \`student\`) THEN 'student'
+				WHEN U.UserID IN (SELECT UserID FROM \`houseMaster\`) THEN 'houseMaster'
+				WHEN U.UserID IN (SELECT UserID FROM \`admin\`) THEN 'admin'
+				ELSE 'Unknown' END) AS privilege, a_ID FROM \`users\` AS U LEFT JOIN \`student\` AS S ON U.\`UserID\` = S.\`UserID\`
+				WHERE U.\`UserID\`='${account}';`;
 
 			// Send the query with Admin account
 			Connections.admin.query(queryString, (err, rows) => {
@@ -106,8 +128,26 @@ class User {
 					callback(err.message, rows);
 					return;
 				}
-				callback(err, decodeRows(rows));
+				rows = decodeRows(rows)[0];
+
+				Hash.checkPasswd(password, rows.password, function (err, result) {
+					if (err) {
+						callback(err.message, rows);
+						return;
+					}
+
+					if (result == true) {
+						callback(err, rows);
+					} else {
+						callback(err, undefined);
+					}
+
+				});
 			});
+
+
+
+
 		}
 
 	}
