@@ -4,7 +4,7 @@
 // const route = require("./route/route");
 const User = require("./model/user");
 const Connections = require("./model/connections");
-
+const Board = require("./model/board");
 
 function handler(err, rows) {
 	if (err) {
@@ -14,6 +14,8 @@ function handler(err, rows) {
 	Connections.close();
 
 }
+
+Board.post("tes", "TITLE", "NODE test :D:D:D", handler);
 
 // User.Admin.delete("a1095532", handler);
 
@@ -27,7 +29,7 @@ function handler(err, rows) {
 // });
 
 // User.login({ account: "a1095532", password: "test" }, handler);
-User.login({ account: "a1095532", password: "qwe" }, handler);
+
 
 // setTimeout(() => {
 // 	Connections.close();

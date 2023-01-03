@@ -15,7 +15,7 @@ class Connections {
 		database: process.env.DATABASE
 	})
 
-	static close = () => {
+	static close() {
 		Connections.admin.end();
 	}
 }

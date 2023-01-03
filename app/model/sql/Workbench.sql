@@ -9,9 +9,10 @@ DESCRIBE HouseMaster;
 DESCRIBE Student;
 SELECT * FROM `users`;
 SELECT * FROM `student`;
+SELECT * FROM `houseMaster`;
 DELETE FROM Users WHERE UserID='fortest' AND Password='test';
 INSERT INTO users (UserID, Password, name, email, phnumber, sex, eroll_year) VALUES ('test', 'csie', 'Cindy', 'test@example.com', '0912345678', 'F', 2019);
-INSERT INTO `Student` VALUES ('test', 'a1095500');
+INSERT INTO `houseMaster` VALUES ('test');
 INSERT INTO users VALUES ('a1095500', 'csie', 'Cindy', 'test@example.com', '0912345678', 'F', 2019, 123);
 UPDATE users SET sex='D' WHERE UserID = 'a1095500';
 DELETE FROM users WHERE UserID = 'a1095532';
@@ -22,6 +23,16 @@ SELECT (CASE WHEN UserID IN (SELECT UserID FROM `Student`) THEN 'Student'
 WHEN UserID IN (SELECT UserID FROM `HouseMaster`) THEN 'HouseMaster'
 WHEN UserID IN (SELECT UserID FROM `Admin`) THEN 'Admin'
 ELSE 'Unknown' END) AS privilege FROM `Users` WHERE `UserID`='testAdmin' AND `Password`='csie';
+
+ALTER TABLE bulletinBoard AUTO_INCREMENT=1;
+SELECT * FROM bulletinBoard;
+SELECT * FROM manage_HB;
+INSERT INTO bulletinBoard (title, b_text) VALUE ('TEST TITLE', '123:D');
+INSERT INTO bulletinBoard (b_ID, b_text) VALUE (12, '123:D');
+INSERT INTO manage_HB (b_ID, h_UserID) VALUE ((SELECT LAST_INSERT_ID() FROM bulletinBoard), (SELECT UserID FROM houseMaster WHERE UserID='test' UNION SELECT UserID FROM admin WHERE UserID='test'));
+SELECT LAST_INSERT_ID() FROM bulletinBoard;
+DELETE FROM bulletinBoard WHERE b_ID<20;
+DELETE FROM manage_HB WHERE b_ID < 20;
 
 SET GLOBAL time_zone = 'Asia/Taipei';
 
