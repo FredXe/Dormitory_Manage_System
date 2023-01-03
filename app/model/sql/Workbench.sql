@@ -55,5 +55,5 @@ DROP TABLE if EXISTS users,
 	non_Boarder,
 	violation_Record,
 	manage_HV,
-	edit;
+	editChat;
 SET FOREIGN_KEY_CHECKS = 1;

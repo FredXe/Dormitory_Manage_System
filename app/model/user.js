@@ -1,7 +1,6 @@
 /**
- * Module control the TABLE `Users`
+ * Module control the TABLE `users`
  */
-const hash = require("bcrypt");
 const Connections = require("./connections");
 const Hash = require("./hash");
 
@@ -27,8 +26,10 @@ function getPasswd(UserID, callback) {
 	Connections.admin.query(query, callback);
 }
 
+/**
+ * Public class with static method
+ */
 class User {
-
 	static Admin = {
 		/**
 		 * Insert the Data into TABLE `Users`
