@@ -42,7 +42,6 @@ CREATE TABLE IF NOT EXISTS admin
 CREATE TABLE IF NOT EXISTS student
 (
   `UserID` char(8) NOT NULL,
-  `a_ID` char(8) NOT NULL UNIQUE KEY,
   PRIMARY KEY (`UserID`),
   FOREIGN KEY (`UserID`) REFERENCES users(`UserID`) ON DELETE CASCADE
 );
@@ -86,15 +85,15 @@ CREATE TABLE IF NOT EXISTS bulletinBoard
 
 CREATE TABLE IF NOT EXISTS application
 (
-  `a_ID` CHAR(10) NOT NULL,
+  `studentUserID` CHAR(8) NOT NULL,
   `a_semester` YEAR NOT NULL,
   `a_Date` DATETIME NOT NULL,
   `a_approved` CHAR(1) NOT NULL DEFAULT 'N',
   `a_Paid` CHAR(1) NOT NULL DEFAULT 'N',
-  `UserID` char(8),
-  PRIMARY KEY (`a_ID`),
-  FOREIGN KEY (`a_ID`) REFERENCES student(`a_ID`) ON DELETE CASCADE,
-  FOREIGN KEY (`UserID`) REFERENCES admin(`UserID`) ON DELETE SET NULL
+  `adminUserID` char(8),
+  PRIMARY KEY (`studentUserID`),
+  FOREIGN KEY (`studentUserID`) REFERENCES student(`UserID`) ON DELETE CASCADE,
+  FOREIGN KEY (`adminUserID`) REFERENCES admin(`UserID`) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS chat
