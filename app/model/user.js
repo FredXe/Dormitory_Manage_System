@@ -3,16 +3,7 @@
  */
 const Connections = require("./connections");
 const Hash = require("./hash");
-
-/**
- * Convert Rows into Object with JSON's 
- * static functions
- * @param {RowDataPacket} rows Rows input
- * @returns Object that `rows` expressed
- */
-function decodeRows(rows) {
-	return Object.values(JSON.parse(JSON.stringify(rows)));
-}
+const Util = require("./util");
 
 /**
  * SELECT password of specific user
@@ -181,7 +172,7 @@ class User {
 				callback(err, undefined);
 				return;
 			}
-			rows = decodeRows(rows);
+			rows = Util.decodeRows(rows);
 			callback(err, rows[0]);
 		});
 	}

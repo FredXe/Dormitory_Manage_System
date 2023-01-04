@@ -1,5 +1,6 @@
 const Connections = require("./connections");
 const User = require("./user");
+const Util = require("./util");
 
 class Board {
 	/**
@@ -62,11 +63,60 @@ class Board {
 		User.getAccountInfo(account, insertPost);
 	}
 
-	static comment(account, b_ID, text) {
-		const query = ``;
+	/**
+	 * Insert a comment.
+	 * @param {string} account UserID that do the comment
+	 * @param {number} b_ID ID of `bulletinBoard`
+	 * @param {string} text Content of comment
+	 * @param {(err, rows)} callback `err` will be filled
+	 * on error.
+	 */
+	static comment(account, b_ID, text, callback) {
+		// INSERT a new comment
+		const query = `INSERT INTO comment (UserID, b_ID, c_text)
+			VALUE ('${account}', ${b_ID}, '${text}');`;
+
+		Connections.admin.query(query, callback);
 	}
 
-	static editComment(account, b_ID, c_ID, text) { }
+	/**
+	 * Edit a comment
+	 * @param {string} account UserID to edit the comment
+	 * @param {number} b_ID ID of `bulletinBoard`
+	 * @param {number} c_ID ID of `comment`
+	 * @param {string} text Content to edit
+	 * @param {(err, rows)} callback `rows.affectedRows` == 1 if
+	 * edit success, 0 if failed.
+	 */
+	static editComment(account, b_ID, c_ID, text, callback) {
+		// Edit the comment
+		const query = `UPDATE comment SET c_text='${text}'
+			WHERE UserID='${account}' AND b_ID=${b_ID} AND c_No=${c_ID};`;
+
+		Connections.admin.query(query, callback);
+	}
+
+	/**
+	 * SELECT the comment with specific `b_ID`
+	 * @param {number} b_ID ID of `bulletinBoard`
+	 * @param {(err, rows)} callback `rows` will filled with
+	 * comments formed as [{`comment1`}, {`comment2`}, ...]
+	 */
+	static selectCommentByBID(b_ID, callback) {
+		// SELECT comment has specific b_ID
+		const query = `SELECT * FROM comment WHERE b_ID=${b_ID};`;
+
+		Connections.admin.query(query, function (err, rows) {
+			if (err) {
+				callback(err, rows);
+				return;
+			}
+
+			rows = Util.decodeRows(rows);
+			callback(err, rows);
+		});
+
+	}
 
 	static boardLastInsert = 0;
 }

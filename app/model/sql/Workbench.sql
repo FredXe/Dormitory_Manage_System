@@ -28,6 +28,8 @@ ALTER TABLE bulletinBoard AUTO_INCREMENT=1;
 SELECT * FROM bulletinBoard NATURAL JOIN manage_HB;
 SELECT * FROM bulletinBoard;
 SELECT * FROM manage_HB;
+SELECT * FROM comment;
+UPDATE comment SET c_text='workbench test comment' WHERE c_NO=1 AND b_ID=1;
 INSERT INTO bulletinBoard (title, b_text) VALUE ('TEST TITLE', '123:D');
 INSERT INTO bulletinBoard (b_ID, b_text) VALUE (12, '123:D');
 INSERT INTO manage_HB (b_ID, h_UserID) VALUE ((SELECT LAST_INSERT_ID() FROM bulletinBoard), (SELECT UserID FROM houseMaster WHERE UserID='test' UNION SELECT UserID FROM admin WHERE UserID='test'));
@@ -59,13 +61,12 @@ DROP TABLE if EXISTS users,
 	equipment,
 	bulletinBoard,
 	application,
-	chat,
+	comment,
 	manage_HD,
 	manage_HB,
 	student,
 	boarder,
 	non_Boarder,
 	violation_Record,
-	manage_HV,
-	editChat;
+	manage_HV;
 SET FOREIGN_KEY_CHECKS = 1;

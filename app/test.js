@@ -15,11 +15,23 @@ function handler(err, rows) {
 
 }
 
-Board.post("test", "TITLE", "NODE test :D:D:D", handler);
+// Board.post("a123", "TITLE", "NODE test :D:D:D", handler);
+// Board.comment("a1095532", "1", "NODE test comment", handler);
+// Board.editComment("a1095532", 1, 2, "NODE edit comment", handler);
+Board.selectCommentByBID(1, handler);
 
 // User.getAccountInfo("test", handler);
 
 // User.Admin.delete("a1095532", handler);
+
+// User.Admin.regist({
+// 	UserID: 'a123', Password: 'qwe', name: 'Fred', eroll_year: 2019, userType: "houseMaster"
+// }, (err, rows) => {
+// 	if (err) {
+// 		console.error(err);
+// 	}
+// 	console.log("Inserted: ", rows);
+// });
 
 // User.Admin.regist({
 // 	UserID: 'a1095532', Password: 'qwe', name: 'Fred', eroll_year: 2019, userType: "student"
