@@ -25,6 +25,7 @@ WHEN UserID IN (SELECT UserID FROM `Admin`) THEN 'Admin'
 ELSE 'Unknown' END) AS privilege FROM `Users` WHERE `UserID`='testAdmin' AND `Password`='csie';
 
 ALTER TABLE bulletinBoard AUTO_INCREMENT=1;
+SELECT * FROM bulletinBoard NATURAL JOIN manage_HB;
 SELECT * FROM bulletinBoard;
 SELECT * FROM manage_HB;
 INSERT INTO bulletinBoard (title, b_text) VALUE ('TEST TITLE', '123:D');

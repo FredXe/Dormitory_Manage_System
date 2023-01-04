@@ -10,12 +10,14 @@ function handler(err, rows) {
 	if (err) {
 		console.error(err);
 	}
-	console.log(rows);
+	console.log("handler:", rows);
 	Connections.close();
 
 }
 
-Board.post("tes", "TITLE", "NODE test :D:D:D", handler);
+Board.post("test", "TITLE", "NODE test :D:D:D", handler);
+
+// User.getAccountInfo("test", handler);
 
 // User.Admin.delete("a1095532", handler);
 
@@ -28,7 +30,7 @@ Board.post("tes", "TITLE", "NODE test :D:D:D", handler);
 // 	console.log("Inserted: ", rows);
 // });
 
-// User.login({ account: "a1095532", password: "test" }, handler);
+// User.login({ account: "a1095532", password: "qwe" }, handler);
 
 
 // setTimeout(() => {

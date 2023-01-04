@@ -7,7 +7,7 @@ const Hash = require("./hash");
 /**
  * Convert Rows into Object with JSON's 
  * static functions
- * @param {RawData} rows Rows input
+ * @param {RowDataPacket} rows Rows input
  * @returns Object that `rows` expressed
  */
 function decodeRows(rows) {
@@ -50,8 +50,7 @@ class User {
 		}, callback) {
 
 			// Check if usertype is valid
-			userType = userType.toLowerCase();
-			if (["student", "housemaster", "admin"].includes(userType) == false) {
+			if (["student", "houseMaster", "admin"].includes(userType) == false) {
 				console.error("userType invalid");
 				return;
 			}
@@ -115,20 +114,13 @@ class User {
 
 	/**
 	 * Login function
-	 * @param {string} account UserID in Database
+	 * @param {string} account UserID to login
 	 * @param {string} password Plain text password
 	 * @param {(err, rows)} callback `rows` is filled
 	 * with privilege if login success, `undefined`
 	 * if no such user or the password doesn't match.
 	 */
 	static login({ account, password }, callback) {
-
-		// SELECT the password and the privileges
-		const query = `SELECT U.password, (CASE WHEN U.UserID IN (SELECT UserID FROM \`student\`) THEN 'student'
-				WHEN U.UserID IN (SELECT UserID FROM \`houseMaster\`) THEN 'houseMaster'
-				WHEN U.UserID IN (SELECT UserID FROM \`admin\`) THEN 'admin'
-				ELSE 'Unknown' END) AS privilege FROM \`users\` AS U LEFT JOIN \`student\` AS S ON U.\`UserID\` = S.\`UserID\`
-				WHERE U.\`UserID\`='${account}';`;
 
 		/**
 		 * Declare the query callbcak function
@@ -139,8 +131,6 @@ class User {
 				return;
 			}
 
-			rows = decodeRows(rows)[0];
-
 			// Return if no target User
 			if (rows == undefined) {
 				callback(err, rows);
@@ -148,8 +138,7 @@ class User {
 			}
 
 			/**
-			 * Hash the password and compare it with the DB's
-			 * password. 
+			 * Compare the DB's password with input. 
 			 */
 			Hash.checkPasswd(password, rows.password, function (err, result) {
 				if (err) {
@@ -169,10 +158,33 @@ class User {
 		/**
 		 * Execute the query
 		 */
-		Connections.admin.query(query, checkPasswd);
+		this.getAccountInfo(account, checkPasswd);
 
 	}
 
+	/**
+	 * Get the info of the Account
+	 * @param {string} account Account to search
+	 * @param {(err, {password, privilege})} callback 
+	 * The password is hashed.
+	 */
+	static getAccountInfo(account, callback) {
+		// SELECT the password and the privileges
+		const query = `SELECT U.password, (CASE WHEN U.UserID IN (SELECT UserID FROM \`student\`) THEN 'student'
+			WHEN U.UserID IN (SELECT UserID FROM \`houseMaster\`) THEN 'houseMaster'
+			WHEN U.UserID IN (SELECT UserID FROM \`admin\`) THEN 'admin'
+			ELSE 'Unknown' END) AS privilege FROM \`users\` AS U LEFT JOIN \`student\` AS S ON U.\`UserID\` = S.\`UserID\`
+			WHERE U.\`UserID\`='${account}';`
+
+		Connections.admin.query(query, function (err, rows) {
+			if (err) {
+				callback(err, undefined);
+				return;
+			}
+			rows = decodeRows(rows);
+			callback(err, rows[0]);
+		});
+	}
 }
 
 module.exports = User;

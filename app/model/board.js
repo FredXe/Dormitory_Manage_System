@@ -1,10 +1,11 @@
 const Connections = require("./connections");
+const User = require("./user");
 
 class Board {
 	/**
 	 * Post an article on bulletinBoard.
 	 * @param {string} account The author.
-	 * @param {string} title 
+	 * @param {string} title Title
 	 * @param {string} text The post's content
 	 * @param {(err, rows)} callback `rows.affectedRows` == 1
 	 * if success. `err` = "Account's permission denied" if
@@ -14,21 +15,23 @@ class Board {
 	 */
 	static post(account, title, text, callback) {
 
-		// INSERT a row to `bulletinBoard`
-		const query = `INSERT INTO bulletinBoard (title, b_text) VALUE
-		(IF ((SELECT UserID FROM houseMaster WHERE UserID='${account}' UNION
-		SELECT UserID FROM admin WHERE UserID='${account}')='${account}', '${title}', NULL), '${text}');`;
-
 		/**
-		 * Declare the callback function of 
-		 * inserting a row into bulletinBoard
+		 * Declare the callback functions
 		 */
 		function insertManage_HB(err, rows) {
+			// INSERT a relation of managing the board. 
+			const query = `INSERT INTO manage_HB (b_ID, h_UserID) VALUE
+				((SELECT LAST_INSERT_ID() FROM bulletinBoard LIMIT 1), '${account}');`;
+
+			Connections.admin.query(query, callback);
+		}
+
+		function insertPost(err, rows) {
 			if (err) {
 				/**
 				 * If it has no privilege, the title will be filled with
 				 * `NULL`, and abort with constraint `NOT NULL`.
-				 */
+				*/
 				if (err.sqlMessage == "Column 'title' cannot be null") {
 					callback("Account's permission denied", rows);
 					return;
@@ -37,18 +40,33 @@ class Board {
 				return;
 			}
 
-			// INSERT a relation of managing the board . 
-			const query = `INSERT INTO manage_HB (b_ID, h_UserID) VALUE
-				((SELECT LAST_INSERT_ID() FROM bulletinBoard LIMIT 1), '${account}');`;
+			if (rows == undefined) {
+				callback("no such account", rows);
+				return;
+			}
 
-			Connections.admin.query(query, callback);
+			if (["houseMaster", "admin"].includes(rows.privilege) == false) {
+				callback("Account's permission denied", rows);
+				return;
+			}
+
+			// INSERT a row into `bulletinBoard`
+			const query = `INSERT INTO bulletinBoard (title, b_text) VALUE ('${title}', '${text}');`;
+
+			Connections.admin.query(query, insertManage_HB);
 		}
 
 		/**
 		 * Execute the query
 		 */
-		Connections.admin.query(query, insertManage_HB);
+		User.getAccountInfo(account, insertPost);
 	}
+
+	static comment(account, b_ID, text) {
+		const query = ``;
+	}
+
+	static editComment(account, b_ID, c_ID, text) { }
 
 	static boardLastInsert = 0;
 }
