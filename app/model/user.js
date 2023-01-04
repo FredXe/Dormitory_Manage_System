@@ -100,6 +100,16 @@ class User {
 			const query = `DELETE FROM users WHERE UserID='${account}'`;
 
 			Connections.admin.query(query, callback);
+		},
+
+		showUsers: function (callback) {
+			const query = `SELECT *, (CASE WHEN UserID IN (SELECT UserID FROM \`student\`) THEN 'student'
+			WHEN UserID IN (SELECT UserID FROM \`houseMaster\`) THEN 'houseMaster'
+			WHEN UserID IN (SELECT UserID FROM \`admin\`) THEN 'admin'
+			ELSE 'Unknown' END) AS privilege FROM \`users\`;`;
+
+			console.log(query);
+			Connections.admin.query(query, callback);
 		}
 	}
 

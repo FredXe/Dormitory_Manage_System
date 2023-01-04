@@ -140,7 +140,4 @@ class Board {
 	static boardLastInsert = 0;
 }
 
-
-
-
 module.exports = Board;

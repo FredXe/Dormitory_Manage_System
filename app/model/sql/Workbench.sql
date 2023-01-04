@@ -36,6 +36,10 @@ INSERT INTO manage_HB (b_ID, h_UserID) VALUE ((SELECT LAST_INSERT_ID() FROM bull
 SELECT LAST_INSERT_ID() FROM bulletinBoard;
 DELETE FROM bulletinBoard WHERE b_ID<20;
 DELETE FROM manage_HB WHERE b_ID < 20;
+SELECT *, (CASE WHEN U.UserID IN (SELECT UserID FROM `student`) THEN 'student'
+                        WHEN U.UserID IN (SELECT UserID FROM `houseMaster`) THEN 'houseMaster'
+                        WHEN U.UserID IN (SELECT UserID FROM `admin`) THEN 'admin'
+                        ELSE 'Unknown' END) AS privilege FROM `users` AS U LEFT JOIN `student` AS S ON U.`UserID` = S.`UserID`;
 
 SET GLOBAL time_zone = 'Asia/Taipei';
 
