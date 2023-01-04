@@ -18,7 +18,8 @@ function handler(err, rows) {
 // Board.post("a123", "TITLE", "NODE test :D:D:D", handler);
 // Board.comment("a1095532", "1", "NODE test comment", handler);
 // Board.editComment("a1095532", 1, 2, "NODE edit comment", handler);
-Board.selectCommentByBID(1, handler);
+// Board.selectCommentByBID(1, handler);
+// Board.selectPost(handler);
 
 // User.getAccountInfo("test", handler);
 

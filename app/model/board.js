@@ -64,6 +64,25 @@ class Board {
 	}
 
 	/**
+	 * SELECT all the Posts
+	 * @param {(err, rows)} callback `rows` will filled with
+	 * Posts formed as [{`Post1`}, {`Post2`}, ...]
+	 */
+	static selectPost(callback) {
+		// SELECT all the bulletinBoard
+		const query = `SELECT b_ID, title, b_text AS content FROM bulletinBoard ORDER BY b_ID ASC;`;
+
+		Connections.admin.query(query, function (err, rows) {
+			if (err) {
+				callback(err, rows);
+				return;
+			}
+			rows = Util.decodeRows(rows);
+			callback(err, rows);
+		});
+	}
+
+	/**
 	 * Insert a comment.
 	 * @param {string} account UserID that do the comment
 	 * @param {number} b_ID ID of `bulletinBoard`
@@ -104,7 +123,7 @@ class Board {
 	 */
 	static selectCommentByBID(b_ID, callback) {
 		// SELECT comment has specific b_ID
-		const query = `SELECT * FROM comment WHERE b_ID=${b_ID};`;
+		const query = `SELECT * FROM comment WHERE b_ID=${b_ID} ORDER BY c_No ASC;`;
 
 		Connections.admin.query(query, function (err, rows) {
 			if (err) {
