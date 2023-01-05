@@ -168,7 +168,8 @@ class Dormitory {
 
 	/**
 	 * INSERT equipments
-	 * @param {Array} equipment [{`type`, `eName`, `condition`, `roomNumber`, `dormitoryName`}, {...}]
+	 * @param {Array} equipment 
+	 * [{`type`, `eName`, `condition`, `roomNumber`, `dormitoryName`}, {...}]
 	 * @param {(err, rows)} callback 
 	 */
 	static insertEquipment(equipment = [{ type, eName, condition, roomNumber, dormitoryName }], callback) {
@@ -193,14 +194,115 @@ class Dormitory {
 		Connections.admin.query(query, callback);
 	}
 
+	/**
+	 * UPDATE the specific equipment's status.
+	 * @param {number} ID `e_ID` of the equipment
+	 * @param {string} condition 
+	 * Set to `null` if you don't wanna modify it.
+	 * @param {number} roomNumber The room equipment are. 
+	 * Set to `null` if you don't wanna modify it.
+	 * @param {string} dormitoryName 
+	 * The dormitory where the room locate.
+	 * Set to `null` if you don't wanna modify it.
+	 * @param {(err, rows)} callback 
+	 */
+	static updateEquipStatus(ID, condition, roomNumber, dormitoryName, callback) {
+		var query = `UPDATE equipment SET `;
+
+		/**
+		 * Fill in the query if you wanna modify the column
+		 */
+		if (condition) {
+			query = query.concat(`e_condition='${condition}' `);
+			if (roomNumber) {
+				query = query.concat(`, `);
+			}
+		}
+		if (roomNumber) {
+			query = query.concat(`r_number=${roomNumber}, `);
+			/**
+			 * Since type of `d_name` is string,
+			 * we have to set it `null` instead
+			 * of `'null'` if we wanna assign it
+			 * `null`.
+			 */
+			if (dormitoryName.toLowerCase() == "null") {
+				query = query.concat(`d_name=null`);
+			} else {
+				query = query.concat(`d_name='${dormitoryName}'`);
+			}
+		}
+		query = query.concat(` WHERE e_ID=${ID};`);
+
+		Connections.admin.query(query, callback);
+	}
+
+	/**
+	 * SELECT all the equipments.
+	 * @param {(err, rows)} callback 
+	 * `rows`: [{`ID`, `condition`, `type`, `roomNumber`, `dormitoryName`}, { }...]
+	 */
 	static showEquipments(callback) {
 		const query = `SELECT e_ID AS ID, e_condition AS \`condition\`, e_type AS type,
 		r_number AS roomNumber, d_name AS dormitoryName
 		FROM equipment;`;
 
-		Connections.admin.query(query, callback);
+		Connections.admin.query(query, function (err, rows) {
+			if (err) {
+				callback(err, rows);
+				return;
+			}
+
+			rows = Util.decodeRows(rows);
+			callback(err, rows);
+		});
 	}
 
+	/**
+	 * SELECT the equipment is not normal and
+	 * with specific condition
+	 * @param {string} condition The specific condition.
+	 * Set to "%" if you don't wanna the condition filtered.
+	 * @param {(err, rows)} callback 
+	 * `rows`: [{`ID`, `condition`, `type`, `roomNumber`, `dormitoryName`}, { }...]
+	 */
+	static showProblemEquipment(condition, callback) {
+		const query = `SELECT e_ID AS ID, e_condition AS \`condition\`, e_type AS type,
+		r_number AS roomNumber, d_name AS dormitoryName
+		FROM equipment WHERE e_condition<>'normal' AND e_condition LIKE '${condition}';`;
+
+		Connections.admin.query(query, function (err, rows) {
+			if (err) {
+				callback(err, rows);
+				return;
+			}
+
+			rows = Util.decodeRows(rows);
+			callback(err, rows);
+		});
+	}
+
+	/**
+	 * SELECT the equipment that are not 
+	 * locate in one room.
+	 * @param {(err, rows)} callback 
+	 * `rows`: [{`ID`, `condition`, `type`, `roomNumber`, `dormitoryName`}, { }...]
+	 */
+	static showAvailableEquipment(callback) {
+		const query = `SELECT e_ID AS ID, e_condition AS \`condition\`, e_type AS type,
+		r_number AS roomNumber, d_name AS dormitoryName
+		FROM equipment WHERE r_number IS NULL AND d_name IS NULL;`;
+
+		Connections.admin.query(query, function (err, rows) {
+			if (err) {
+				callback(err, rows);
+				return;
+			}
+
+			rows = Util.decodeRows(rows);
+			callback(err, rows);
+		});
+	}
 }
 
 module.exports = Dormitory;
