@@ -49,16 +49,16 @@ CREATE TABLE IF NOT EXISTS student
 CREATE TABLE IF NOT EXISTS dormitory
 (
   `d_name` varchar(30) NOT NULL,
-  `UserID` char(8),
-  `d_volume` INT NOT NULL,
+  `adminUserID` char(8),
+  `d_volume` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`d_name`),
-  FOREIGN KEY (`UserID`) REFERENCES admin(`UserID`)  ON DELETE SET NULL
+  FOREIGN KEY (`adminUserID`) REFERENCES admin(`UserID`)  ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS room
 (
   `d_name` varchar(30) NOT NULL,
-  `r_number` INT NOT NULL,
+  `r_number` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `r_volume` INT NOT NULL,
   `r_cost` INT NOT NULL,
   PRIMARY KEY (`r_number`, `d_name`),
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS equipment
   `e_ID` char(10) NOT NULL,
   `e_condition` varchar(60) NOT NULL,
   `e_type` INT NOT NULL,
-  `r_number` INT,
+  `r_number` INT UNSIGNED,
   `d_name` varchar(30),
   PRIMARY KEY (`e_ID`),
   FOREIGN KEY (`r_number`, `d_name`) REFERENCES room(`r_number`, `d_name`)  ON DELETE SET NULL
@@ -131,12 +131,12 @@ CREATE TABLE IF NOT EXISTS manage_HB
 CREATE TABLE IF NOT EXISTS boarder
 (
   `UserID` char(8) NOT NULL,
-  `r_number` INT NOT NULL,
   `d_name` char(8) NOT NULL,
+  `r_number` INT UNSIGNED NOT NULL,
   `Admin_UserID` char(8) NOT NULL,
   PRIMARY KEY (`UserID`),
   FOREIGN KEY (`UserID`) REFERENCES student(`UserID`) ON DELETE CASCADE,
-  FOREIGN KEY (`r_number`, `d_name`) REFERENCES room(`r_number`, `d_name`) ON DELETE CASCADE,
+  FOREIGN KEY (`d_name`, `r_number`) REFERENCES room(`d_name`, `r_number`) ON DELETE CASCADE,
   FOREIGN KEY (`Admin_UserID`) REFERENCES admin(`UserID`) ON DELETE CASCADE
 );
 

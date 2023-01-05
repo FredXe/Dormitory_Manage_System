@@ -128,12 +128,6 @@ class User {
 		 */
 		function checkPasswd(err, rows) {
 			if (err) {
-				callback(err.message, rows);
-				return;
-			}
-
-			// Return if no target User
-			if (rows == undefined) {
 				callback(err, rows);
 				return;
 			}
@@ -143,7 +137,7 @@ class User {
 			 */
 			Hash.checkPasswd(password, rows.password, function (err, result) {
 				if (err) {
-					callback(err.message, rows);
+					callback(err, rows);
 					return;
 				}
 
@@ -167,7 +161,8 @@ class User {
 	 * Get the info of the Account
 	 * @param {string} account Account to search
 	 * @param {(err, {password, privilege})} callback 
-	 * The password is hashed.
+	 * The password is hashed. `rows` == `undefined`
+	 * if no such user.
 	 */
 	static getAccountInfo(account, callback) {
 		// SELECT the password and the privileges
@@ -182,8 +177,15 @@ class User {
 				callback(err, undefined);
 				return;
 			}
-			rows = Util.decodeRows(rows);
-			callback(err, rows[0]);
+
+			rows = Util.decodeRows(rows)[0];
+
+			if (rows == undefined) {
+				callback("getAddountInfo(): no target user", rows);
+				return;
+			}
+
+			callback(err, rows);
 		});
 	}
 }

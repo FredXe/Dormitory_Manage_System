@@ -6,10 +6,17 @@ SHOW TABLES;
 DESCRIBE users;
 DESCRIBE Admin;
 DESCRIBE HouseMaster;
-DESCRIBE Student;
+DESCRIBE dormitory;
+DESCRIBE room;
 SELECT * FROM `users`;
 SELECT * FROM `student`;
 SELECT * FROM `houseMaster`;
+SELECT * FROM `dormitory`;
+SELECT * FROM `room`;
+DELETE FROM dormitory WHERE d_name='Node test Dormitory 10 room';
+ALTER TABLE dormitory RENAME COLUMN UserID TO adminUserID;
+ALTER TABLE room MODIFY COLUMN `r_number` INT UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE boarder DROP COLUMN `r_number`;
 DELETE FROM Users WHERE UserID='fortest' AND Password='test';
 INSERT INTO users (UserID, Password, name, email, phnumber, sex, eroll_year) VALUES ('test', 'csie', 'Cindy', 'test@example.com', '0912345678', 'F', 2019);
 INSERT INTO `houseMaster` VALUES ('test');
@@ -36,10 +43,10 @@ INSERT INTO manage_HB (b_ID, h_UserID) VALUE ((SELECT LAST_INSERT_ID() FROM bull
 SELECT LAST_INSERT_ID() FROM bulletinBoard;
 DELETE FROM bulletinBoard WHERE b_ID<20;
 DELETE FROM manage_HB WHERE b_ID < 20;
-SELECT *, (CASE WHEN U.UserID IN (SELECT UserID FROM `student`) THEN 'student'
-                        WHEN U.UserID IN (SELECT UserID FROM `houseMaster`) THEN 'houseMaster'
-                        WHEN U.UserID IN (SELECT UserID FROM `admin`) THEN 'admin'
-                        ELSE 'Unknown' END) AS privilege FROM `users` AS U LEFT JOIN `student` AS S ON U.`UserID` = S.`UserID`;
+SELECT *, (CASE WHEN UserID IN (SELECT UserID FROM `student`) THEN 'student'
+                        WHEN UserID IN (SELECT UserID FROM `houseMaster`) THEN 'houseMaster'
+                        WHEN UserID IN (SELECT UserID FROM `admin`) THEN 'admin'
+                        ELSE 'Unknown' END) AS privilege FROM `users`;
 
 SET GLOBAL time_zone = 'Asia/Taipei';
 
