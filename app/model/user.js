@@ -108,8 +108,14 @@ class User {
 			WHEN UserID IN (SELECT UserID FROM \`admin\`) THEN 'admin'
 			ELSE 'Unknown' END) AS privilege FROM \`users\`;`;
 
-			console.log(query);
-			Connections.admin.query(query, callback);
+			Connections.admin.query(query, function (err, rows) {
+				if (err) {
+					console.error(err);
+					return;
+				}
+				rows = Util.decodeRows(rows);
+				callback(err, rows);
+			});
 		}
 	}
 

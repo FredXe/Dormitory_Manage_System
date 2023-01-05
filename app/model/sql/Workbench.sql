@@ -13,6 +13,7 @@ SELECT * FROM `student`;
 SELECT * FROM `houseMaster`;
 SELECT * FROM `dormitory`;
 SELECT * FROM `room`;
+SELECT * FROM `manage_HD`;
 DELETE FROM dormitory WHERE d_name='Node test Dormitory 10 room';
 ALTER TABLE dormitory RENAME COLUMN UserID TO adminUserID;
 ALTER TABLE room MODIFY COLUMN `r_number` INT UNSIGNED NOT NULL AUTO_INCREMENT;

@@ -46,16 +46,52 @@ class Dormitory {
 	}
 
 	/**
+	 * INSERT a manage relation into `manage_HD`.
+	 * @param {string} houseMaster UserID of `houseMaster`
+	 * @param {string} dormitory name of `dormitory`
+	 * @param {(err, rows)} callback 
+	 */
+	static insertMngDormitory(houseMaster, dormitory, callback) {
+		const query = `INSERT INTO manage_HD 
+			VALUE ('${houseMaster}', '${dormitory}');`;
+
+		Connections.admin.query(query, callback);
+	}
+
+	/**
 	 * SELECT all the `dormitory`.
 	 * @param {(err, rows)} callback 
 	 * `rows`:  [{`dormitory1`}, {`dormitory2`},...]
 	 */
 	static showDormitory(callback) {
-		const query = `SELECT d_name AS name, d_volume AS volume, adminUserID FROM dormitory;`;
+		const query = `SELECT d_name AS name, d_volume AS volume, adminUserID AS admin FROM dormitory;`;
 
 		Connections.admin.query(query, function (err, rows) {
 			if (err) {
-				callback(err, rows);
+				console.error(err);
+				return;
+			}
+			rows = Util.decodeRows(rows);
+
+			callback(err, rows);
+		});
+	}
+
+	/**
+	 * SELECT `manage_HD` by name of `dormitory`.
+	 * @param {string} dormitory Name of `dormitory`,
+	 * '%' to select all the rows.
+	 * @param {(err, rows)} callback 
+	 * `rows`: [{`manage1`}, {`manage2`},...]
+	 */
+	static showMngDormitory(dormitory, callback) {
+		const query = `SELECT UserID AS houseMaster, d_name AS dormitory 
+			FROM manage_HD WHERE d_name LIKE '${dormitory}'
+			ORDER BY d_name`;
+
+		Connections.admin.query(query, function (err, rows) {
+			if (err) {
+				console.error(err);
 				return;
 			}
 			rows = Util.decodeRows(rows);
