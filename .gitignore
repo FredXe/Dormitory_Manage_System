@@ -4,5 +4,8 @@ node_modules
 # .env config
 app/model/.env
 
+# test file
+app/test.js
+
 # vscode
 .vscode
