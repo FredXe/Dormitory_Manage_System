@@ -15,8 +15,7 @@ class Connections {
 		Connections.admin.end();
 	}
 }
-console.log(Connections.admin._protocol._config);
-// console.log(process.env);
+
 Connections.admin.connect();
 
 
