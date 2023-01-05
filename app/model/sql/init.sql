@@ -67,9 +67,10 @@ CREATE TABLE IF NOT EXISTS room
 
 CREATE TABLE IF NOT EXISTS equipment
 (
-  `e_ID` char(10) NOT NULL,
-  `e_condition` varchar(60) NOT NULL,
+  `e_ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `e_type` INT NOT NULL,
+  `name` VARCHAR(30) NOT NULL,
+  `e_condition` varchar(60) NOT NULL,
   `r_number` INT UNSIGNED,
   `d_name` varchar(30),
   PRIMARY KEY (`e_ID`),

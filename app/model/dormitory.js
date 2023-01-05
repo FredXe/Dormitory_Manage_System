@@ -21,7 +21,7 @@ class Dormitory {
 	static insertDormitory(name, account, volume, r_volume, cost, callback) {
 		const query = `INSERT INTO dormitory VALUE ('${name}', '${account}', ${volume})`;
 
-		function insertRooms(err, rows) {
+		function _insertRooms(err, rows) {
 			if (err) {
 				callback(err.sqlMessage, rows);
 				return;
@@ -30,10 +30,8 @@ class Dormitory {
 
 			// INSERT new rooms
 			for (let roomNumbers = 1; roomNumbers <= volume; roomNumbers++) {
-				const query = `INSERT INTO room (d_name, r_number, r_volume, r_cost)
-					VALUE ('${name}', ${roomNumbers}, ${r_volume}, ${cost})`;
 
-				Connections.admin.query(query, function (err, rows) {
+				Dormitory.insertRoom(name, roomNumbers, r_volume, cost, function (err, rows) {
 					if (err) {
 						console.log(err, rows);
 						return;
@@ -42,7 +40,7 @@ class Dormitory {
 			}
 		}
 
-		Connections.admin.query(query, insertRooms);
+		Connections.admin.query(query, _insertRooms);
 	}
 
 	/**
@@ -104,16 +102,46 @@ class Dormitory {
 	 * INSERT a room into `room`.
 	 * NOTE: This function will not check the privilege.
 	 * @param {string} d_name Name of the `dormitory` where the `room` located
-	 * @param {number} r_volume Volume of the `room`
-	 * @param {number} r_cost Cost/person per Semester
+	 * @param {number} number Number of the `room`
+	 * @param {number} volume Volume of the `room`
+	 * @param {number} cost Cost/person per Semester
 	 * @param {(err, row)} callback Callback of the query 
-	 */
-	static insertRoom(d_name, r_volume, r_cost, callback) {
+	*/
+	static insertRoom(d_name, number, volume, cost, callback) {
 		// INSERT a new room
-		const query = `INSERT INTO room (d_name, r_volume, r_cost)
-						VALUE ('${d_name}', ${r_volume}, ${r_cost})`;
+		const query = `INSERT INTO room (d_name, r_number, r_volume, r_cost)
+		VALUE ('${d_name}', ${number}, ${volume}, ${cost})`;
 
-		Connections.admin.query(query, callback);
+		Connections.admin.query(query, _insertEquipment);
+
+		function _insertEquipment(err, rows) {
+			if (err) {
+				callback(err, rows);
+				return;
+			}
+
+			var equipments = [];
+
+			// Fill beds
+			for (var bedCnt = 1; bedCnt <= volume; bedCnt++) {
+				const eName = `bed${bedCnt}`;
+				equipments.push({ type: "furniture", eName: eName, condition: "normal", roomNumber: number, dormitoryName: "Node test Dormitory" });
+			}
+			// Fill desks
+			for (var deskCnt = 0; deskCnt <= volume; deskCnt++) {
+				const eName = `desk${deskCnt}`;
+				equipments.push({ type: "furniture", eName: eName, condition: "normal", roomNumber: number, dormitoryName: "Node test Dormitory" });
+			}
+			// Fill facilities
+			equipments.push({ type: "furniture", eName: "toilet", condition: "normal", roomNumber: number, dormitoryName: "Node test Dormitory" });
+			equipments.push({ type: "furniture", eName: "shower", condition: "normal", roomNumber: number, dormitoryName: "Node test Dormitory" });
+			equipments.push({ type: "furniture", eName: "aircon", condition: "normal", roomNumber: number, dormitoryName: "Node test Dormitory" });
+
+
+			Dormitory.insertEquipment(equipments, callback);
+		}
+
+
 	}
 
 	/**
@@ -136,6 +164,41 @@ class Dormitory {
 
 			callback(err, rows);
 		});
+	}
+
+	/**
+	 * INSERT equipments
+	 * @param {Array} equipment [{`type`, `eName`, `condition`, `roomNumber`, `dormitoryName`}, {...}]
+	 * @param {(err, rows)} callback 
+	 */
+	static insertEquipment(equipment = [{ type, eName, condition, roomNumber, dormitoryName }], callback) {
+		// INSERT equipments into `equipment`
+		var query = `INSERT INTO equipment (e_type, e_name, e_condition, r_number, d_name) VALUES`;
+
+		// Concat parameter into query
+		for (let index = 0; index < equipment.length; index++) {
+			const type = equipment[index].type;
+			const eName = equipment[index].eName;
+			const condition = equipment[index].condition;
+			const roomNumber = equipment[index].roomNumber;
+			const dormitoryName = equipment[index].dormitoryName;
+
+			query = query.concat(` ('${type}', '${eName}', '${condition}', ${roomNumber}, '${dormitoryName}')`);
+			if (index != equipment.length - 1) {
+				query = query.concat(",");
+			}
+		}
+		query = query.concat(";");
+
+		Connections.admin.query(query, callback);
+	}
+
+	static showEquipments(callback) {
+		const query = `SELECT e_ID AS ID, e_condition AS \`condition\`, e_type AS type,
+		r_number AS roomNumber, d_name AS dormitoryName
+		FROM equipment;`;
+
+		Connections.admin.query(query, callback);
 	}
 
 }
