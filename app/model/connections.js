@@ -2,10 +2,6 @@ const mysql = require("mysql");
 require("dotenv").config({ path: "app/model/.env" });
 
 class Connections {
-	static init = () => {
-		Connections.admin.connect();
-	}
-
 	// Connection that log in with 'admin'
 	static admin = mysql.createConnection({
 		host: process.env.DB_HOST,
@@ -15,7 +11,7 @@ class Connections {
 		database: process.env.DATABASE
 	})
 
-	static close = () => {
+	static close() {
 		Connections.admin.end();
 	}
 }

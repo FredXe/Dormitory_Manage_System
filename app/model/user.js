@@ -1,155 +1,198 @@
 /**
- * Module control the TABLE `Users`
+ * Module control the TABLE `users`
  */
-const { hash } = require("bcrypt");
 const Connections = require("./connections");
 const Hash = require("./hash");
+const Util = require("./util");
 
 /**
- * Convert Rows into Object with JSON's 
- * static functions
- * @param {*} rows Rows input
- * @returns Object that `rows` expressed
+ * SELECT password of specific user
+ * @param {string} UserID 
+ * @param {(err, rows)} callback 
  */
-function decodeRows(rows) {
-	return Object.values(JSON.parse(JSON.stringify(rows)));
-}
-
 function getPasswd(UserID, callback) {
-	const queryString = `SELECT password FROM users WHERE UserID = '${UserID}'`;
+	const query = `SELECT password FROM users WHERE UserID = '${UserID}'`;
 
 	// Function that insert User to specific User Type
-	Connections.admin.query(queryString, callback);
+	Connections.admin.query(query, callback);
 }
 
+/**
+ * Public class with static method
+ */
 class User {
-	/**
-	 * Initialize the connections to Database
-	 */
-	constructor() {
-
-		this.Admin = {
-
-			/**
-			 * Insert the Data into TABLE `Users`
-			 * @param {*} UserID Account (required)
-			 * @param {*} Password (required)
-			 * @returns Async function, return value by callback
-			 */
-			regist: function ({
-				UserID,
-				Password,
-				name = 'Nodejs',
-				email = 'default@node.js',
-				phnumber = '0912345678',
-				sex = 'N',
-				eroll_year = 2019,
-				userType = 'student',
-				a_ID = 'NODEJS.D'
-			}, callback) {
-
-				// Check if usertype is valid
-				userType = userType.toLowerCase();
-				if (["student", "housemaster", "admin"].includes(userType) == false) {
-					console.error("userType invalid");
-				}
-
-				Hash.hashPasswd(Password, function (err, hash) {
-					if (err) {
-						callback(err.message);
-						return;
-					}
-
-					// Insert data into `Users`
-					const queryString = `INSERT INTO \`users\` (UserID, Password, name, email, phnumber, sex, eroll_year)
-						VALUES ('${UserID}', '${hash}', '${name}', '${email}', 
-						'${phnumber}', '${sex}', ${eroll_year}); `;
-
-					// Function that insert User to specific User Type
-					function insertUserType(err, rows) {
-						if (err) {
-							callback(err.message, rows);
-							return;
-						}
-
-						// Insert 
-						const queryString = `INSERT INTO \`${userType}\`
-										VALUES ('${UserID}', '${a_ID}'); `;
-
-						// Send SQL query to DB
-						Connections.admin.query(queryString, (err, rows) => {
-							if (err) {
-								callback(err.message, rows);
-								return;
-							}
-							callback(err, rows);
-						});
-					}
-
-					// Send SQL query to DB
-					Connections.admin.query(queryString, insertUserType);
-				});
-
-
-			}
-		}
-
+	static Admin = {
 		/**
-		 * Check if the account is inside the
-		 * Database.
-		 * @param {*} account UserID in Database
-		 * @returns Privilege of the user,
-		 * Empty array if the parameter doesn't matches the user
-		 * Return by callback.
+		 * Insert the Data into TABLE `Users`
+		 * @param {string} UserID Account (required)
+		 * @param {string} Password Plain text (required)
+		 * @param {(err, rows)} callback 
 		 */
-		this.login = function ({ account, password }, callback) {
+		regist: function ({
+			UserID,
+			Password,
+			name = 'Nodejs',
+			email = 'default@node.js',
+			phnumber = '0912345678',
+			sex = 'N',
+			eroll_year = 2019,
+			userType = 'student',
+			a_ID = 'NODEJS.D'
+		}, callback) {
 
-			// function hashCB(err, hash) {
-			// 	if (err) {
-			// 		callback(err.message);
-			// 		return;
-			// 	}
-			// 	console.log(hash);
+			// Check if usertype is valid
+			if (["student", "houseMaster", "admin"].includes(userType) == false) {
+				console.error("userType invalid");
+				return;
+			}
 
 			/**
-			 * SELECT the UserID which matches the input,
-			 * using switch to return the user's previlege
-			 * if the user is inside the table. 
+			 * Declare query callback function
 			 */
-			const queryString = `SELECT U.password, (CASE WHEN U.UserID IN (SELECT UserID FROM \`student\`) THEN 'student'
-				WHEN U.UserID IN (SELECT UserID FROM \`houseMaster\`) THEN 'houseMaster'
-				WHEN U.UserID IN (SELECT UserID FROM \`admin\`) THEN 'admin'
-				ELSE 'Unknown' END) AS privilege, a_ID FROM \`users\` AS U LEFT JOIN \`student\` AS S ON U.\`UserID\` = S.\`UserID\`
-				WHERE U.\`UserID\`='${account}';`;
-
-			// Send the query with Admin account
-			Connections.admin.query(queryString, (err, rows) => {
+			// Insert User to specific User Type
+			function insertUserType(err, rows) {
 				if (err) {
 					callback(err.message, rows);
 					return;
 				}
-				rows = decodeRows(rows)[0];
 
-				Hash.checkPasswd(password, rows.password, function (err, result) {
+				// INSERT User into specific usertype TABLE
+				const query = `INSERT INTO \`${userType}\`
+									VALUES ('${UserID}'); `;
+
+				Connections.admin.query(query, (err, rows) => {
 					if (err) {
 						callback(err.message, rows);
 						return;
 					}
-
-					if (result == true) {
-						callback(err, rows);
-					} else {
-						callback(err, undefined);
-					}
-
+					callback(err, rows);
 				});
+			}
+
+			/**
+			 * Execute the function
+			 */
+			Hash.hashPasswd(Password, function (err, hash) {
+				if (err) {
+					callback(err.message);
+					return;
+				}
+				// Insert data into `Users`
+				const query = `INSERT INTO \`users\` (UserID, Password, name, email, phnumber, sex, eroll_year)
+					VALUES ('${UserID}', '${hash}', '${name}', '${email}', 
+					'${phnumber}', '${sex}', ${eroll_year}); `;
+
+				// Send SQL query to DB
+				Connections.admin.query(query, insertUserType);
 			});
 
+		},
 
+		/**
+		 * Delete the User
+		 * NOTE: this function will not check the
+		 * privilege or password.
+		 * @param {string} account 
+		 * @param {(err, rows)} callback `rows.affectRows` == 0
+		 * if no account DELETED
+		 */
+		delete: function (account, callback) {
+			const query = `DELETE FROM users WHERE UserID='${account}'`;
 
+			Connections.admin.query(query, callback);
+		},
 
+		showUsers: function (callback) {
+			const query = `SELECT *, (CASE WHEN UserID IN (SELECT UserID FROM \`student\`) THEN 'student'
+			WHEN UserID IN (SELECT UserID FROM \`houseMaster\`) THEN 'houseMaster'
+			WHEN UserID IN (SELECT UserID FROM \`admin\`) THEN 'admin'
+			ELSE 'Unknown' END) AS privilege FROM \`users\`;`;
+
+			Connections.admin.query(query, function (err, rows) {
+				if (err) {
+					console.error(err);
+					return;
+				}
+				rows = Util.decodeRows(rows);
+				callback(err, rows);
+			});
+		}
+	}
+
+	/**
+	 * Login function
+	 * @param {string} account UserID to login
+	 * @param {string} password Plain text password
+	 * @param {(err, rows)} callback `rows` is filled
+	 * with privilege if login success, `undefined`
+	 * if no such user or the password doesn't match.
+	 */
+	static login({ account, password }, callback) {
+
+		/**
+		 * Declare the query callbcak function
+		 */
+		function checkPasswd(err, rows) {
+			if (err) {
+				callback(err, rows);
+				return;
+			}
+
+			/**
+			 * Compare the DB's password with input. 
+			 */
+			Hash.checkPasswd(password, rows.password, function (err, result) {
+				if (err) {
+					callback(err, rows);
+					return;
+				}
+
+				if (result == true) {
+					callback(err, rows);
+				} else {
+					callback(err, undefined);
+				}
+
+			});
 		}
 
+		/**
+		 * Execute the query
+		 */
+		this.getAccountInfo(account, checkPasswd);
+
+	}
+
+	/**
+	 * Get the info of the Account
+	 * @param {string} account Account to search
+	 * @param {(err, {password, privilege})} callback 
+	 * The password is hashed. `rows` == `undefined`
+	 * if no such user.
+	 */
+	static getAccountInfo(account, callback) {
+		// SELECT the password and the privileges
+		const query = `SELECT U.password, (CASE WHEN U.UserID IN (SELECT UserID FROM \`student\`) THEN 'student'
+			WHEN U.UserID IN (SELECT UserID FROM \`houseMaster\`) THEN 'houseMaster'
+			WHEN U.UserID IN (SELECT UserID FROM \`admin\`) THEN 'admin'
+			ELSE 'Unknown' END) AS privilege FROM \`users\` AS U LEFT JOIN \`student\` AS S ON U.\`UserID\` = S.\`UserID\`
+			WHERE U.\`UserID\`='${account}';`
+
+		Connections.admin.query(query, function (err, rows) {
+			if (err) {
+				callback(err, undefined);
+				return;
+			}
+
+			rows = Util.decodeRows(rows)[0];
+
+			if (rows == undefined) {
+				callback("getAddountInfo(): no target user", rows);
+				return;
+			}
+
+			callback(err, rows);
+		});
 	}
 }
 
