@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
-const User = require('../model/user')
+const User = require('../model/user');
+const { send } = require('process');
 
 const port = 3000;
 const ip = '127.0.0.1';
@@ -31,7 +32,7 @@ function handler(err, rows) {
 		console.error(err);
 	}
 	console.log(rows);
-	Connections.close();
+	// Connections.close();
 
 }
 
@@ -45,23 +46,17 @@ app.get('/', (req, res) => {
 // 	sendResponse(url, 200, res);
 // });
 
-app.post('/Login.html', urlencodedParser, (req, res) => {
+app.post('/Login', urlencodedParser, (req, res) => {
 	const { account: userID, password } = req.body;
-	// User.login({ account , password}, handler);
-	// console.log(req.body, userID, password);
-	// db.query(`SELECT * FROM Users WHERE UserID='${userID}' AND Password='${password}';`,
-	// 	(err, rows, fields) => {
-	// 		console.log(err);
-	// 		console.log(rows);
-	// 		console.log(fields);
-
-	// 		if (rows.length === 0) {
-	// 			return res.send({ error: 'ACCOUNT_NOT_EXIST' });
-	// 		};
-	// 		console.log('success');
-	// 		return res.send({ message: 'LOGIN_SUCCESSFULLY' });
-
-	// 	});
+	User.login({ account : userID , password : password}, (error , rows) => {
+		if(error){
+			console.error(err);
+		}else{
+			res.end('hi')
+		}
+	});
+	
+	
 });
 
 app.listen(port, ip, () => {
