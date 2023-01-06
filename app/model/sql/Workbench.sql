@@ -9,6 +9,12 @@ DESCRIBE HouseMaster;
 DESCRIBE dormitory;
 DESCRIBE room;
 DESCRIBE equipment;
+DESCRIBE violationRecord;
+DESCRIBE manage_HV;
+DESCRIBE application;
+DESCRIBE nonBoarder;
+DESCRIBE boarder;
+
 SELECT * FROM `users`;
 SELECT * FROM `student`;
 SELECT * FROM `houseMaster`;
@@ -16,6 +22,23 @@ SELECT * FROM `dormitory`;
 SELECT * FROM `room`;
 SELECT * FROM `manage_HD`;
 SELECT * FROM `equipment`;
+SELECT * FROM `violationRecord`;
+SELECT * FROM `manage_HV`;
+SELECT * FROM `application`;
+SELECT * FROM `boarder`;
+SELECT * FROM `nonBoarder`;
+SELECT * FROM ``;
+
+ALTER TABLE application ADD COLUMN `approveTS` TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE application MODIFY COLUMN `adminUserID` CHAR(8) DEFAULT NULL;
+ALTER TABLE boarder MODIFY COLUMN `d_name` VARCHAR(30) NOT NULL;
+ALTER TABLE non_Boarder RENAME nonBoarder;
+ALTER TABLE manage_HV DROP FOREIGN KEY v_ID;
+ALTER TABLE violationRecord MODIFY COLUMN `v_ID` INT UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE application MODIFY COLUMN `a_Date` DATETIME NOT NULL DEFAULT (CURRENT_DATE);
+DELETE FROM boarder WHERE UserID='a1095532';
+DELETE FROM nonBoarder WHERE UserID='a1095532';
+DELETE FROM application WHERE studentUserID='a1095532';
 DELETE FROM equipment WHERE e_ID< 300;
 DELETE FROM dormitory WHERE d_name='Node test Dormitory';
 ALTER TABLE dormitory RENAME COLUMN UserID TO adminUserID;
@@ -74,6 +97,7 @@ DESCRIBE Application;
 
 -- DROP all tables before create
 SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE boarder;
 DROP TABLE if EXISTS users,
 	houseMaster,
 	admin,
@@ -88,6 +112,6 @@ DROP TABLE if EXISTS users,
 	student,
 	boarder,
 	non_Boarder,
-	violation_Record,
+	violationRecord,
 	manage_HV;
 SET FOREIGN_KEY_CHECKS = 1;

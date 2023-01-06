@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS users
   `name` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL DEFAULT 'default@example.host',
   `phnumber` char(10) NOT NULL,
-  `sex` char(1) NOT NULL DEFAULT 'N',
+  `sex` char(1) NOT NULL DEFAULT 'U',
   `eroll_year` YEAR NOT NULL,
   `createTS` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`UserID`)
@@ -89,10 +89,11 @@ CREATE TABLE IF NOT EXISTS application
 (
   `studentUserID` CHAR(8) NOT NULL,
   `a_semester` YEAR NOT NULL,
-  `a_Date` DATETIME NOT NULL,
-  `a_approved` CHAR(1) NOT NULL DEFAULT 'N',
-  `a_Paid` CHAR(1) NOT NULL DEFAULT 'N',
-  `adminUserID` CHAR(8),
+  `a_Date` DATETIME NOT NULL DEFAULT (CURRENT_DATE),
+  `approveTS` TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `a_approved` CHAR(1) NOT NULL DEFAULT 'U',
+  `a_Paid` CHAR(1) NOT NULL DEFAULT 'U',
+  `adminUserID` CHAR(8) DEFAULT NULL,
   PRIMARY KEY (`studentUserID`),
   FOREIGN KEY (`studentUserID`) REFERENCES student(`UserID`) ON DELETE CASCADE,
   FOREIGN KEY (`adminUserID`) REFERENCES admin(`UserID`) ON DELETE SET NULL
@@ -132,27 +133,27 @@ CREATE TABLE IF NOT EXISTS manage_HB
 CREATE TABLE IF NOT EXISTS boarder
 (
   `UserID` char(8) NOT NULL,
-  `d_name` char(8) NOT NULL,
+  `d_name` VARCHAR(30) NOT NULL,
   `r_number` INT UNSIGNED NOT NULL,
-  `Admin_UserID` char(8) NOT NULL,
+  `adminUserID` char(8) NOT NULL,
   PRIMARY KEY (`UserID`),
   FOREIGN KEY (`UserID`) REFERENCES student(`UserID`) ON DELETE CASCADE,
   FOREIGN KEY (`d_name`, `r_number`) REFERENCES room(`d_name`, `r_number`) ON DELETE CASCADE,
-  FOREIGN KEY (`Admin_UserID`) REFERENCES admin(`UserID`) ON DELETE CASCADE
+  FOREIGN KEY (`adminUserID`) REFERENCES admin(`UserID`) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS non_Boarder
+CREATE TABLE IF NOT EXISTS nonBoarder
 (
   `UserID` char(8) NOT NULL,
   PRIMARY KEY (`UserID`),
   FOREIGN KEY (`UserID`) REFERENCES student(`UserID`) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS violation_Record
+CREATE TABLE IF NOT EXISTS violationRecord
 (
-  `v_ID` CHAR(10) NOT NULL,
+  `v_ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `UserID` char(8) NOT NULL,
-  `v_date` DATE NOT NULL,
+  `v_date` DATE NOT NULL DEFAULT (CURRENT_DATE),
   `v_type` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`v_ID`, `UserID`),
   FOREIGN KEY (`UserID`) REFERENCES boarder(`UserID`) ON DELETE CASCADE
@@ -161,11 +162,11 @@ CREATE TABLE IF NOT EXISTS violation_Record
 CREATE TABLE IF NOT EXISTS manage_HV
 (
   `H_UserID` char(8) NOT NULL,
-  `v_ID` CHAR(10) NOT NULL,
+  `v_ID` INT UNSIGNED NOT NULL,
   `UserID` char(8) NOT NULL,
   PRIMARY KEY (`H_UserID`, `v_ID`, `UserID`),
   FOREIGN KEY (`H_UserID`) REFERENCES houseMaster(`UserID`) ON DELETE CASCADE,
-  FOREIGN KEY (`v_ID`, `UserID`) REFERENCES violation_Record(`v_ID`, `UserID`) ON DELETE CASCADE
+  FOREIGN KEY (`v_ID`, `UserID`) REFERENCES violationRecord(`v_ID`, `UserID`) ON DELETE CASCADE
 );
 
 SHOW TABLES;

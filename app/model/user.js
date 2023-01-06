@@ -34,7 +34,7 @@ class User {
 			name = 'Nodejs',
 			email = 'default@node.js',
 			phnumber = '0912345678',
-			sex = 'N',
+			sex = 'U',
 			eroll_year = 2019,
 			userType = 'student',
 			a_ID = 'NODEJS.D'
