@@ -122,9 +122,9 @@ class Application {
 
 	/**
 	 * SELECT the specific `application`.
-	 * @param {(err, rows)} callback 
-	 * `rows`: [{`studentUserID`, `semester`, `date`, 
-	 * `approved`, `paid`, `adminUserID`, `approvedTime`}, { }...]
+	 * @param {(err, row)} callback 
+	 * `row`: {`studentUserID`, `semester`, `date`, 
+	 * `approved`, `paid`, `adminUserID`, `approvedTime`}
 	 */
 	static showApplicationInfo(account, callback) {
 		const query = `SELECT studentUserID, a_semester AS semester, 
