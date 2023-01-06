@@ -8,16 +8,44 @@ DESCRIBE Admin;
 DESCRIBE HouseMaster;
 DESCRIBE dormitory;
 DESCRIBE room;
+DESCRIBE equipment;
+DESCRIBE violationRecord;
+DESCRIBE manage_HV;
+DESCRIBE application;
+DESCRIBE nonBoarder;
+DESCRIBE boarder;
+
 SELECT * FROM `users`;
 SELECT * FROM `student`;
 SELECT * FROM `houseMaster`;
 SELECT * FROM `dormitory`;
 SELECT * FROM `room`;
 SELECT * FROM `manage_HD`;
-DELETE FROM dormitory WHERE d_name='Node test Dormitory 10 room';
+SELECT * FROM `equipment`;
+SELECT * FROM `violationRecord`;
+SELECT * FROM `manage_HV`;
+SELECT * FROM `application`;
+SELECT * FROM `boarder`;
+SELECT * FROM `nonBoarder`;
+SELECT * FROM ``;
+
+ALTER TABLE application ADD COLUMN `approveTS` TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
+ALTER TABLE application MODIFY COLUMN `adminUserID` CHAR(8) DEFAULT NULL;
+ALTER TABLE boarder MODIFY COLUMN `d_name` VARCHAR(30) NOT NULL;
+ALTER TABLE non_Boarder RENAME nonBoarder;
+ALTER TABLE manage_HV DROP FOREIGN KEY v_ID;
+ALTER TABLE violationRecord MODIFY COLUMN `v_ID` INT UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE application MODIFY COLUMN `a_Date` DATETIME NOT NULL DEFAULT (CURRENT_DATE);
+DELETE FROM boarder WHERE UserID='a1095532';
+DELETE FROM nonBoarder WHERE UserID='a1095532';
+DELETE FROM application WHERE studentUserID='a1095532';
+DELETE FROM equipment WHERE e_ID< 300;
+DELETE FROM dormitory WHERE d_name='Node test Dormitory';
 ALTER TABLE dormitory RENAME COLUMN UserID TO adminUserID;
 ALTER TABLE room MODIFY COLUMN `r_number` INT UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE equipment AUTO_INCREMENT=1;
 ALTER TABLE boarder DROP COLUMN `r_number`;
+ALTER TABLE equipment RENAME COLUMN `name` TO `e_name`;
 DELETE FROM Users WHERE UserID='fortest' AND Password='test';
 INSERT INTO users (UserID, Password, name, email, phnumber, sex, eroll_year) VALUES ('test', 'csie', 'Cindy', 'test@example.com', '0912345678', 'F', 2019);
 INSERT INTO `houseMaster` VALUES ('test');
@@ -26,6 +54,10 @@ UPDATE users SET sex='D' WHERE UserID = 'a1095500';
 DELETE FROM users WHERE UserID = 'a1095532';
 DELETE FROM student WHERE UserID='a1095500';
 INSERT INTO `Admin` VALUES ('testAdmin');
+SELECT e_ID AS ID, e_condition AS `condition`, e_type AS type,
+		r_number AS roomNumber, d_name AS dormitoryName
+		FROM equipment;
+DELETE FROM equipment WHERE e_ID<50;
 SELECT `UserID` `account`, `privilege` FROM `Users` WHERE `UserID`='fred' AND `Password`='test';
 SELECT (CASE WHEN UserID IN (SELECT UserID FROM `Student`) THEN 'Student'
 WHEN UserID IN (SELECT UserID FROM `HouseMaster`) THEN 'HouseMaster'
@@ -65,6 +97,7 @@ DESCRIBE Application;
 
 -- DROP all tables before create
 SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE boarder;
 DROP TABLE if EXISTS users,
 	houseMaster,
 	admin,
@@ -79,6 +112,6 @@ DROP TABLE if EXISTS users,
 	student,
 	boarder,
 	non_Boarder,
-	violation_Record,
+	violationRecord,
 	manage_HV;
 SET FOREIGN_KEY_CHECKS = 1;

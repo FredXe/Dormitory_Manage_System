@@ -1,0 +1,103 @@
+.background {
+    margin: 0px;
+    background-color: #daf0d4;
+
+
+}
+
+
+.title {
+    /* 陰影 */
+    box-shadow: 1px 5px 5px 1px #242424;
+    /* background-color: #C7D6C2; */
+    background-color: #242424;
+    width: 16%;
+    height: 567px;
+
+}
+
+.student {
+    font-size: 25px;
+    font-family: 'Rubik Bubbles', cursive;
+    color: #252924;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    color: white;
+}
+
+
+.application {
+    /* 移除超連結底線 */
+    text-decoration: none;
+    color: #0b0b0a;
+    font-size: 18px;
+    font-family: cwTeXYen, sans-serif;
+    position: absolute;
+    top: 90px;
+    left: 47px;
+    color: white;
+}
+
+/* 滑鼠移至文字上的變化 */
+.application:hover {
+    color: #bd504d;
+    font-weight: bold;
+    position: absolute;
+    top: 91px;
+    left: 48px;
+}
+
+
+.information {
+    /* 移除超連結底線 */
+    text-decoration: none;
+    color: #0b0b0a;
+    font-size: 18px;
+    font-family: cwTeXYen, sans-serif;
+    position: absolute;
+    top: 120px;
+    left: 47px;
+    color: white;
+}
+
+/* 滑鼠移至文字上的變化 */
+.information:hover {
+    color: #bd504d;
+    font-weight: bold;
+    position: absolute;
+    top: 121px;
+    left: 48px;
+}
+
+.line {
+    color: #494141;
+    /* 文字陰影 */
+    text-shadow: 2px 2px 7px #333333;
+    position: absolute;
+    top: 450px;
+    left: 6px;
+    color: white;
+}
+
+.address {
+    color: #494141;
+    position: absolute;
+    top: 465px;
+    left: 5px;
+    font-size: 10px;
+
+    font-family: cwTeXYen, sans-serif;
+    color: white;
+}
+
+.telephone {
+    color: #494141;
+    position: absolute;
+    top: 495px;
+    left: 5px;
+    font-size: 10px;
+
+    font-family: cwTeXYen, sans-serif;
+    color: white;
+}
