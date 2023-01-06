@@ -27,14 +27,14 @@ const sendResponse = (filename, statuscode, res) => {
 	});
 };
 
-function handler(err, rows) {
-	if (err) {
-		console.error(err);
-	}
-	console.log(rows);
-	// Connections.close();
+// function handler(err, rows) {
+// 	if (err) {
+// 		console.error(err);
+// 	}
+// 	console.log(rows);
+// 	// Connections.close();
 
-}
+// }
 
 
 app.get('/', (req, res) => {
@@ -52,8 +52,15 @@ app.post('/Login', urlencodedParser, (req, res) => {
 		if(error){
 			console.error(err);
 		}else{
-			res.end('hi')
-		}
+			switch (rows['privilege']){
+				case 'student' :
+					sendResponse('./view/Student.html' , 200 , res);
+					break;
+				case 'houseMaster' :
+					res.end('hourseMaster');
+					break;
+			}
+		}	
 	});
 	
 	
