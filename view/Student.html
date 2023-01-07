@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <title>Student</title>
     <link rel="stylesheet" type="text/css" href="/style/student.css" />
-    <script type="text/javascript" src="./src/student.js"></script>
+    <!-- <script type="text/javascript" src="./src/student.js"></script> -->
 
 </head>
 
@@ -183,13 +183,45 @@
                 </li>
             </ul>
         </div>
+
+        <table id ="dormitory_application" cellpadding="19px">
+            <tr>
+                <td>
+                    姓名:
+                </td>
+                <td>
+                    <input type="text" name="name" value="" placeholder="name">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    申請宿舍:
+                </td>
+                <td><select name="dormitory_building">
+                        <option value="Taipei">學一宿舍(男)</option>
+                        <option value="Taoyuan">學一宿舍(女)</option>
+                        <option value="Hsinchu">學二宿舍(男)</option>
+                        <option value="Miaoli">學二宿舍(女)</option>
+                        <option value="Miaoli">綜合宿舍(男)</option>
+                    </select></td>
+            </tr>
+    
+            <tr>
+                <td>
+                    聯絡電話:
+                </td>
+                <td>
+                    <input type="text" name="cell phone" value="" placeholder="cell phone">
+                </td>
+            </tr>
+        </table>
         
 
     </div>
 
 </body>
 
-<!-- <script>
+<script>
     
     var dormitory_info = document.getElementById('dormitory_info');
     var boarder_position = document.getElementById('boarder_position');
@@ -219,6 +251,6 @@
         boarder.style.fontWeight = 'bold';
         boarder_position.style.display = 'block';
     })
-</script> -->
+</script>
 
 </html>
