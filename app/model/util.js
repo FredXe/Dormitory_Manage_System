@@ -6,7 +6,7 @@ class Util {
 	 * @returns Object that `rows` expressed
 	 */
 	static decodeRows(rows) {
-		return Object.values(JSON.parse(JSON.stringify(rows)));
+		return JSON.parse(JSON.stringify(rows));
 	}
 
 }

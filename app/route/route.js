@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const path = require('path');
 // const qs = require('querystring');
 
 const app = require("../app");
@@ -9,6 +10,10 @@ const user = require("./user");
 const board = require("./board");
 const util = require("./util");
 const dormitory = require("./dormitory");
+
+
+// app.set('views' , path.join(__dirname , 'views'));
+// app.set('view engine' , 'html');
 
 var urlParser = util.urlParser;
 

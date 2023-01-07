@@ -1,7 +1,6 @@
 const Connections = require("./connections");
 const User = require("./user");
 const Util = require("./util");
-
 class Board {
 	/**
 	 * Post an article on bulletinBoard.
