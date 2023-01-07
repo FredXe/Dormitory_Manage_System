@@ -5,15 +5,14 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 	<meta charset="utf-8" />
 	<title>Student</title>
-	<link rel="stylesheet" type="text/css" href="/style/Student.css" />
+	<link rel="stylesheet" type="text/css" href="/style/student.css" />
+	<script type="text/javascript" src="./src/student.js"></script>
 
 </head>
 
-<!-- åŒ¯å…¥å­—é«” -->
+<!-- ??¯å?¥å??é«? -->
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Rubik+Bubbles&display=swap');
-
-	@import url(https://fonts.googleapis.com/earlyaccess/cwtexyen.css);
+	@import url('https://fonts.googleapis.com/css2?family=Abel&family=East+Sea+Dokdo&family=Rubik+Bubbles&display=swap');
 </style>
 
 
@@ -25,23 +24,204 @@
 		</div>
 
 		<div>
-			<a class="application" href="https://www.youtube.com/">ä½å®¿ç”³è«‹</a>
+			<input id="application" type="submit" name="button" value="å®¿è????³è??" />
+			<!-- <a class="application" href = 'javascript:;' onclick="javascript:show()">å®¿è????³è??</a> -->
 		</div>
 
 		<div>
-			<a class="information" href="https://www.youtube.com/">å®¿èˆè³‡è¨Š</a>
+			<input id="information" type="submit" name="button" value="å®¿è??è³?è¨?" />
+			<!-- <a class="information" href = 'javascript:;' onclick="javascript:show_dormitory_info()">å®¿è??è³?è¨?</a> -->
 		</div>
+
+		<div>
+			<input id="violation_record" type="submit" name="button" value="???è¦?ç´??????¥è©¢" />
+			<!-- <a class="Violation_record" href = 'javascript:;' onclick="javascript:show()">???è¦?ç´??????¥è©¢</a> -->
+		</div>
+
+		<div>
+			<input id="application_status" type="submit" name="button" value="??³è??????????¥è©¢" />
+			<!-- <a class="application_status" href = 'javascript:;' onclick="javascript:show()">??³è??????????¥è©¢</a> -->
+		</div>
+
+		<div>
+			<input id="boarder" type="submit" name="button" value="å¸????æ¬?" />
+			<!-- <a class = 'boarder' href = 'javascript:;' onclick="javascript:show_boarder()">å¸????æ¬?</a> -->
+		</div>
+
 		<div class="line">
-			â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
+			????????????????????????????????????
 		</div>
+
 		<div class="address">
-			åœ°å€:</br>é«˜é›„å¸‚æ¥ æ¢“å€é«˜é›„å¤§å­¸è·¯700è™Ÿ
+			??°å??:</br>é«????å¸?æ¥?æ¢????é«????å¤§å­¸è·?700???
 		</div>
+
 		<div class="telephone">
-			</br>é›»è©±:</br>07-5919000
+			</br>??»è©±:</br>07-5919000
 		</div>
+
+		<div id="boarder_position" style="display: none;">
+			<div class='header container'>
+				<div class='page-header'>
+					<h1>???è¨????</h1>
+					<a class='btn btn-success' href="/post">??¼è¡¨???è¨?</a>
+				</div>
+			</div>
+
+			<div class='comments container'">
+                <ul class='list-group'>
+                    {{each comments}}
+                    <li class='list-group-item'>
+                        {{$value.name}}èª? : {{$value.message}}
+                        <span class=" pull-right">{{$value.datetime}}</span>
+				</li>
+				{{/each}}
+				</ul>
+			</div>
+		</div>
+
+		<div id="dormitory_info" style="display: none;">
+			<ul>
+				<li>
+					å®¿è??å¤?è§?<br>
+					<a class="dormitory_text"
+						href="https://sa.nuk.edu.tw/var/file/9/1009/img/432/353380849.pdf">ç¶????å®¿è??</a>
+					<br>
+					<a class="dormitory_text"
+						href="https://sa.nuk.edu.tw/var/file/9/1009/img/432/610340678.pdf">å­¸ç??ç¬¬ä??å®¿è??</a>
+					<br>
+					<a class="dormitory_text"
+						href="https://sa.nuk.edu.tw/var/file/9/1009/img/451434028.pdf">å­¸ç??ç¬¬ä??å®¿è??</a>
+
+				</li>
+				<br>
+				<li>
+					å­¸ç??å®¿è??è¨­å??èªªæ?? (åº?ä½?å¤§å??)<br>
+					<br>
+					åº?ä½?å¤§å??ï¼?<br>
+					å­¸ä??å®¿è????? 190 ??¬å?????å¯? 95 ??¬å??<br>
+					å­¸ä??å®¿è????? 200 ??¬å?????å¯? 95 ??¬å??<br>
+				</li> ç¶????å®¿è????? 216 ??¬å?????å¯? 95 ??¬å??<br><br>
+				<li> è²»ç?¨ï??<br>
+					<table border="1" cellpadding="5">
+						<tr>
+							<td>??????</td>
+							<td>??¶è²»æ¨?æº?</td>
+							<td>???è¨?</td>
+						</tr>
+						<tr>
+							<td>å­¸ç??å®¿è??
+								ä½?å®¿è²»</td>
+							<td>1???å­¸ä??å®¿è??:7,463 ???
+								(OA-??·ã??OB-å¥?)<br>
+								2???å­¸ä??å®¿è??:9,985 ???
+								(OE-??·ã??OF-å¥?)<br>
+								3???ç¶????å®¿è??:9,710 ???</td>
+							<td>??§å?«ä??å®¿ç¶²è·¯è??æº?ä½¿ç?¨è²» 400 ??????</td>
+						</tr>
+						<tr>
+							<td>å­¸ç??å®¿è??
+								è²»ä??è­????</td>
+							<td>2,000 ???</td>
+							<td>1.???æ¬¡è¾¦???ä½?å®¿è??ç¹³äº¤???<br>
+								2.ç¬¬ä??å­¸æ??å·²ä??ï¼?ç¬¬ä??å­¸æ??çº?ä½?
+								???ï¼???????è¤?ç¹³äº¤???
+							</td>
+						</tr>
+					</table>
+				</li><br>
+				<li>
+					æ´?è¡????:<br>
+					<table border="1" cellpadding="5">
+						<tr>
+							<td>
+
+							</td>
+							<td>
+								æ´?è¡?æ©?
+							</td>
+							<td>???è¡?æ©?</td>
+							<td>??«æ°´æ©?</td>
+						</tr>
+
+						<tr>
+							<td>
+								??¹é??
+							</td>
+							<td>
+								10 ???/æ¬?
+							</td>
+							<td>20 ???/æ¬?</td>
+							<td>???è²?</td>
+						</tr>
+						<tr>
+							<td>
+								??????
+							</td>
+							<td>
+								30 ??????
+							</td>
+							<td>30 ??????</td>
+							<td>3 ??????</td>
+						</tr>
+					</table>
+				</li><br>
+				<li>
+					??±è¦½å®¤ï??å­¸ç??ç¬¬ä??å®¿è??ä¸?æ¨????
+				</li><br>
+				<li>
+					??ªä¿®å®¤ï??å­¸ç??ç¬¬ä??å®¿è?? OE???OF äº?æ¨????ä¸???????ç¶????å®¿è?? 4 æ¨?ä¸???????
+				</li><br>
+				<li>
+					??ªå??è²©è³£æ©?ï¼???¼å®¿?????§è¨­?????¸å?°è?ªå??è²©è³£æ©?ï¼????ä¾????å¼?é£²æ?????é¤?ä¹¾è??æ³?
+					éºµã??
+				</li>
+				<br>
+				<li>
+					?????¾å?´è??è³?æº??????¶å?´ï??ä½???¼å­¸???ç¬¬ä??å®¿è????°ä??ä¸?æ¨????
+				</li>
+				<br>
+				<li>
+					??°ç®±ï¼?å­¸ç??ç¬¬ä??å®¿è?????å­¸ç??ç¬¬ä??å®¿è??äº?æ¨?è¨­æ????°ç®±???
+				</li>
+			</ul>
+		</div>
+
+
 	</div>
 
 </body>
+
+<!-- <script>
+    
+    var dormitory_info = document.getElementById('dormitory_info');
+    var boarder_position = document.getElementById('boarder_position');
+
+    var information = document.getElementById('information');
+    var boarder = document.getElementById('boarder');
+
+    information.addEventListener('click' , function(){
+        console.log('suc')
+        information.style.color = '#bd504d';
+        information.style.fontWeight = 'bold';
+        dormitory_info.style.display = 'block';
+
+        boarder.style.color = 'white';
+        boarder.style.fontWeight = 'normal';
+        boarder_position.style.display = 'none';
+    })
+
+    boarder.addEventListener('click' , function(){
+        console.log('suc')
+        
+        dormitory_info.style.display = 'none';
+        information.style.color = 'white';
+        information.style.fontWeight = 'normal';
+
+        boarder.style.color = '#bd504d';
+        boarder.style.fontWeight = 'bold';
+        boarder_position.style.display = 'block';
+    })
+</script> -->
 
 </html>

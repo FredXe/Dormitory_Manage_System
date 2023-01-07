@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-require("dotenv").config({ path: "app/model/.env" });
+require("dotenv").config({ path: "./app/model/.env" });
 
 class Connections {
 	// Connection that log in with 'admin'
@@ -17,5 +17,9 @@ class Connections {
 }
 
 Connections.admin.connect();
+
+
+
+
 
 module.exports = Connections;

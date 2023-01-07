@@ -1,6 +1,7 @@
 .background {
     margin: 0px;
-    background-color: #daf0d4;
+    /* background-color: #daf0d4; */
+    /* background-color: #daf0d4; */
 
 
 }
@@ -10,7 +11,7 @@
     /* 陰影 */
     box-shadow: 1px 5px 5px 1px #242424;
     /* background-color: #C7D6C2; */
-    background-color: #242424;
+    background-color: #95c7df;
     width: 16%;
     height: 567px;
 
@@ -18,7 +19,7 @@
 
 .student {
     font-size: 25px;
-    font-family: 'Rubik Bubbles', cursive;
+    font-family: 'Abel', sans-serif;
     color: #252924;
     position: absolute;
     top: 40px;
@@ -26,56 +27,116 @@
     color: white;
 }
 
-
-.application {
-    /* 移除超連結底線 */
-    text-decoration: none;
+#application {
+    border: none;
+    background-color: #95c7df;
     color: #0b0b0a;
     font-size: 18px;
-    font-family: cwTeXYen, sans-serif;
+    font-family: cursive;
     position: absolute;
     top: 90px;
-    left: 47px;
+    left: 40px;
     color: white;
 }
 
 /* 滑鼠移至文字上的變化 */
-.application:hover {
+#application:hover {
     color: #bd504d;
     font-weight: bold;
     position: absolute;
     top: 91px;
-    left: 48px;
+    left: 41px;
 }
 
 
-.information {
-    /* 移除超連結底線 */
-    text-decoration: none;
+
+#information {
+    border: none;
+    background-color: #95c7df;
     color: #0b0b0a;
     font-size: 18px;
-    font-family: cwTeXYen, sans-serif;
+    font-family: cursive;
     position: absolute;
     top: 120px;
-    left: 47px;
+    left: 40px;
     color: white;
 }
 
 /* 滑鼠移至文字上的變化 */
-.information:hover {
+#information:hover {
     color: #bd504d;
     font-weight: bold;
     position: absolute;
     top: 121px;
-    left: 48px;
+    left: 41px;
 }
 
+#violation_record {
+    border: none;
+    background-color: #95c7df;
+    color: #0b0b0a;
+    font-size: 18px;
+    font-family: cursive;
+    position: absolute;
+    top: 150px;
+    left: 40px;
+    color: white;
+}
+
+/* 滑鼠移至文字上的變化 */
+#violation_record:hover {
+    color: #bd504d;
+    font-weight: bold;
+    position: absolute;
+    top: 151px;
+    left: 41px;
+}
+
+#application_status {
+    border: none;
+    background-color: #95c7df;
+    color: #0b0b0a;
+    font-size: 18px;
+    font-family: cursive;
+    position: absolute;
+    top: 170px;
+    left: 40px;
+    color: white;
+}
+
+#application_status:hover {
+    color: #bd504d;
+    font-weight: bold;
+    position: absolute;
+    top: 171px;
+    left: 41px;
+}
+
+#boarder {
+    border: none;
+    background-color: #95c7df;
+    color: #0b0b0a;
+    font-size: 18px;
+    font-family: cursive;
+    position: absolute;
+    top: 190px;
+    left: 40px;
+    color: white;
+}
+
+#boarder:hover{
+    color: #bd504d;
+    font-weight: bold;
+    position: absolute;
+    top: 191px;
+    left: 41px;
+}
 .line {
     color: #494141;
     /* 文字陰影 */
     text-shadow: 2px 2px 7px #333333;
     position: absolute;
-    top: 450px;
+    top: 470px;
     left: 6px;
     color: white;
 }
@@ -83,21 +144,44 @@
 .address {
     color: #494141;
     position: absolute;
-    top: 465px;
-    left: 5px;
+    top: 490px;
+    left: 15px;
     font-size: 10px;
 
-    font-family: cwTeXYen, sans-serif;
+    font-family: cursive;
     color: white;
 }
 
 .telephone {
     color: #494141;
     position: absolute;
-    top: 495px;
-    left: 5px;
+    top: 515px;
+    left: 15px;
     font-size: 10px;
 
-    font-family: cwTeXYen, sans-serif;
+    font-family: cursive;
     color: white;
+}
+
+#boarder_position {
+    position: absolute;
+    top: 51px;
+    left: 300px;
+}
+
+#dormitory_info {
+    position: absolute;
+    top: 10px;
+    left: 220px;
+
+}
+
+.dormitory_text {
+    text-decoration: none;
+}
+
+.dormitory_text:hover {
+    color: #bd504d;
+    font-weight: bold;
+
 }
