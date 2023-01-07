@@ -70,10 +70,11 @@
 			</div>
 
 			<div class='comments container'">
-                <%for(let comment of comments){%>
+                <%for(let post of posts){%>
                     <li>
-                        <%= comment.b_id %> 說 : <%comment.title%>
+                        <%= post.ID %> : <%= post.title %>
                     </li>
+						<%= post.content %>
                     <% } %>
                 <!-- <ul class='list-group'>
                     {{each comments}}

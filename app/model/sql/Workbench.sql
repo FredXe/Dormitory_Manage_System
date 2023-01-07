@@ -20,6 +20,7 @@ SELECT * FROM `student`;
 SELECT * FROM `houseMaster`;
 SELECT * FROM `dormitory`;
 SELECT * FROM `room`;
+SELECT * FROM `bulletinBoard`;
 SELECT * FROM `manage_HD`;
 SELECT * FROM `equipment`;
 SELECT * FROM `violationRecord`;

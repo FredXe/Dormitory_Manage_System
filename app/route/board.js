@@ -14,18 +14,25 @@ router.get("/", function (req, res) {
 	// res.render('board' , comments);
 });
 
-var comments = {'comments' : []};
+var comments = { 'comments': [] };
 
 router.get("/list", function (req, res) {
-<<<<<<< HEAD
-	util.responseHtml("./view/boarder.html", 200, res);
-=======
-	// util.responseHtml('./views/board.html' , 200 , res);
-	board.selectPost(function(err , rows){
-		comments = rows;
+	board.selectPost(function (err, posts) {
+		console.log(posts);
+		res.render("board", { posts });
 	})
-	res.render('board' , comments);
->>>>>>> e7a948c377c234adfb599e45322dabcb4a0b0ae6
 })
+
+router.post("/post", function (req, res) {
+
+})
+
+router.get("/:id", function (req, res) {
+	const id = req.params.id;
+	board.selectCommentByBID(id, function (err, comments) {
+		res.send(comments);
+	});
+})
+
 
 module.exports = router;

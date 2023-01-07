@@ -69,7 +69,7 @@ class Board {
 	 */
 	static selectPost(callback) {
 		// SELECT all the bulletinBoard
-		const query = `SELECT b_ID, title, b_text AS content FROM bulletinBoard ORDER BY b_ID ASC;`;
+		const query = `SELECT b_ID AS ID, title, b_text AS content FROM bulletinBoard ORDER BY b_ID ASC;`;
 
 		Connections.admin.query(query, function (err, rows) {
 			if (err) {
