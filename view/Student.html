@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 	<meta charset="utf-8" />
 	<title>Student</title>
+    <link rel = 'shortcut icon' href="#"/>
 	<link rel="stylesheet" type="text/css" href="/style/student.css" />
 	<script type="text/javascript" src="/src/student.js"></script>
 
@@ -43,10 +44,10 @@
 			<!-- <a class="application_status" href = 'javascript:;' onclick="javascript:show()">申請狀態查詢</a> -->
 		</div>
 
-		<div>
+		<form action = '/boarder' method="GET">
 			<input id="boarder" type="submit" name="button" value="布告欄" />
 			<!-- <a class = 'boarder' href = 'javascript:;' onclick="javascript:show_boarder()">布告欄</a> -->
-		</div>
+        </form>
 
 		<div class="line">
 			————————————
@@ -60,11 +61,11 @@
 			</br>電話:</br>07-5919000
 		</div>
 
-		<div id="boarder_position" style="display: none;">
+		<!-- <div id="boarder_position" style="display: none;">
 			<div class='header container'>
 				<div class='page-header'>
 					<h1>留言板</h1>
-					<a class='btn btn-success' href="/post">發表留言</a>
+					<a class='btn btn-success' href="/chat">發表留言</a>
 				</div>
 			</div>
 
@@ -78,7 +79,7 @@
 				{{/each}}
 				</ul>
 			</div>
-		</div>
+		</div> -->
 
         <div id="dormitory_info" style="display: none;">
             <ul>
@@ -184,7 +185,7 @@
             </ul>
         </div>
 
-        <table id ="dormitory_application" cellpadding="19px">
+        <table id ="dormitory_application" cellpadding="19px" style="display: none;">
             <tr>
                 <td>
                     姓名:
@@ -218,37 +219,5 @@
 	</div>
 
 </body>
-
-<script>
-    
-    var dormitory_info = document.getElementById('dormitory_info');
-    var boarder_position = document.getElementById('boarder_position');
-
-    var information = document.getElementById('information');
-    var boarder = document.getElementById('boarder');
-
-    information.addEventListener('click' , function(){
-        console.log('suc')
-        information.style.color = '#bd504d';
-        information.style.fontWeight = 'bold';
-        dormitory_info.style.display = 'block';
-
-        boarder.style.color = 'white';
-        boarder.style.fontWeight = 'normal';
-        boarder_position.style.display = 'none';
-    })
-
-    boarder.addEventListener('click' , function(){
-        console.log('suc')
-        
-        dormitory_info.style.display = 'none';
-        information.style.color = 'white';
-        information.style.fontWeight = 'normal';
-
-        boarder.style.color = '#bd504d';
-        boarder.style.fontWeight = 'bold';
-        boarder_position.style.display = 'block';
-    })
-</script>
 
 </html>

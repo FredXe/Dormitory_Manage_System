@@ -99,7 +99,7 @@
     font-size: 18px;
     font-family: cursive;
     position: absolute;
-    top: 170px;
+    top: 180px;
     left: 40px;
     color: white;
 }
@@ -108,7 +108,7 @@
     color: #bd504d;
     font-weight: bold;
     position: absolute;
-    top: 171px;
+    top: 181px;
     left: 41px;
 }
 
@@ -119,7 +119,7 @@
     font-size: 18px;
     font-family: cursive;
     position: absolute;
-    top: 190px;
+    top: 210px;
     left: 40px;
     color: white;
 }
@@ -128,9 +128,10 @@
     color: #bd504d;
     font-weight: bold;
     position: absolute;
-    top: 191px;
+    top: 211px;
     left: 41px;
 }
+
 .line {
     color: #494141;
     /* 文字陰影 */
