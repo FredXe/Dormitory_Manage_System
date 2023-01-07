@@ -1,62 +1,63 @@
-const express = require('express');
+const express = require("express");
 const bodyParser = require('body-parser');
-const fs = require('fs');
-const qs = require('querystring');
+const cookieParser = require("cookie-parser");
+// const qs = require('querystring');
 
-const port = 3000;
-const ip = '127.0.0.1';
-const app = express();
+const app = require("../app");
+const util = require("./util");
+const token = require("../middleware/token");
+const root = require("./root");
+const user = require("./user");
+const home = require("./home");
+
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+
+// Configure the express application.
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.static('public'));
-
-const sendResponse = (filename, statuscode, res) => {
-	fs.readFile(`${filename}`, (error, data) => {
-		console.log(filename);
-		if (error) {
-			res.statuscode = 500;
-			res.setHeader('Content-Type', 'text/plain');
-			res.send('Error');
-		} else {
-			res.statuscode = statuscode;
-			res.setHeader('Content-Type', 'text/html');
-			res.end(data);
-		}
-	});
-};
+app.use(root);
+app.use("/user", user);
+app.use("/home", home);
+app.use(token.verify);
 
 app.get('/', (req, res) => {
-	res.end("web root");
+	res.redirect("/home");
+
 });
 
-app.get('/login', (req, res) => {
-	sendResponse("./view/login.html", 200, res);
-});
+app.get('/api', function (req, res) {
+	console.log(req.cookies);
+	if (req.cookies.rememberme) {
+		res.redirect("/home");
+		res.status(304);
+		return;
+	}
+	res.cookie("rememberme", "NODE test cookie", { maxAge: 10000 });
+	res.status(200).json("welcome to API!");
+})
 
-// app.get('/public/*', (req, res) => {
-// 	const url = '.' + req.url;
-// 	sendResponse(url, 200, res);
+// app.post('/login', urlencodedParser, function (req, res) {
+// 	// Parse the `req`.`body`
+// 	const userInfo = req.body;
+
+// 	User.login(userInfo, _checkAccountExist);
+
+// 	function _checkAccountExist(ret) {
+// 		if (!ret) {
+// 			res.json;
+// 			return;
+// 		};
+
+// 		Token.sign(ret, _sendToken);
+// 	}
+
+// 	function _sendToken(token) {
+// 		res.cookie("token", token, { maxAge: MAX_AGE, httpOnly: true });
+// 		res.redirect("/home");
+
+// 	}
 // });
 
-app.post('/Login.html', urlencodedParser, (req, res) => {
-	const { account: userID, password } = req.body;
-	console.log(req.body, userID, password);
-	db.query(`SELECT * FROM Users WHERE UserID='${userID}' AND Password='${password}';`,
-		(err, rows, fields) => {
-			console.log(err);
-			console.log(rows);
-			console.log(fields);
 
-			if (rows.length === 0) {
-				return res.send({ error: 'ACCOUNT_NOT_EXIST' });
-			};
-			console.log('success');
-			return res.send({ message: 'LOGIN_SUCCESSFULLY' });
-
-		});
-});
-
-app.listen(port, ip, () => {
-	console.log(`Server is running http://${ip}:${port}/`)
-});
