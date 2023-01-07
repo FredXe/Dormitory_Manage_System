@@ -8,6 +8,7 @@ const root = require("./root");
 const user = require("./user");
 const board = require("./board");
 const util = require("./util");
+const dormitory = require("./dormitory");
 
 var urlParser = util.urlParser;
 
@@ -25,4 +26,4 @@ app.use(token.verify);
 app.use(root);
 app.use("/user", user);
 app.use("/board", board);
-
+app.use("/dormitory", dormitory);
