@@ -17,8 +17,9 @@ DB_PORT='3306'
 DB_ADMIN='<admin_account>'
 DB_ADMIN_PASSWORD='<password>'
 DATABASE='dormitory'
+SECRET=<secret>
 ```
-You should change `<host_name>`, `<admin_account>` and `<password>` to your database's settings.
+You should change `<host_name>`, `<admin_account>`, `<password>` and `<secret>` to your database's settings.
 > NOTE: 2. You should always config `.env` instead of `.env-d`.
 
 ## usage

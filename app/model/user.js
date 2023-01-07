@@ -123,18 +123,19 @@ class User {
 	 * Login function
 	 * @param {string} account UserID to login
 	 * @param {string} password Plain text password
-	 * @param {(err, rows)} callback `rows` is filled
-	 * with privilege if login success, `undefined`
-	 * if no such user or the password doesn't match.
+	 * @param {(ret)} callback `ret` is filled
+	 * with privilege and UserID if login success,
+	 * `undefined` if no such user or the password
+	 * doesn't match.
 	 */
 	static login({ account, password }, callback) {
+		// Get the account info first
+		this.getAccountInfo(account, checkPasswd);
 
-		/**
-		 * Declare the query callbcak function
-		 */
+		// Check the input password is matching the DB's one.
 		function checkPasswd(err, rows) {
 			if (err) {
-				callback(err, rows);
+				console.error(err, rows);
 				return;
 			}
 
@@ -143,23 +144,20 @@ class User {
 			 */
 			Hash.checkPasswd(password, rows.password, function (err, result) {
 				if (err) {
-					callback(err, rows);
+					console.error(err, rows);
 					return;
 				}
 
 				if (result == true) {
-					callback(err, rows);
+					const privilege = rows.privilege;
+					callback({ account, privilege });
 				} else {
-					callback(err, undefined);
+					callback(undefined);
 				}
 
 			});
 		}
 
-		/**
-		 * Execute the query
-		 */
-		this.getAccountInfo(account, checkPasswd);
 
 	}
 
@@ -187,7 +185,7 @@ class User {
 			rows = Util.decodeRows(rows)[0];
 
 			if (rows == undefined) {
-				callback("getAddountInfo(): no target user", rows);
+				callback("getAccountInfo(): no target user", rows);
 				return;
 			}
 
