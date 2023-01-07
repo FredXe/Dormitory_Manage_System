@@ -4,9 +4,15 @@ const bodyParser = require('body-parser');
 
 const urlParser = bodyParser.urlencoded({ extended: false });
 
-function responseFile(filename, statuscode, res) {
-	fs.readFile(`${filename}`, (error, data) => {
-		console.log(filename);
+/**
+ * Response a HTML file.
+ * @param {string} filename 
+ * @param {number} statuscode 
+ * @param {*} res 
+ * The `res` of router's handler.
+ */
+function responseHtml(filename, statuscode, res) {
+	fs.readFile(`${filename}`, function (error, data) {
 		if (error) {
 			res.statuscode = 500;
 			res.setHeader('Content-Type', 'text/html');
@@ -22,4 +28,4 @@ function responseFile(filename, statuscode, res) {
 };
 
 
-module.exports = { responseFile, urlParser };
+module.exports = { responseHtml, urlParser };

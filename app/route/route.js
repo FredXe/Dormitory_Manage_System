@@ -1,63 +1,27 @@
 const express = require("express");
-const bodyParser = require('body-parser');
 const cookieParser = require("cookie-parser");
 // const qs = require('querystring');
 
 const app = require("../app");
-const util = require("./util");
 const token = require("../middleware/token");
 const root = require("./root");
 const user = require("./user");
-const home = require("./home");
+const util = require("./util");
 
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var urlParser = util.urlParser;
 
-
-// Configure the express application.
+/**
+ * Configure the express middlewares.
+ */
+// Set Third-party middleware
 app.use(cookieParser());
 app.use(express.json());
+// Set static route.
 app.use(express.static('public'));
+// Set Util middleware.
+app.use(token.verify);
+// Set router middleware.
 app.use(root);
 app.use("/user", user);
-app.use("/home", home);
-app.use(token.verify);
-
-app.get('/', (req, res) => {
-	res.redirect("/home");
-
-});
-
-app.get('/api', function (req, res) {
-	console.log(req.cookies);
-	if (req.cookies.rememberme) {
-		res.redirect("/home");
-		res.status(304);
-		return;
-	}
-	res.cookie("rememberme", "NODE test cookie", { maxAge: 10000 });
-	res.status(200).json("welcome to API!");
-})
-
-// app.post('/login', urlencodedParser, function (req, res) {
-// 	// Parse the `req`.`body`
-// 	const userInfo = req.body;
-
-// 	User.login(userInfo, _checkAccountExist);
-
-// 	function _checkAccountExist(ret) {
-// 		if (!ret) {
-// 			res.json;
-// 			return;
-// 		};
-
-// 		Token.sign(ret, _sendToken);
-// 	}
-
-// 	function _sendToken(token) {
-// 		res.cookie("token", token, { maxAge: MAX_AGE, httpOnly: true });
-// 		res.redirect("/home");
-
-// 	}
-// });
 
 
