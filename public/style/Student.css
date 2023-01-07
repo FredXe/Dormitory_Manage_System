@@ -27,9 +27,9 @@
     color: white;
 }
 
-.application {
-    /* 移除超連結底線 */
-    text-decoration: none;
+#application {
+    border: none;
+    background-color: #95c7df;
     color: #0b0b0a;
     font-size: 18px;
     font-family: cursive;
@@ -40,7 +40,7 @@
 }
 
 /* 滑鼠移至文字上的變化 */
-.application:hover {
+#application:hover {
     color: #bd504d;
     font-weight: bold;
     position: absolute;
@@ -50,9 +50,9 @@
 
 
 
-.information {
-    /* 移除超連結底線 */
-    text-decoration: none;
+#information {
+    border: none;
+    background-color: #95c7df;
     color: #0b0b0a;
     font-size: 18px;
     font-family: cursive;
@@ -63,7 +63,7 @@
 }
 
 /* 滑鼠移至文字上的變化 */
-.information:hover {
+#information:hover {
     color: #bd504d;
     font-weight: bold;
     position: absolute;
@@ -71,9 +71,9 @@
     left: 41px;
 }
 
-.Violation_record {
-    /* 移除超連結底線 */
-    text-decoration: none;
+#violation_record {
+    border: none;
+    background-color: #95c7df;
     color: #0b0b0a;
     font-size: 18px;
     font-family: cursive;
@@ -84,7 +84,7 @@
 }
 
 /* 滑鼠移至文字上的變化 */
-.Violation_record:hover {
+#violation_record:hover {
     color: #bd504d;
     font-weight: bold;
     position: absolute;
@@ -92,9 +92,9 @@
     left: 41px;
 }
 
-.application_status {
-    /* 移除超連結底線 */
-    text-decoration: none;
+#application_status {
+    border: none;
+    background-color: #95c7df;
     color: #0b0b0a;
     font-size: 18px;
     font-family: cursive;
@@ -104,7 +104,7 @@
     color: white;
 }
 
-.application_status:hover {
+#application_status:hover {
     color: #bd504d;
     font-weight: bold;
     position: absolute;
@@ -112,9 +112,9 @@
     left: 41px;
 }
 
-.boarder {
-    /* 移除超連結底線 */
-    text-decoration: none;
+#boarder {
+    border: none;
+    background-color: #95c7df;
     color: #0b0b0a;
     font-size: 18px;
     font-family: cursive;
@@ -124,7 +124,7 @@
     color: white;
 }
 
-.boarder:hover{
+#boarder:hover{
     color: #bd504d;
     font-weight: bold;
     position: absolute;
@@ -161,4 +161,27 @@
 
     font-family: cursive;
     color: white;
+}
+
+#boarder_position {
+    position: absolute;
+    top: 51px;
+    left: 300px;
+}
+
+#dormitory_info {
+    position: absolute;
+    top: 10px;
+    left: 220px;
+
+}
+
+.dormitory_text {
+    text-decoration: none;
+}
+
+.dormitory_text:hover {
+    color: #bd504d;
+    font-weight: bold;
+
 }
