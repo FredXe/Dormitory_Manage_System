@@ -3,8 +3,8 @@ require("dotenv").config({ path: "app/model/.env" });
 
 const secret = process.env.SECRET;
 // Expires in 30 min
-// const EXPIRES_IN = 30 * 60;
-const EXPIRES_IN = 5;
+const EXPIRES_IN = 30 * 60;
+// const EXPIRES_IN = 5;
 const MAX_AGE = EXPIRES_IN * 1000;
 
 /**
