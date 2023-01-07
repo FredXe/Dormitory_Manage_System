@@ -1,44 +1,33 @@
-window.addEventListener('load' , function(){
-    var mask = document.querySelector('.mask');
-    var big = this.document.querySelector('.big');
-    var small = this.document.querySelector('.preview_img');
+window.onload = () => {
+	var dormitory_info = document.getElementById('dormitory_info');
+	var boarder_position = document.getElementById('boarder_position');
 
-    small.addEventListener('mousemove' , function(){
-        mask.style.display = 'block';
-        big.style.display = 'block';
-    })
+	var information = document.getElementById('information');
+	var boarder = document.getElementById('boarder');
 
-    small.addEventListener('mouseout' , function(){
-        mask.style.display = 'none';
-        big.style.display = 'none';
-    })
-})
+	// console.log(document);
 
-var dormitory_info = document.getElementById('dormitory_info');
-var boarder_position = document.getElementById('boarder_position');
+	information.addEventListener('click', function () {
+		console.log('suc')
+		information.style.color = '#bd504d';
+		information.style.fontWeight = 'bold';
+		dormitory_info.style.display = 'block';
 
-var information = document.getElementById('information');
-var boarder = document.getElementById('boarder');
+		boarder.style.color = 'white';
+		boarder.style.fontWeight = 'normal';
+		boarder_position.style.display = 'none';
+	})
 
-information.addEventListener('click' , function(){
-    console.log('suc')
-    information.style.color = '#bd504d';
-    information.style.fontWeight = 'bold';
-    dormitory_info.style.display = 'block';
+	boarder.addEventListener('click', function () {
+		console.log('suc')
 
-    boarder.style.color = 'white';
-    boarder.style.fontWeight = 'normal';
-    boarder_position.style.display = 'none';
-})
+		dormitory_info.style.display = 'none';
+		information.style.color = 'white';
+		information.style.fontWeight = 'normal';
 
-boarder.addEventListener('click' , function(){
-    console.log('suc')
-    
-    dormitory_info.style.display = 'none';
-    information.style.color = 'white';
-    information.style.fontWeight = 'normal';
+		boarder.style.color = '#bd504d';
+		boarder.style.fontWeight = 'bold';
+		boarder_position.style.display = 'block';
+	})
 
-    boarder.style.color = '#bd504d';
-    boarder.style.fontWeight = 'bold';
-    boarder_position.style.display = 'block';
-})
+}
