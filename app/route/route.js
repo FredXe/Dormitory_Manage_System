@@ -6,6 +6,7 @@ const app = require("../app");
 const token = require("../middleware/token");
 const root = require("./root");
 const user = require("./user");
+const board = require("./board");
 const util = require("./util");
 
 var urlParser = util.urlParser;
@@ -23,4 +24,5 @@ app.use(token.verify);
 // Set router middleware.
 app.use(root);
 app.use("/user", user);
+app.use("/board", board);
 

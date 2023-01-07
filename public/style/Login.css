@@ -2,66 +2,82 @@
 	/* background-color: #f3e0e2; */
 	background-color: #CFD69C;
 	background-size: 100% auto;
-
-}
-
-.test_nuk {
-	font-weight: bold;
-	font-size: 20px;
-	font-family: cursive;
-	position: absolute;
-	top: 70px;
-	left: 35px;
+	height: 100vh;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	margin: 0%;
 }
 
 .test_1 {
-
-	position: absolute;
-	top: 110px;
-	left: 450px;
+	vertical-align: middle;
 
 	/*登入背景*/
-	box-shadow: 10px -10px #D0D0D0;
+	box-shadow: 0.5em -0.5em #D0D0D0;
 	border-radius: 10px;
-	height: 400px;
-	width: 300px;
+	font-size: 1.5vw;
+	height: 60%;
+	width: 25%;
 	background-color: #f6f5fa;
 
+	align-items: center;
+
+
 }
 
+.loginTitleBlock {
+
+	height: 45%;
+	font-weight: bold;
+	font-family: cursive;
+	align-items: center;
+
+	display: flex;
+	justify-content: center;
+}
+
+.loginTitle {
+	font-size: 1.2em;
+
+	margin-top: 1.5em;
+}
 
 .test_2 {
-	position: absolute;
-	top: 200px;
-	left: 65px;
+	height: 50%;
+
+	vertical-align: middle;
 }
 
-.test_3 {
+.input_block {
 	background-color: #E0E0E0;
+
+	font-size: 0.8em;
+	margin: 0.8em 0;
+	width: 60%;
+	border-radius: 0.3em;
 	text-align: center;
-	padding: 10px;
-	border-width: 0px;
+	padding: 0.5em;
+	border-color: #ffffff;
+	border-width: 2px;
 }
 
 
 .account_block {
+
 	margin-bottom: 9px;
 }
 
 
 
-.login_block {
-	margin-top: 18px;
-	position: absolute;
-	top: 90px;
-	left: 40px;
-}
-
-.login_text {
+.loginBottom {
 	background-color: #FF7575;
-	width: 95px;
-	padding: 6px;
-	border-width: 0px;
-	border-radius: 80px;
+	border-radius: 2em;
+	margin: 1em 0;
+	padding: 0.8em;
+	align-items: center;
+	width: 30%;
+	border-color: #e26868;
+	border-width: 0.2em;
 
 }
