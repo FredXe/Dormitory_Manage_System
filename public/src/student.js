@@ -1,3 +1,19 @@
+window.addEventListener('load' , function(){
+    var mask = document.querySelector('.mask');
+    var big = this.document.querySelector('.big');
+    var small = this.document.querySelector('.preview_img');
+
+    small.addEventListener('mousemove' , function(){
+        mask.style.display = 'block';
+        big.style.display = 'block';
+    })
+
+    small.addEventListener('mouseout' , function(){
+        mask.style.display = 'none';
+        big.style.display = 'none';
+    })
+})
+
 var dormitory_info = document.getElementById('dormitory_info');
 var boarder_position = document.getElementById('boarder_position');
 
