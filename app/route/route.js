@@ -14,7 +14,7 @@ app.use(express.static('public'));
 
 const sendResponse = (filename, statuscode, res) => {
 	fs.readFile(`${filename}`, (error, data) => {
-		console.log(filename);
+		// console.log(filename);
 		if (error) {
 			res.statuscode = 500;
 			res.setHeader('Content-Type', 'text/plain');
@@ -46,7 +46,7 @@ app.get('/', (req, res) => {
 // 	sendResponse(url, 200, res);
 // });
 
-app.post('/Login', urlencodedParser, (req, res) => {
+app.post('/login', urlencodedParser, (req, res) => {
 	const { account: userID, password } = req.body;
 	User.login({ account : userID , password : password}, (error , rows) => {
 		if(error){
@@ -62,9 +62,8 @@ app.post('/Login', urlencodedParser, (req, res) => {
 			}
 		}	
 	});
-	
-	
 });
+
 
 app.listen(port, ip, () => {
 	console.log(`Server is running http://${ip}:${port}/`)
