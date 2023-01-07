@@ -10,7 +10,7 @@ router.get("/", function (req, res) {
 });
 
 router.get("/list", function (req, res) {
-	res.send(":D /board/list");
+	util.responseHtml("./view/boarder.html", 200, res);
 })
 
 module.exports = router;
