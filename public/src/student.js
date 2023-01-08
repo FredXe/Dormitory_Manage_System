@@ -2,13 +2,19 @@ window.onload = () => {
 	var dormitory_info = document.getElementById('dormitory_info');
 	// var boarder_position = document.getElementById('boarder_position');
 	var dormitory_application = document.getElementById('dormitory_application')
+	var violation = document.getElementById('violation');
 
 	var information = document.getElementById('information');
 	var application = document.getElementById('application');
 	var boarder = document.getElementById('boarder');
-
+	var violation_record = document.getElementById('violation_record');
 	// console.log(document);
 
+	violation_record.addEventListener('click' , function(){
+		console.log('suc');
+		violation.style.display = 'block';
+	});
+	
 	information.addEventListener('click', function () {
 		console.log('suc');
 		dormitory_info.style.display = 'block';

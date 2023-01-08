@@ -21,7 +21,7 @@ router.get("/home", function (req, res) {
 // Router of `/login`
 router.route("/login")
 	.get(function (req, res) {
-		util.responseHtml("./views/login.html", 200, res);
+		util.responseHtml("./views/login.ejs", 200, res);
 	})
 	.post(urlParser, function (req, res) {
 		// Parse the `req`.`body`
