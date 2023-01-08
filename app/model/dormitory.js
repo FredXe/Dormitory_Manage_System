@@ -247,7 +247,7 @@ class Dormitory {
 	static showEquipments(callback) {
 		const query = `SELECT e_ID AS ID, e_condition AS \`condition\`, e_type AS type,
 		r_number AS roomNumber, d_name AS dormitoryName
-		FROM equipment;`;
+		FROM equipment ORDER BY r_number ASC;`;
 
 		Connections.admin.query(query, function (err, rows) {
 			if (err) {

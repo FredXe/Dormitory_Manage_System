@@ -10,16 +10,47 @@ router.get("/", function (req, res) {
 });
 
 router.get("/list", function (req, res) {
-	token.decode(req.cookies.token, _render);
+	var privilege;
+	var equipments;
+	token.decode(req.cookies.token, _getEquipment);
 
-	function _render(decode) {
-		console.log(decode);
-		dormitory.showDormitory(function (err, dormitories) {
-			const privilege = decode.privilege;
-			res.render("dormitory", { dormitories, privilege });
-		});
+	function _getEquipment(decode) {
+		privilege = decode.privilege;
+		dormitory.showEquipments(_getDormitory);
+	}
+
+	function _getDormitory(err, _equipment) {
+		equipments = _equipment;
+		dormitory.showDormitory(_render);
+
+	}
+
+	function _render(err, dormitories) {
+		res.render("dormitory", { dormitories, privilege, equipments });
 	}
 })
+
+router.route("/equipment")
+	.get(function (req, res) {
+		var privilege;
+		var equipments;
+		token.decode(req.cookies.token, _getEquipment);
+
+		function _getEquipment(decode) {
+			privilege = decode.privilege;
+			dormitory.showProblemEquipment("%", _getDormitory);
+		}
+
+		function _getDormitory(err, _equipment) {
+			equipments = _equipment;
+			dormitory.showDormitory(_render);
+
+		}
+
+		function _render(err, dormitories) {
+			res.render("dormitory", { dormitories, privilege, equipments });
+		}
+	})
 
 
 
