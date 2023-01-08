@@ -2,7 +2,6 @@ const express = require("express");
 
 const token = require("../middleware/token");
 
-const MAX_AGE = token.MAX_AGE;
 const router = express.Router();
 
 // Router of `/user`

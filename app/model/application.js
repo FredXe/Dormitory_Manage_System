@@ -129,14 +129,14 @@ class Application {
 	static showApplicationInfo(account, callback) {
 		const query = `SELECT studentUserID, a_semester AS semester, 
 		a_Date AS date, a_approved AS approved, a_Paid AS paid, adminUserID
-		FROM application WHERE studentUserID='${account}';`;
+		FROM application WHERE studentUserID like '${account}';`;
 
 		Connections.admin.query(query, function (err, rows) {
 			if (err) {
 				callback(err, rows);
 				return;
 			}
-			rows = Util.decodeRows(rows)[0];
+			rows = Util.decodeRows(rows);
 			callback(err, rows);
 		});
 

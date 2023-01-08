@@ -4,7 +4,6 @@ const util = require("./util");
 const dormitory = require("../model/dormitory");
 
 const router = express.Router();
-var urlParser = util.urlParser;
 
 router.get("/", function (req, res) {
 	res.redirect("/list");

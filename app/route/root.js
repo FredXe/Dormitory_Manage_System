@@ -6,7 +6,6 @@ const user = require("../model/user");
 
 const router = express.Router();
 const MAX_AGE = token.MAX_AGE;
-var urlParser = util.urlParser;
 
 // alias `/`=`/home`
 router.get('/', function (req, res) {
@@ -23,7 +22,7 @@ router.route("/login")
 	.get(function (req, res) {
 		util.responseHtml("./views/login.html", 200, res);
 	})
-	.post(urlParser, function (req, res) {
+	.post(function (req, res) {
 		// Parse the `req`.`body`
 		const userInfo = req.body;
 

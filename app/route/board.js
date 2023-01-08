@@ -6,7 +6,6 @@ const token = require("../middleware/token");
 const { compareSync } = require("bcrypt");
 
 const router = express.Router();
-var urlParser = util.urlParser;
 
 
 
