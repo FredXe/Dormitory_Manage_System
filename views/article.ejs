@@ -65,7 +65,7 @@
 			<div class='header container'>
 				<form class='page-header' action="/board/post" method="get">
 					<h1>留言板</h1>
-					<input type='submit' value="發布公告"></input>
+					<!-- <input type='submit' value="發布公告"></input> -->
 				</form>
 			</div>
 			<%= post.ID%>
@@ -79,6 +79,9 @@
 						<%= comment.lastEdit %>
                     <% } %>
 			</div>
+			<form>
+				<intput type = 'text' value = text></intput>
+			</form>
 		</div>
 
 		<div id=" dormitory_info" style="display: none;">
