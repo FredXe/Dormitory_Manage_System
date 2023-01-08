@@ -3,6 +3,7 @@ const express = require("express");
 const util = require("./util");
 const board = require('../model/board');
 const token = require("../middleware/token");
+const { compareSync } = require("bcrypt");
 
 const router = express.Router();
 var urlParser = util.urlParser;
@@ -28,7 +29,7 @@ router.get("/list", function (req, res) {
 router.route("/post")
 	// 顯示新增公告的介面
 	.get(function (req, res) {
-		res.render('chat');
+		res.render('post');
 	})
 
 	// 提交新增內容之後回到布告欄
@@ -37,6 +38,7 @@ router.route("/post")
 
 			const account = decode.account;
 			const post = req.body;
+			console.log(post);
 			board.post(account, post.title, post.content, (err, rows) => {
 				res.redirect('/board/list');
 			});
@@ -57,9 +59,9 @@ router.route("/:id")
 		});
 	})
 	.post(function (req, res) {
-		token.decode(req.cookies.token, _comment);
 		const id = req.params.id;
 		const comment = req.body.comment;
+		token.decode(req.cookies.token, _comment);
 
 		function _comment(decode) {
 			const account = decode.account;
