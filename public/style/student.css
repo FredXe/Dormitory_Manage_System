@@ -1,9 +1,11 @@
 #background {
-    margin: 0%;
     background-size: 100% auto;
-    /* background-color: #daf0d4; */
-    /* background-color: #daf0d4; */
-    height: 100vh;
+	height: 100vh;
+	align-items: center;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	margin: 0%;
 
 }
 
@@ -17,6 +19,15 @@
     height: 100%;
     width: 16%;
 
+    align-items: center;
+}
+
+#chat_title{
+    height: 40%;
+    /* width: 40%; */
+    display: flex;
+    justify-content: center;
+    
 }
 
 #student {
@@ -179,7 +190,6 @@
 }
 
 #telephone_2 {
-
     padding: 3px;
     color: #494141;
     display: flex;
