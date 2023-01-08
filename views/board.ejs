@@ -72,9 +72,9 @@
 			<div class='comments container'">
                 <%for(let post of posts){%>
 					
-					<form>
+					<form action="/board/<%= post.ID%>" method="get">
 						<input type=" submit" value="<%= post.title%>"></input>
-				</form>
+					</form>
 				<!-- <li>
                         <%post.title%>
                     </li> -->
