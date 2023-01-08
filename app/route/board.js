@@ -24,19 +24,20 @@ router.get("/list", function (req, res) {
 
 })
 
-// 顯示新增公告的介面
-router.get('/post', function (req, res) {
-	res.render('chat');
-})
+router.route("/post")
+	// 顯示新增公告的介面
+	.get(function (req, res) {
+		res.render('chat');
+	})
 
-// 提交新增內容之後回到布告爛
-router.post('/post', urlParser, function (req, res) {
-	post = req.body;
-	board.post(post.ID, post.title, post.content, (err, rows) => {
-		res.redirect('/board/list');
+	// 提交新增內容之後回到布告爛
+	.post(urlParser, function (req, res) {
+		post = req.body;
+		board.post(post.ID, post.title, post.content, (err, rows) => {
+			res.redirect('/board/list');
+		});
+
 	});
-
-});
 
 router.get("/:id", function (req, res) {
 	const id = req.params.id;
