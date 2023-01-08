@@ -3,7 +3,6 @@ const express = require("express");
 const util = require("./util");
 const token = require("../middleware/token");
 const violation = require('../model/violation');
-const { decode } = require("jsonwebtoken");
 
 const router = express.Router();
 var urlParser = util.urlParser;
