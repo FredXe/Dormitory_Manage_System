@@ -11,7 +11,7 @@ router.get("/", function (req, res) {
 
 router.get("/list", function (req, res) {
 	dormitory.showDormitory(function (err, dormitories) {
-		res.render("student", { dormitories });
+		res.render("dormitory", { dormitories });
 	});
 })
 

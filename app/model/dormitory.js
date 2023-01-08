@@ -62,7 +62,9 @@ class Dormitory {
 	 * `rows`:  [{`dormitory1`}, {`dormitory2`},...]
 	 */
 	static showDormitory(callback) {
-		const query = `SELECT d_name AS name, d_volume AS volume, adminUserID AS admin FROM dormitory;`;
+		const query = `SELECT d_name AS name, d_volume AS volume, adminUserID AS admin,
+			r_cost AS cost FROM dormitory NATURAL JOIN room
+			GROUP BY d_name;`;
 
 		Connections.admin.query(query, function (err, rows) {
 			if (err) {
