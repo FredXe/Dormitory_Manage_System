@@ -1,5 +1,5 @@
 #background {
-    background-size: 100% auto;
+	background-size: 100% auto;
 	height: 100vh;
 	align-items: center;
 	text-align: center;
@@ -12,191 +12,189 @@
 
 
 #title {
-    /* 陰影 */
-    box-shadow: 1px 5px 5px 1px #242424;
-    /* background-color: #C7D6C2; */
-    background-color: #95c7df;
-    height: 100%;
-    width: 16%;
+	/* 陰影 */
+	box-shadow: 1px 5px 5px 1px #242424;
+	/* background-color: #C7D6C2; */
+	background-color: #95c7df;
+	height: 100%;
+	width: 20%;
 
-    align-items: center;
+	align-items: center;
 }
 
-#chat_title{
-    height: 40%;
-    /* width: 40%; */
-    display: flex;
-    justify-content: center;
-    
+#chat_title {
+	height: 100%;
+	width: 80%;
+
 }
 
 #student {
-    font-size: 25px;
-    font-family: 'Abel', sans-serif;
-    color: #252924;
-    display: flex;
-    justify-content: center;
-    color: white;
-    padding-top: 0.5em;
-    margin-bottom: 1.9em;
+	font-size: 25px;
+	font-family: 'Abel', sans-serif;
+	color: #252924;
+	display: flex;
+	justify-content: center;
+	color: white;
+	padding-top: 0.5em;
+	margin-bottom: 1.9em;
 }
 
 #app_pos {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 #application {
-    border: none;
-    background-color: #95c7df;
-    color: #0b0b0a;
-    font-size: 18px;
-    font-family: cursive;
-    color: white;
-    margin-bottom: 0.9em;
+	border: none;
+	background-color: #95c7df;
+	color: #0b0b0a;
+	font-size: 18px;
+	font-family: cursive;
+	color: white;
+	margin-bottom: 0.9em;
 }
 
 /* 滑鼠移至文字上的變化 */
 #application:hover {
-    color: #bd504d;
-    font-weight: bold;
+	color: #bd504d;
+	font-weight: bold;
 }
 
 
 #info_pos {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 #information {
-    border: none;
-    background-color: #95c7df;
-    color: #0b0b0a;
-    font-size: 18px;
-    font-family: cursive;
-    color: white;
-    margin-bottom: 0.9em;
+	border: none;
+	background-color: #95c7df;
+	color: #0b0b0a;
+	font-size: 18px;
+	font-family: cursive;
+	color: white;
+	margin-bottom: 0.9em;
 }
 
 /* 滑鼠移至文字上的變化 */
 #information:hover {
-    color: #bd504d;
-    font-weight: bold;
+	color: #bd504d;
+	font-weight: bold;
 
 }
 
 #vio_pos {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 #violation_record {
-    border: none;
-    background-color: #95c7df;
-    color: #0b0b0a;
-    font-size: 18px;
-    font-family: cursive;
-    color: white;
-    margin-bottom: 0.9em;
+	border: none;
+	background-color: #95c7df;
+	color: #0b0b0a;
+	font-size: 18px;
+	font-family: cursive;
+	color: white;
+	margin-bottom: 0.9em;
 }
 
 /* 滑鼠移至文字上的變化 */
 #violation_record:hover {
-    color: #bd504d;
-    font-weight: bold;
+	color: #bd504d;
+	font-weight: bold;
 
 }
 
 #appst_pos {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 #application_status {
-    border: none;
-    background-color: #95c7df;
-    color: #0b0b0a;
-    font-size: 18px;
-    font-family: cursive;
-    color: white;
-    margin-bottom: 0.9em;
+	border: none;
+	background-color: #95c7df;
+	color: #0b0b0a;
+	font-size: 18px;
+	font-family: cursive;
+	color: white;
+	margin-bottom: 0.9em;
 }
 
 #application_status:hover {
-    color: #bd504d;
-    font-weight: bold;
+	color: #bd504d;
+	font-weight: bold;
 
 }
 
 #boarder_pos {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 #board {
-    border: none;
-    background-color: #95c7df;
-    color: #0b0b0a;
-    font-size: 18px;
-    font-family: cursive;
-    color: white;
-    margin-bottom: 10em;
+	border: none;
+	background-color: #95c7df;
+	color: #0b0b0a;
+	font-size: 18px;
+	font-family: cursive;
+	color: white;
+	margin-bottom: 10em;
 }
 
 #board:hover {
-    color: #bd504d;
-    font-weight: bold;
+	color: #bd504d;
+	font-weight: bold;
 
 }
 
 #line {
-    color: #494141;
-    /* 文字陰影 */
-    text-shadow: 2px 2px 7px #333333;
+	color: #494141;
+	/* 文字陰影 */
+	text-shadow: 2px 2px 7px #333333;
 
-    display: flex;
-    justify-content: center;
-    color: white;
+	display: flex;
+	justify-content: center;
+	color: white;
 }
 
 #address_1 {
-    padding: 3px;
-    color: #494141;
-    display: flex;
-    justify-content: center;
-    font-size: 10px;
-    font-family: cursive;
-    color: white;
+	padding: 3px;
+	color: #494141;
+	display: flex;
+	justify-content: center;
+	font-size: 10px;
+	font-family: cursive;
+	color: white;
 }
 
 #address_2 {
-    padding: 3px;
-    color: #494141;
-    display: flex;
-    justify-content: center;
-    font-size: 10px;
-    font-family: cursive;
-    color: white;
+	padding: 3px;
+	color: #494141;
+	display: flex;
+	justify-content: center;
+	font-size: 10px;
+	font-family: cursive;
+	color: white;
 }
 
 #telephone_1 {
-    padding: 3px;
-    color: #494141;
-    display: flex;
-    justify-content: center;
-    font-size: 10px;
-    font-family: cursive;
-    color: white;
+	padding: 3px;
+	color: #494141;
+	display: flex;
+	justify-content: center;
+	font-size: 10px;
+	font-family: cursive;
+	color: white;
 }
 
 #telephone_2 {
-    padding: 3px;
-    color: #494141;
-    display: flex;
-    justify-content: center;
-    font-size: 10px;
-    font-family: cursive;
-    color: white;
+	padding: 3px;
+	color: #494141;
+	display: flex;
+	justify-content: center;
+	font-size: 10px;
+	font-family: cursive;
+	color: white;
 }
 
 #board_position {
@@ -234,42 +232,61 @@
 	position: absolute;
 	top: 150px;
 	left: 300px;
-    
+
 	background-color: rgb(227, 196, 196);
 	border-radius: 10px;
 	box-shadow: 5px 7px 15px #333333;
 }
 
 #application_state {
-    
-    display: flex;
-    justify-content: center;    
+
+	display: flex;
+	justify-content: center;
 }
 
 
-#violation_2{
-   display: flex;
-    justify-content: center;    
+#violation_2 {
+	display: flex;
+	justify-content: center;
 }
 
-.chat{
-    background-color: #ebb7b7;
-    border-radius: 2em;
-    margin: 1em 0;
-    padding: 0.4em;
-    align-items: center;
-    width: 70%;
-    border-color: #ebb7b7;
-    border-width: 0.2em;
+.article {
+	align-items: center;
+	margin: 1em;
 }
 
-#boarder_position{
-    font-family: cursive;
-    position: absolute;
+.chat {
+	background-color: #ebb7b7;
+	border-radius: 2em;
+	margin-top: 1em;
+	margin-bottom: 0.6em;
+	padding: 0.4em 3em;
+	width: auto;
+	border-color: #ebb7b7;
+	border-width: 0.2em;
+	display: block;
+
+	margin-left: 20%;
+	margin-right: auto;
+}
+
+.content {
+	text-align: left;
+	margin-left: 25%;
+	margin-right: auto;
+
+
+
+	width: 70%;
+}
+
+#boarder_position {
+	font-family: cursive;
+	position: absolute;
 	top: 50px;
-	left: 300px; 
+	left: 300px;
 }
 
 #board_content {
-    font-size : 35px;
+	font-size: 35px;
 }

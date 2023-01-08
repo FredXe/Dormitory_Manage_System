@@ -66,35 +66,36 @@
 		</div>
 	</div>
 
-	<div id = 'chat_title'>
-		<div id="board_position" style="display: block;">
-			<div class='header container'>
-				<h1>留言板</h1>
-				<% if (privilege=="houseMaster" ) { %>
-					<form class='page-header' action="/board/post" method="get">
-						
-						<input type='submit' value="發布公告"></input>
-					</form>
-					<% } %>
-			</div>
+	<div id='chat_title'>
+		<div class='header container'>
+			<h1>留言板</h1>
+			<% if (privilege==" houseMaster" ) { %>
+				<form class='page-header' action="/board/post" method="get">
 
-			<div class='comments container'">
-                <%for(let post of posts){%>
-					
-					<form action=" /board/<%=post.ID%>" method="get">
-				<input class="chat" type="submit" value="<%= post.title%>"></input>
+					<input type='submit' value="發布公告"></input>
 				</form>
-				<!-- <li>
+				<% } %>
+		</div>
+
+		<div class='comments container'">
+            <%for(let post of posts){%>
+					
+			<form action=" /board/<%=post.ID%>" class="article" method="get">
+			<input class="chat" type="submit" value="<%= post.title%>"> </input>
+			<div class="content">
+				<%= post.content%>
+			</div>
+			</form>
+			<!-- <li>
                         <%post.title%>
                     </li> -->
-				<% } %>
-			</div>
+			<% } %>
 		</div>
 
 	</div>
 
-	
-</div>
+
+	</div>
 
 </body>
 
