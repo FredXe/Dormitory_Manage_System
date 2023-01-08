@@ -1,167 +1,192 @@
-.background {
-	margin: 0px;
-	/* background-color: #daf0d4; */
-	/* background-color: #daf0d4; */
-
-
-}
-
-
-.title {
-	/* 陰影 */
-	box-shadow: 1px 5px 5px 1px #242424;
-	/* background-color: #C7D6C2; */
-	background-color: #95c7df;
-	width: 16%;
-	height: 567px;
+#background {
+    margin: 0%;
+    background-size: 100% auto;
+    /* background-color: #daf0d4; */
+    /* background-color: #daf0d4; */
+    height: 100vh;
 
 }
 
-.student {
-	font-size: 25px;
-	font-family: 'Abel', sans-serif;
-	color: #252924;
-	position: absolute;
-	top: 40px;
-	left: 40px;
-	color: white;
+
+
+#title {
+    /* 陰影 */
+    box-shadow: 1px 5px 5px 1px #242424;
+    /* background-color: #C7D6C2; */
+    background-color: #95c7df;
+    height: 100%;
+    width: 16%;
+
+}
+
+#student {
+    font-size: 25px;
+    font-family: 'Abel', sans-serif;
+    color: #252924;
+    display: flex;
+    justify-content: center;
+    color: white;
+    padding-top: 0.5em;
+    margin-bottom: 1.9em;
+}
+
+#app_pos {
+    display: flex;
+    justify-content: center;
 }
 
 #application {
-	border: none;
-	background-color: #95c7df;
-	color: #0b0b0a;
-	font-size: 18px;
-	font-family: cursive;
-	position: absolute;
-	top: 90px;
-	left: 40px;
-	color: white;
+    border: none;
+    background-color: #95c7df;
+    color: #0b0b0a;
+    font-size: 18px;
+    font-family: cursive;
+    color: white;
+    margin-bottom: 0.9em;
 }
 
 /* 滑鼠移至文字上的變化 */
 #application:hover {
-	color: #bd504d;
-	font-weight: bold;
-	position: absolute;
-	top: 91px;
-	left: 41px;
+    color: #bd504d;
+    font-weight: bold;
 }
 
 
+#info_pos {
+    display: flex;
+    justify-content: center;
+}
 
 #information {
-	border: none;
-	background-color: #95c7df;
-	color: #0b0b0a;
-	font-size: 18px;
-	font-family: cursive;
-	position: absolute;
-	top: 120px;
-	left: 40px;
-	color: white;
+    border: none;
+    background-color: #95c7df;
+    color: #0b0b0a;
+    font-size: 18px;
+    font-family: cursive;
+    color: white;
+    margin-bottom: 0.9em;
 }
 
 /* 滑鼠移至文字上的變化 */
 #information:hover {
-	color: #bd504d;
-	font-weight: bold;
-	position: absolute;
-	top: 121px;
-	left: 41px;
+    color: #bd504d;
+    font-weight: bold;
+
+}
+
+#vio_pos {
+    display: flex;
+    justify-content: center;
 }
 
 #violation_record {
-	border: none;
-	background-color: #95c7df;
-	color: #0b0b0a;
-	font-size: 18px;
-	font-family: cursive;
-	position: absolute;
-	top: 150px;
-	left: 40px;
-	color: white;
+    border: none;
+    background-color: #95c7df;
+    color: #0b0b0a;
+    font-size: 18px;
+    font-family: cursive;
+    color: white;
+    margin-bottom: 0.9em;
 }
 
 /* 滑鼠移至文字上的變化 */
 #violation_record:hover {
-	color: #bd504d;
-	font-weight: bold;
-	position: absolute;
-	top: 151px;
-	left: 41px;
+    color: #bd504d;
+    font-weight: bold;
+
+}
+
+#appst_pos {
+    display: flex;
+    justify-content: center;
 }
 
 #application_status {
-	border: none;
-	background-color: #95c7df;
-	color: #0b0b0a;
-	font-size: 18px;
-	font-family: cursive;
-	position: absolute;
-	top: 180px;
-	left: 40px;
-	color: white;
+    border: none;
+    background-color: #95c7df;
+    color: #0b0b0a;
+    font-size: 18px;
+    font-family: cursive;
+    color: white;
+    margin-bottom: 0.9em;
 }
 
 #application_status:hover {
-	color: #bd504d;
-	font-weight: bold;
-	position: absolute;
-	top: 181px;
-	left: 41px;
+    color: #bd504d;
+    font-weight: bold;
+
+}
+
+#boarder_pos {
+    display: flex;
+    justify-content: center;
 }
 
 #board {
-	border: none;
-	background-color: #95c7df;
-	color: #0b0b0a;
-	font-size: 18px;
-	font-family: cursive;
-	position: absolute;
-	top: 210px;
-	left: 40px;
-	color: white;
+    border: none;
+    background-color: #95c7df;
+    color: #0b0b0a;
+    font-size: 18px;
+    font-family: cursive;
+    color: white;
+    margin-bottom: 10em;
 }
 
 #board:hover {
-	color: #bd504d;
-	font-weight: bold;
-	position: absolute;
-	top: 211px;
-	left: 41px;
+    color: #bd504d;
+    font-weight: bold;
+
 }
 
-.line {
-	color: #494141;
-	/* 文字陰影 */
-	text-shadow: 2px 2px 7px #333333;
-	position: absolute;
-	top: 470px;
-	left: 6px;
-	color: white;
+#line {
+    color: #494141;
+    /* 文字陰影 */
+    text-shadow: 2px 2px 7px #333333;
+
+    display: flex;
+    justify-content: center;
+    color: white;
 }
 
-.address {
-	color: #494141;
-	position: absolute;
-	top: 490px;
-	left: 15px;
-	font-size: 10px;
-
-	font-family: cursive;
-	color: white;
+#address_1 {
+    padding: 3px;
+    color: #494141;
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+    font-family: cursive;
+    color: white;
 }
 
-.telephone {
-	color: #494141;
-	position: absolute;
-	top: 515px;
-	left: 15px;
-	font-size: 10px;
+#address_2 {
+    padding: 3px;
+    color: #494141;
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+    font-family: cursive;
+    color: white;
+}
 
-	font-family: cursive;
-	color: white;
+#telephone_1 {
+    padding: 3px;
+    color: #494141;
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+    font-family: cursive;
+    color: white;
+}
+
+#telephone_2 {
+
+    padding: 3px;
+    color: #494141;
+    display: flex;
+    justify-content: center;
+    font-size: 10px;
+    font-family: cursive;
+    color: white;
 }
 
 #board_position {
@@ -199,7 +224,42 @@
 	position: absolute;
 	top: 150px;
 	left: 300px;
+    
 	background-color: rgb(227, 196, 196);
 	border-radius: 10px;
 	box-shadow: 5px 7px 15px #333333;
+}
+
+#application_state {
+    
+    display: flex;
+    justify-content: center;    
+}
+
+
+#violation_2{
+   display: flex;
+    justify-content: center;    
+}
+
+.chat{
+    background-color: #ebb7b7;
+    border-radius: 2em;
+    margin: 1em 0;
+    padding: 0.4em;
+    align-items: center;
+    width: 70%;
+    border-color: #ebb7b7;
+    border-width: 0.2em;
+}
+
+#boarder_position{
+    font-family: cursive;
+    position: absolute;
+	top: 50px;
+	left: 300px; 
+}
+
+#board_content {
+    font-size : 35px;
 }

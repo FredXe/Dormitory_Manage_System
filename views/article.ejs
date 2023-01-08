@@ -17,68 +17,83 @@
 </style>
 
 
-<body class="background">
+<body id="background">
 
-	<div class="title">
-		<div class="student">
+	<div id="title">
+		<div id="student">
 			Student
 		</div>
 
-		<form action='/application/list' method="get">
+		
+
+
+		<form id="app_pos"action='/application/list' method="get">
 			<input id="application" type="submit" name="button" value="宿舍申請" />
 			<!-- <a class="application" href = 'javascript:;' onclick="javascript:show()">宿舍申請</a> -->
 		</form>
 
-		<form action='/dormitory/list' method="get">
+		<form id="info_pos" action='/dormitory/list' method="get">
 			<input id="information" type="submit" name="button" value="宿舍資訊" />
 			<!-- <a class="information" href = 'javascript:;' onclick="javascript:show_dormitory_info()">宿舍資訊</a> -->
 		</form>
 
-		<form action='/violation/list' method="get">
+		<form id="vio_pos" action='/violation/list' method="get">
 			<input id="violation_record" type="submit" name="button" value="違規紀錄" />
 			<!-- <a class="Violation_record" href = 'javascript:;' onclick="javascript:show()">違規紀錄查詢</a> -->
 		</form>
 
-		<form action='/board/list' method="get">
+		<form id="boarder_pos" action='/board/list' method="get">
 			<input id="board" type="submit" name="button" value="佈告欄" />
 			<!-- <a class = 'board' href = 'javascript:;' onclick="javascript:show_board()">布告欄</a> -->
 		</form>
 
-		<div class="line">
+
+		<div id ="line">
 			————————————
 		</div>
 
-		<div class="address">
-			地址:</br>高雄市楠梓區高雄大學路700號
+		<div id="address_1">
+			地址:
 		</div>
 
-		<div class="telephone">
-			</br>電話:</br>07-5919000
+		<div id = 'address_2'>
+			高雄市楠梓區高雄大學路700號
 		</div>
 
-		<div id="boarder_position" style="display: block;">
-			<div class='header container'>
-				<form class='page-header' action="/board/post" method="get">
+		<div id ="telephone_1">
+			電話:
+		</div>
+
+		<div id = 'telephone_2'>
+			07-5919000
+		</div>
+
+	</div>
+	<div id="boarder_position">
+				<form action="/board/post" method="get">
 					<h1>留言板</h1>
 					<!-- <input type='submit' value="發布公告"></input> -->
 				</form>
-			</div>
+			
+			<div id = 'board_content'>
 			<%= post.ID%>
 				<%= post.title%>
 					<%= post.content%>
-						<div class='comments container'">
+				</div>
+						<div id = >
                 <%for(let comment of comments){%>
-                    <li>
+                
                         <%= comment.account %> : <%= comment.text %>
-                    </li>
+				
 						<%= comment.lastEdit %>
+						<br>
                     <% } %>
-			</div>
-			<form action = " /board/<%=post.ID%>" method="post">
-							<input type='text' name='comment' value=text placeholder="account"></intput>
-							<input type="submit" name=''></input>
-							</form>
 						</div>
+			<form  action = " /board/<%=post.ID%>" method="post">
+					<input type='text' name='comment' value=text placeholder="account"></intput>
+					<input type="submit" name=''></input>
+			</form>
+		</div>	
 </body>
 
 </html>
