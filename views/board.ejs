@@ -24,29 +24,24 @@
 			Student
 		</div>
 
-		<div>
+		<form action='/application' method="get">
 			<input id="application" type="submit" name="button" value="宿舍申請" />
 			<!-- <a class="application" href = 'javascript:;' onclick="javascript:show()">宿舍申請</a> -->
-		</div>
+		</form>
 
-		<div>
+		<form action='/dormitory/list' method="get">
 			<input id="information" type="submit" name="button" value="宿舍資訊" />
 			<!-- <a class="information" href = 'javascript:;' onclick="javascript:show_dormitory_info()">宿舍資訊</a> -->
-		</div>
+		</form>
 
-		<form action = '/violation/list' method="get">
-			<input id="violation_record" type="submit" name="button" value="違規紀錄查詢" />
+		<form action='/violation/list' method="get">
+			<input id="violation_record" type="submit" name="button" value="違規紀錄" />
 			<!-- <a class="Violation_record" href = 'javascript:;' onclick="javascript:show()">違規紀錄查詢</a> -->
 		</form>
 
-		<div>
-			<input id="application_status" type="submit" name="button" value="申請狀態查詢" />
-			<!-- <a class="application_status" href = 'javascript:;' onclick="javascript:show()">申請狀態查詢</a> -->
-		</div>
-
-		<form>
-			<input id="boarder" type="submit" name="button" value="布告欄" />
-			<!-- <a class = 'boarder' href = 'javascript:;' onclick="javascript:show_boarder()">布告欄</a> -->
+		<form action='/board/list' method="get">
+			<input id="board" type="submit" name="button" value="佈告欄" />
+			<!-- <a class = 'board' href = 'javascript:;' onclick="javascript:show_board()">布告欄</a> -->
 		</form>
 
 		<div class="line">
@@ -61,7 +56,7 @@
 			</br>電話:</br>07-5919000
 		</div>
 
-		<div id="boarder_position" style="display: block;">
+		<div id="board_position" style="display: block;">
 			<div class='header container'>
 				<form class='page-header' action="/board/post" method="get">
 					<h1>留言板</h1>
@@ -72,9 +67,9 @@
 			<div class='comments container'">
                 <%for(let post of posts){%>
 					
-					<form action="/board/<%= post.ID%>" method="get">
-						<input type="submit" value="<%= post.title%>"></input>
-					</form>
+					<form action=" /board/<%=post.ID%>" method="get">
+				<input type="submit" value="<%= post.title%>"></input>
+				</form>
 				<!-- <li>
                         <%post.title%>
                     </li> -->
