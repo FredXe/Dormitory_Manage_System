@@ -2,6 +2,7 @@ const express = require("express");
 
 const token = require("../middleware/token");
 const application = require("../model/application");
+const dormitory = require("../model/dormitory");
 
 const router = express.Router();
 
@@ -11,11 +12,14 @@ router.get("/", function (req, res) {
 })
 
 router.get("/list", function (req, res) {
-	application.showApplicationInfo("%", function (err, applicaitons) {
-		console.log(applicaitons);
+	application.showApplicationInfo("%", _getDormitoryInfo);
 
-	});
-	res.render("application", { applicaitons });
+	function _getDormitoryInfo(err, applications) {
+		dormitory.showDormitory(function (err, dormitories) {
+			console.log(dormitories);
+			res.render("application", { applications, dormitories });
+		});
+	}
 })
 
 router.post("/request", function (req, res) {

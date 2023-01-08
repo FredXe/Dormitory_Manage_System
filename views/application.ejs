@@ -18,83 +18,98 @@
 
 
 <body class="background">
+	<% for (let application of applications) { %>
+		<li>
+			<%= application.date %>
+				<%= application.studentUserID %>
+					<%= application.semester %>
+						<%= application.date %>
+							<%= application.approved %>
+								<%= application.paid %>
+									<%= application.adminUserID %>
 
-	<div class="title">
-		<div class="student">
-			Student
-		</div>
+		</li>
+		<% } %>
 
-		<form action='/application' method="get">
-			<input id="application" type="submit" name="button" value="宿舍申請" />
-			<!-- <a class="application" href = 'javascript:;' onclick="javascript:show()">宿舍申請</a> -->
-		</form>
+			<div class="title">
+				<div class="student">
+					Student
+				</div>
 
-		<form action='/dormitory/list' method="get">
-			<input id="information" type="submit" name="button" value="宿舍資訊" />
-			<!-- <a class="information" href = 'javascript:;' onclick="javascript:show_dormitory_info()">宿舍資訊</a> -->
-		</form>
 
-		<form action='/violation/list' method="get">
-			<input id="violation_record" type="submit" name="button" value="違規紀錄" />
-			<!-- <a class="Violation_record" href = 'javascript:;' onclick="javascript:show()">違規紀錄查詢</a> -->
-		</form>
+				<form action='/application' method="get">
+					<input id="application" type="submit" name="button" value="宿舍申請" />
+					<!-- <a class="application" href = 'javascript:;' onclick="javascript:show()">宿舍申請</a> -->
+				</form>
 
-		<form action='/board/list' method="get">
-			<input id="board" type="submit" name="button" value="佈告欄" />
-			<!-- <a class = 'board' href = 'javascript:;' onclick="javascript:show_board()">布告欄</a> -->
-		</form>
+				<form action='/dormitory/list' method="get">
+					<input id="information" type="submit" name="button" value="宿舍資訊" />
+					<!-- <a class="information" href = 'javascript:;' onclick="javascript:show_dormitory_info()">宿舍資訊</a> -->
+				</form>
 
-		<div class="line">
-			————————————
-		</div>
+				<form action='/violation/list' method="get">
+					<input id="violation_record" type="submit" name="button" value="違規紀錄" />
+					<!-- <a class="Violation_record" href = 'javascript:;' onclick="javascript:show()">違規紀錄查詢</a> -->
+				</form>
 
-		<div class="address">
-			地址:</br>高雄市楠梓區高雄大學路700號
-		</div>
+				<form action='/board/list' method="get">
+					<input id="board" type="submit" name="button" value="佈告欄" />
+					<!-- <a class = 'board' href = 'javascript:;' onclick="javascript:show_board()">布告欄</a> -->
+				</form>
 
-		<div class="telephone">
-			</br>電話:</br>07-5919000
-		</div>
 
-		<!-- 申請列表顯示 -->
-		<table id="dormitory_application" cellpadding="19px" style="display: none;">
-			<tr>
-				<td>
-					姓名:
-				</td>
-				<td>
-					<input type="text" name="name" value="" placeholder="name">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					申請宿舍:
-				</td>
-				<td><select name="dormitory_building">
-						<% for (let dormitory of dormitories) {%>
+				<div class="line">
+					————————————
+				</div>
 
-							<option value="<%= dormitory.name %>">
-								<%= dormitory.name %>
-							</option>
-							<% } %>
-					</select></td>
-			</tr>
+				<div class="address">
+					地址:</br>高雄市楠梓區高雄大學路700號
+				</div>
 
-			<tr>
-				<td>
-					聯絡電話:
-				</td>
-				<td>
-					<input type="text" name="cell phone" value="" placeholder="cell phone">
-				</td>
-			</tr>
-		</table>
+				<div class="telephone">
+					</br>電話:</br>07-5919000
+				</div>
 
-		<!-- 申請住宿資料 -->
-		<!-- <div class="application_student_info">
+
+				<!-- 申請列表顯示 -->
+				<table id="dormitory_application" cellpadding="19px" style="display: none;">
+					<tr>
+						<td>
+							姓名:
+						</td>
+						<td>
+							<input type="text" name="name" value="" placeholder="name">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							申請宿舍:
+						</td>
+						<td><select name="dormitory_building">
+								<% for (let dormitory of dormitories) {%>
+
+									<option value="<%= dormitory.name %>">
+										<%= dormitory.name %>
+									</option>
+									<% } %>
+							</select></td>
+					</tr>
+
+					<tr>
+						<td>
+							聯絡電話:
+						</td>
+						<td>
+							<input type="text" name="cell phone" value="" placeholder="cell phone">
+						</td>
+					</tr>
+				</table>
+
+				<!-- 申請住宿資料 -->
+				<!-- <div class="application_student_info">
 
 		</div> -->
-	</div>
+			</div>
 
 </body>
 
