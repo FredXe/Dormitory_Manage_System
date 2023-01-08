@@ -34,10 +34,10 @@
 			<!-- <a class="information" href = 'javascript:;' onclick="javascript:show_dormitory_info()">宿舍資訊</a> -->
 		</div>
 
-		<div>
+		<form action = '/violation/list' method="get">
 			<input id="violation_record" type="submit" name="button" value="違規紀錄查詢" />
 			<!-- <a class="Violation_record" href = 'javascript:;' onclick="javascript:show()">違規紀錄查詢</a> -->
-		</div>
+		</form>
 
 		<div>
 			<input id="application_status" type="submit" name="button" value="申請狀態查詢" />
@@ -63,18 +63,18 @@
 
 		<div class="violation">
 			<div class='header_container'>
-				<form class='page-header'  method="get">
+				<form class='page-header' method="get">
 					<h1>違規紀錄</h1>
 					<input type='submit' value="新增違規紀錄"></input>
 				</form>
 			</div>
 
 			<div class = 'show_record'>
-				<%for(let post of posts){%>
+				<%for(let record in records){%>
 					<li>
-							<%post.title%>
-						</li>
-				<% } %>
+						<%= record.ID %> : <%= record.account %>
+					</li>
+					<% } %>
 			</div>
 			
 		</div>
