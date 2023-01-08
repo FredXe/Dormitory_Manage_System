@@ -70,7 +70,7 @@ class Board {
 	static selectPost(id, callback) {
 		// SELECT all the bulletinBoard
 		const query = `SELECT b_ID AS ID, title, b_text AS content 
-		FROM bulletinBoard WHERE b_ID LIKE ${id} ORDER BY b_ID ASC;`;
+		FROM bulletinBoard WHERE b_ID LIKE '${id}' ORDER BY b_ID ASC;`;
 
 		Connections.admin.query(query, function (err, rows) {
 			if (err) {
