@@ -1,18 +1,24 @@
 const express = require("express");
 
-const util = require("./util");
+const token = require("../middleware/token");
 const dormitory = require("../model/dormitory");
 
 const router = express.Router();
 
 router.get("/", function (req, res) {
-	res.redirect("/list");
+	res.redirect("/dormitory/list");
 });
 
 router.get("/list", function (req, res) {
-	dormitory.showDormitory(function (err, dormitories) {
-		res.render("dormitory", { dormitories });
-	});
+	token.decode(req.cookies.token, _render);
+
+	function _render(decode) {
+		console.log(decode);
+		dormitory.showDormitory(function (err, dormitories) {
+			const privilege = decode.privilege;
+			res.render("dormitory", { dormitories, privilege });
+		});
+	}
 })
 
 
