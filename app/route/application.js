@@ -24,10 +24,13 @@ router.get("/list", function (req, res) {
 
 router.route("/request")
 	.get(function (req, res) {
-		// res.render();
+		dormitory.showDormitory(function (err, dormitories) {
+			console.log(dormitories);
+			res.render("application", { dormitories });
+		});
 	})
 	.post(function (req, res) {
-		// req.body
+		console.log(req.body);
 		token.decode(req.cookies.token, _requestApp);
 
 		function _requestApp(decode) {

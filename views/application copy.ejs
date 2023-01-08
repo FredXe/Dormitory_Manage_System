@@ -18,6 +18,18 @@
 
 
 <body class="background">
+	<!-- <% for (let application of applications) { %>
+		<li>
+			<%= application.date %>
+				<%= application.studentUserID %>
+					<%= application.semester %>
+						<%= application.date %>
+							<%= application.approved %>
+								<%= application.paid %>
+									<%= application.adminUserID %>
+
+		</li>
+		<% } %> -->
 
 			<div class="title">
 				<div class="student">
@@ -66,7 +78,7 @@
 							申請宿舍大樓:
 						</td>
 						
-						<form action="/application/request" , method="post">
+						<form action="/application/request">
 							<td><select name="dormitory_building">
 								<% for (let dormitory of dormitories) {%>
 
@@ -76,7 +88,7 @@
 									<% } %>
 							</select></td>
 							
-							<input type="submit" onclick="alert('繳交成功!')">
+							<input type="submit">
 						</form>
 						
 					</tr>
