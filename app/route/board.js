@@ -17,21 +17,22 @@ router.get("/", function (req, res) {
 
 // 顯示布告欄
 router.get("/list", function (req, res) {
-	board.selectPost(function (err, comments) {
-		res.render('board', { comments });
+	board.selectPost(function (err, posts) {
+		console.log(posts);
+		res.render('board', { posts });
 	})
 
 })
 
 // 顯示新增公告的介面
-router.post('/post', function (req, res) {
+router.get('/post', function (req, res) {
 	res.render('chat');
 })
 
 // 提交新增內容之後回到布告爛
-router.post('/list/post/update', function (req, res) {
-	post = req.query;
-	board.post(post['ID'], post['title'], post['message'], (err, rows) => {
+router.post('/post', urlParser, function (req, res) {
+	post = req.body;
+	board.post(post.ID, post.title, post.content, (err, rows) => {
 		res.redirect('/board/list');
 	});
 

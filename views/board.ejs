@@ -63,10 +63,10 @@
 
 		<div id="boarder_position" style="display: block;">
 			<div class='header container'>
-				<form class='page-header' action="/board/list/post" method="post">
+				<form class='page-header' action="/board/post" method="get">
 					<h1>留言板</h1>
-					<input type = 'submit' value="發布公告"></input>
-                </form>
+					<input type='submit' value="發布公告"></input>
+				</form>
 			</div>
 
 			<div class='comments container'">
@@ -79,144 +79,145 @@
 			</div>
 		</div>
 
-		<div id="dormitory_info" style="display: none;">
-			<ul>
-				<li>
-					宿舍外觀<br>
-					<a class="dormitory_text"
-						href="https://sa.nuk.edu.tw/var/file/9/1009/img/432/353380849.pdf">綜合宿舍</a>
-					<br>
-					<a class="dormitory_text"
-						href="https://sa.nuk.edu.tw/var/file/9/1009/img/432/610340678.pdf">學生第一宿舍</a>
-					<br>
-					<a class="dormitory_text" href="https://sa.nuk.edu.tw/var/file/9/1009/img/451434028.pdf">學生第二宿舍</a>
+		<div id=" dormitory_info" style="display: none;">
+				<ul>
+					<li>
+						宿舍外觀<br>
+						<a class="dormitory_text"
+							href="https://sa.nuk.edu.tw/var/file/9/1009/img/432/353380849.pdf">綜合宿舍</a>
+						<br>
+						<a class="dormitory_text"
+							href="https://sa.nuk.edu.tw/var/file/9/1009/img/432/610340678.pdf">學生第一宿舍</a>
+						<br>
+						<a class="dormitory_text"
+							href="https://sa.nuk.edu.tw/var/file/9/1009/img/451434028.pdf">學生第二宿舍</a>
 
-				</li>
-				<br>
-				<li>
-					學生宿舍設備說明 (床位大小)<br>
+					</li>
 					<br>
-					床位大小：<br>
-					學一宿舍長 190 公分、寬 95 公分<br>
-					學二宿舍長 200 公分、寬 95 公分<br>
-				</li> 綜合宿舍長 216 公分、寬 95 公分<br><br>
-				<li> 費用：<br>
-					<table border="1" cellpadding="5">
-						<tr>
-							<td>項目</td>
-							<td>收費標準</td>
-							<td>備註</td>
-						</tr>
-						<tr>
-							<td>學生宿舍
-								住宿費</td>
-							<td>1、學一宿舍:7,463 元
-								(OA-男、OB-女)<br>
-								2、學二宿舍:9,985 元
-								(OE-男、OF-女)<br>
-								3、綜合宿舍:9,710 元</td>
-							<td>內含住宿網路資源使用費 400 元。</td>
-						</tr>
-						<tr>
-							<td>學生宿舍
-								費保證金</td>
-							<td>2,000 元</td>
-							<td>1.初次辦理住宿者繳交。<br>
-								2.第一學期已住，第二學期續住
-								者，免重複繳交。
-							</td>
-						</tr>
-					</table>
-				</li><br>
-				<li>
-					洗衣間:<br>
-					<table border="1" cellpadding="5">
-						<tr>
-							<td>
+					<li>
+						學生宿舍設備說明 (床位大小)<br>
+						<br>
+						床位大小：<br>
+						學一宿舍長 190 公分、寬 95 公分<br>
+						學二宿舍長 200 公分、寬 95 公分<br>
+					</li> 綜合宿舍長 216 公分、寬 95 公分<br><br>
+					<li> 費用：<br>
+						<table border="1" cellpadding="5">
+							<tr>
+								<td>項目</td>
+								<td>收費標準</td>
+								<td>備註</td>
+							</tr>
+							<tr>
+								<td>學生宿舍
+									住宿費</td>
+								<td>1、學一宿舍:7,463 元
+									(OA-男、OB-女)<br>
+									2、學二宿舍:9,985 元
+									(OE-男、OF-女)<br>
+									3、綜合宿舍:9,710 元</td>
+								<td>內含住宿網路資源使用費 400 元。</td>
+							</tr>
+							<tr>
+								<td>學生宿舍
+									費保證金</td>
+								<td>2,000 元</td>
+								<td>1.初次辦理住宿者繳交。<br>
+									2.第一學期已住，第二學期續住
+									者，免重複繳交。
+								</td>
+							</tr>
+						</table>
+					</li><br>
+					<li>
+						洗衣間:<br>
+						<table border="1" cellpadding="5">
+							<tr>
+								<td>
 
-							</td>
-							<td>
-								洗衣機
-							</td>
-							<td>烘衣機</td>
-							<td>脫水機</td>
-						</tr>
+								</td>
+								<td>
+									洗衣機
+								</td>
+								<td>烘衣機</td>
+								<td>脫水機</td>
+							</tr>
 
-						<tr>
-							<td>
-								價錢
-							</td>
-							<td>
-								10 元/次
-							</td>
-							<td>20 元/次</td>
-							<td>免費</td>
-						</tr>
-						<tr>
-							<td>
-								時間
-							</td>
-							<td>
-								30 分鐘
-							</td>
-							<td>30 分鐘</td>
-							<td>3 分鐘</td>
-						</tr>
-					</table>
-				</li><br>
-				<li>
-					閱覽室：學生第二宿舍一樓。
-				</li><br>
-				<li>
-					自修室：學生第二宿舍 OE、OF 二樓各一間、綜合宿舍 4 樓一間。
-				</li><br>
-				<li>
-					自動販賣機：於宿舍內設有數台自動販賣機，提供各式飲料、餅乾與泡
-					麵。
-				</li>
-				<br>
-				<li>
-					垃圾場與資源回收場：位於學生第一宿舍地下一樓。
-				</li>
-				<br>
-				<li>
-					冰箱：學生第一宿舍、學生第二宿舍二樓設有冰箱。
-				</li>
-			</ul>
+							<tr>
+								<td>
+									價錢
+								</td>
+								<td>
+									10 元/次
+								</td>
+								<td>20 元/次</td>
+								<td>免費</td>
+							</tr>
+							<tr>
+								<td>
+									時間
+								</td>
+								<td>
+									30 分鐘
+								</td>
+								<td>30 分鐘</td>
+								<td>3 分鐘</td>
+							</tr>
+						</table>
+					</li><br>
+					<li>
+						閱覽室：學生第二宿舍一樓。
+					</li><br>
+					<li>
+						自修室：學生第二宿舍 OE、OF 二樓各一間、綜合宿舍 4 樓一間。
+					</li><br>
+					<li>
+						自動販賣機：於宿舍內設有數台自動販賣機，提供各式飲料、餅乾與泡
+						麵。
+					</li>
+					<br>
+					<li>
+						垃圾場與資源回收場：位於學生第一宿舍地下一樓。
+					</li>
+					<br>
+					<li>
+						冰箱：學生第一宿舍、學生第二宿舍二樓設有冰箱。
+					</li>
+				</ul>
+			</div>
+
+			<table id="dormitory_application" cellpadding="19px" style="display: none;">
+				<tr>
+					<td>
+						姓名:
+					</td>
+					<td>
+						<input type="text" name="name" value="" placeholder="name">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						申請宿舍:
+					</td>
+					<td><select name="dormitory_building">
+							<option value="Taipei">學一宿舍(男)</option>
+							<option value="Taoyuan">學一宿舍(女)</option>
+							<option value="Hsinchu">學二宿舍(男)</option>
+							<option value="Miaoli">學二宿舍(女)</option>
+							<option value="Miaoli">綜合宿舍(男)</option>
+						</select></td>
+				</tr>
+
+				<tr>
+					<td>
+						聯絡電話:
+					</td>
+					<td>
+						<input type="text" name="cell phone" value="" placeholder="cell phone">
+					</td>
+				</tr>
+			</table>
 		</div>
-
-		<table id="dormitory_application" cellpadding="19px" style="display: none;">
-			<tr>
-				<td>
-					姓名:
-				</td>
-				<td>
-					<input type="text" name="name" value="" placeholder="name">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					申請宿舍:
-				</td>
-				<td><select name="dormitory_building">
-						<option value="Taipei">學一宿舍(男)</option>
-						<option value="Taoyuan">學一宿舍(女)</option>
-						<option value="Hsinchu">學二宿舍(男)</option>
-						<option value="Miaoli">學二宿舍(女)</option>
-						<option value="Miaoli">綜合宿舍(男)</option>
-					</select></td>
-			</tr>
-
-			<tr>
-				<td>
-					聯絡電話:
-				</td>
-				<td>
-					<input type="text" name="cell phone" value="" placeholder="cell phone">
-				</td>
-			</tr>
-		</table>
-	</div>
 
 </body>
 

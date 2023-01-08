@@ -8,8 +8,6 @@ const { decode } = require("jsonwebtoken");
 const router = express.Router();
 var urlParser = util.urlParser;
 
-var ejs = { "records": [] }
-
 router.get("/", function (req, res) {
 	res.redirect("/board/list");
 	// console.log('suc');
@@ -27,8 +25,7 @@ router.get("/list", function (req, res) {
 			account = decode.account;
 		}
 		violation.showRecord(account, function (err, records) {
-			ejs.records = records;
-			res.render("student", ejs);
+			res.render("student", { records });
 		})
 	}
 })
