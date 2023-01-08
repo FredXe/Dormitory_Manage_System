@@ -57,9 +57,11 @@
 
 		<div class="violation">
 			<div class='header_container'>
-				<form class='page-header' method="get">
+				<form class='page-header' action='/violation/insert' method="post">
 					<h1>違規紀錄</h1>
 					<input type='submit' value="新增違規紀錄"></input>
+					<input type='text' name="boarder" placeholder="違規人"></input>
+					<input type='text' name="type" placeholder="違規事項"></input>
 
 					<%for(let record of records){%>
 						<li>

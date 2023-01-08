@@ -22,19 +22,18 @@ router.get("/list", function (req, res) {
 			account = decode.account;
 		}
 		violation.showRecord(account, function (err, records) {
-			console.log(records);
 			res.render("violation", { records });
 		})
 	}
 })
 
 router.post("/insert", function (req, res) {
-	const record = req.body.record;
+	const { boarder, type } = req.body;
 
 	token.decode(req.cookies.token, _insertRecord);
 
 	function _insertRecord(decode) {
-		violation.insertRecord(decode.account, record.boarder, record.type, function (err, rows) {
+		violation.insertRecord(decode.account, boarder, type, function (err, rows) {
 			res.redirect("/violation/list");
 		});
 	}
