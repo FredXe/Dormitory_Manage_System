@@ -63,10 +63,10 @@
 
 		<div id="boarder_position" style="display: block;">
 			<div class='header container'>
-				<div class='page-header'>
+				<form class='page-header' action="/board/list/post" method="post">
 					<h1>留言板</h1>
-					<a class='btn btn-success' href="/chat">發表留言</a>
-				</div>
+					<input type = 'submit' value="發布公告"></input>
+                </form>
 			</div>
 
 			<div class='comments container'">
@@ -76,14 +76,6 @@
                     </li>
 						<%= post.content %>
                     <% } %>
-                <!-- <ul class='list-group'>
-                    {{each comments}}
-                    <li class='list-group-item'>
-                        {{$value.name}}說 : {{$value.message}}
-                        <span class=" pull-right">{{$value.datetime}}</span>
-				</li>
-				{{/each}}
-				</ul> -->
 			</div>
 		</div>
 

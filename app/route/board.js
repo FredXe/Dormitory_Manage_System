@@ -14,16 +14,28 @@ router.get("/", function (req, res) {
 	// res.render('board' , comments);
 });
 
+
+// 顯示布告欄
 router.get("/list", function (req, res) {
-	board.selectPost(function (err, posts) {
-		console.log(posts);
-		res.render("board", { posts });
+	board.selectPost(function (err, comments) {
+		res.render('board', { comments });
 	})
-})
-
-router.post("/post", function (req, res) {
 
 })
+
+// 顯示新增公告的介面
+router.post('/post', function (req, res) {
+	res.render('chat');
+})
+
+// 提交新增內容之後回到布告爛
+router.post('/list/post/update', function (req, res) {
+	post = req.query;
+	board.post(post['ID'], post['title'], post['message'], (err, rows) => {
+		res.redirect('/board/list');
+	});
+
+});
 
 router.get("/:id", function (req, res) {
 	const id = req.params.id;
@@ -31,6 +43,5 @@ router.get("/:id", function (req, res) {
 		res.send(comments);
 	});
 })
-
 
 module.exports = router;
