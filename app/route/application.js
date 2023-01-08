@@ -31,14 +31,16 @@ router.route("/request")
 	})
 	.post(function (req, res) {
 		console.log(req.body);
+		const dormitory = req.body.dormitory;
 		token.decode(req.cookies.token, _requestApp);
 
 		function _requestApp(decode) {
 			const account = decode.account;
-			application.requestForApplication(account, 2023, _redirect);
+			application.requestForApplication(account, 2023, dormitory, _redirect);
 		}
 
 		function _redirect(err, rows) {
+			console.log(err, rows);
 			res.redirect("/application/list");
 		}
 	})

@@ -32,7 +32,8 @@ SELECT * FROM `nonBoarder`;
 SELECT * FROM ``;
 
 SHOW CREATE TABLE application;
-ALTER TABLE application ADD  FOREIGN KEY (`d_name`) REFERENCES room(`d_name`) ON DELETE CASCADE;
+ALTER TABLE application DROP  FOREIGN KEY d_name;
+ALTER TABLE application CHANGE  FOREIGN KEY (`d_name`) REFERENCES room(`d_name`) ON DELETE CASCADE;
 ALTER TABLE application ADD COLUMN `d_name` VARCHAR(30) NOT NULL;
 SELECT r_number, d_name, COUNT(r_number) FROM boarder GROUP BY r_number, d_name HAVING COUNT(r_number) < 4;
 SELECT r_number AS roomNum FROM room WHERE d_name = 'Node test Dormitory';
