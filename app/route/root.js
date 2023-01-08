@@ -51,5 +51,10 @@ router.route("/login")
 		}
 	});
 
+router.post("/logout", function (req, res) {
+	res.clearCookie("token");
+	res.redirect("/login");
+});
+
 
 module.exports = router;
