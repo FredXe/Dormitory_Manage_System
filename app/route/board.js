@@ -45,33 +45,33 @@ router.route("/post")
 
 	});
 
-router.route("/:id")
-	.get(function (req, res) {
-		const id = req.params.id;
-		board.selectCommentByBID(id, function (err, comments) {
-			board.selectPost(id, function (err, post) {
-				post = post[0];
-				console.log(post);
-				res.render("article", { comments, post });
-			});
+router.get("/:id", function (req, res) {
+	const id = req.params.id;
+	board.selectCommentByBID(id, function (err, comments) {
+		board.selectPost(id, function (err, post) {
+			post = post[0];
+			console.log(post);
+			res.render("article", { comments, post });
 		});
-	})
-	.post("/comment", function (req, res) {
-		token.decode(req.cookies.token, _comment);
-		const id = req.params.id;
-		const comment = req.body.comment;
+	});
+})
 
-		function _comment(decode) {
-			const account = decode.account;
-			board.comment(account, id, comment, _redirectToPost);
+router.post("/:id/comment", function (req, res) {
+	token.decode(req.cookies.token, _comment);
+	const id = req.params.id;
+	const comment = req.body.comment;
+
+	function _comment(decode) {
+		const account = decode.account;
+		board.comment(account, id, comment, _redirectToPost);
+	}
+
+	function _redirectToPost(err, rows) {
+		if (err) {
+
 		}
-
-		function _redirectToPost(err, rows) {
-			if (err) {
-
-			}
-			res.redirect(`/board/${id}`);
-		}
-	})
+		res.redirect(`/board/${id}`);
+	}
+})
 
 module.exports = router;

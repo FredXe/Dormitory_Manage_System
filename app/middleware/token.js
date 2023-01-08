@@ -69,7 +69,6 @@ function verify(req, res, next) {
 	decode(_token, function (decode) {
 		// Go `next()` if decode isn't empty.
 		if (decode) {
-			console.log("go next()");
 			next();
 			return;
 		}
