@@ -21,6 +21,7 @@ SELECT * FROM `houseMaster`;
 SELECT * FROM `dormitory`;
 SELECT * FROM `room`;
 SELECT * FROM `bulletinBoard`;
+SELECT * FROM `comment`;
 SELECT * FROM `manage_HD`;
 SELECT * FROM `equipment`;
 SELECT * FROM `violationRecord`;

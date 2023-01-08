@@ -28,7 +28,7 @@ function sign(payload, callback) {
  * @param {(decode)} callback 
  * `decode` = `undefined` if verification is denied.
  */
-function verifyToken(token, callback) {
+function decode(token, callback) {
 	jwt.verify(token, secret, function (err, decode) {
 		if (err) {
 			console.error(err);
@@ -66,7 +66,7 @@ function verify(req, res, next) {
 	}
 
 
-	verifyToken(_token, function (decode) {
+	decode(_token, function (decode) {
 		// Go `next()` if decode isn't empty.
 		if (decode) {
 			res.clearCookie("url");
@@ -84,4 +84,4 @@ function verify(req, res, next) {
 
 
 
-module.exports = { verify, sign, EXPIRES_IN };
+module.exports = { verify, decode, sign, EXPIRES_IN };

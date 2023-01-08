@@ -19,8 +19,9 @@ class Violation {
 	 * @param {(err, rows)} callback 
 	 * `rows`: [{`ID`, `account`, `date`, `type`}]
 	 */
-	static showRecord(callback) {
-		const query = `SELECT v_ID AS ID, UserID AS account, v_date AS date, v_type AS type FROM violationRecord;`;
+	static showRecord(account, callback) {
+		const query = `SELECT v_ID AS ID, UserID AS account, v_date AS date, v_type AS type
+			FROM violationRecord WHERE UserID LIKE '${account}';`;
 
 		Connections.admin.query(query, function (err, rows) {
 			if (err) {

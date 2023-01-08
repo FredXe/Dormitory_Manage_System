@@ -14,8 +14,6 @@ router.get("/", function (req, res) {
 	// res.render('board' , comments);
 });
 
-var comments = { 'comments': [] };
-
 router.get("/list", function (req, res) {
 	board.selectPost(function (err, posts) {
 		console.log(posts);

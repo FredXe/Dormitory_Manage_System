@@ -10,6 +10,7 @@ const user = require("./user");
 const board = require("./board");
 const util = require("./util");
 const dormitory = require("./dormitory");
+const violation = require("./violation");
 
 
 // app.set('views' , path.join(__dirname , 'views'));
@@ -32,3 +33,4 @@ app.use(root);
 app.use("/user", user);
 app.use("/board", board);
 app.use("/dormitory", dormitory);
+app.use("/violation", violation);
