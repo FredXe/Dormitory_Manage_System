@@ -15,13 +15,13 @@ router.get('/', function (req, res) {
 
 // Router of `/home`
 router.get("/home", function (req, res) {
-	util.responseHtml("./views/Student.html", 200, res);
+	util.responseHtml("./views/Student.ejs", 200, res);
 });
 
 // Router of `/login`
 router.route("/login")
 	.get(function (req, res) {
-		util.responseHtml("./views/login.html", 200, res);
+		util.responseHtml("./views/login.ejs", 200, res);
 	})
 	.post(urlParser, function (req, res) {
 		// Parse the `req`.`body`

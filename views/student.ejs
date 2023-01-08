@@ -42,10 +42,10 @@
 					<!-- <a class="information" href = 'javascript:;' onclick="javascript:show_dormitory_info()">宿舍資訊</a> -->
 				</div>
 
-				<div>
+				<form action = '/board/list'>
 					<input id="violation_record" type="submit" name="button" value="違規紀錄查詢" />
 					<!-- <a class="Violation_record" href = 'javascript:;' onclick="javascript:show()">違規紀錄查詢</a> -->
-				</div>
+				</form>
 
 				<div>
 					<input id="application_status" type="submit" name="button" value="申請狀態查詢" />
@@ -67,6 +67,14 @@
 
 				<div class="telephone">
 					</br>電話:</br>07-5919000
+				</div>
+
+				<div id ='violation' style="display: none;">
+					<%for(let record in records){%>
+						<li>
+							<%= record.ID %> : <%= record.account %>
+						</li>
+						<% } %>
 				</div>
 
 				<!-- <div id="boarder_position" style="display: none;">
