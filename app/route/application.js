@@ -74,7 +74,7 @@ router.route("/approve")
 			}
 			const admin = decode.admin;
 
-			application.apply(account, roomNum, dormitory, admin, _redirect);
+			application.apply(account, admin, _redirect);
 		}
 
 		function _redirect(err, rows) {

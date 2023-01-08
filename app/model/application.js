@@ -29,10 +29,12 @@ class Application {
 	 * @param {string} admin The admin who approved.
 	 * @param {(err, rows)} callback 
 	 */
-	static apply(account, room, dormitory, admin, callback) {
+	static apply(account, admin, callback) {
 		// INSERT the user INTO `boarder`
 		const query = `INSERT INTO boarder (UserID, r_number, d_name, adminUserID) 
-			VALUE ('${account}', ${room}, '${dormitory}', '${admin}');`;
+			VALUE ('${account}', (SELECT R.r_number AS roomNum FROM room AS R LEFT JOIN boarder AS B ON R.r_number=B.r_number WHERE R.d_name = (SELECT d_name FROM application WHERE studentUserID='${account}') GROUP BY R.r_number HAVING COUNT(R.r_number) < 4 LIMIT 1),
+			(SELECT d_name FROM application WHERE studentUserID='${account}'),
+			'${admin}');`;
 
 		Connections.admin.query(query, _updateApplication);
 

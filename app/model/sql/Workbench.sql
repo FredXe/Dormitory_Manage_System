@@ -35,8 +35,8 @@ SHOW CREATE TABLE application;
 ALTER TABLE application DROP  FOREIGN KEY `application_ibfk_3`;
 ALTER TABLE application ADD  FOREIGN KEY (`d_name`) REFERENCES dormitory(`d_name`) ON DELETE CASCADE;
 ALTER TABLE application ADD COLUMN `d_name` VARCHAR(30) NOT NULL;
-SELECT r_number, d_name, COUNT(r_number) FROM boarder GROUP BY r_number, d_name HAVING COUNT(r_number) < 4;
-SELECT r_number AS roomNum FROM room WHERE d_name = 'Node test Dormitory';
+SELECT r_number, d_name, COUNT(r_number) FROM boarder GROUP BY r_number, d_name HAVING COUNT(r_number) < 4 LIMIT 1;
+SELECT R.r_number AS roomNum FROM room AS R LEFT JOIN boarder AS B ON R.r_number=B.r_number WHERE R.d_name = 'Node test Dormitory' GROUP BY R.r_number HAVING COUNT(R.r_number) < 4 LIMIT 1;
 SELECT LAST_INSERT_ID() FROM violationRecord LIMIT 1;
 INSERT INTO violationRecord (UserID, v_type) VALUE ('a1095532', 'haha type');
 INSERT INTO manage_HV 
