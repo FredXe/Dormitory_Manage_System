@@ -22,18 +22,23 @@ router.get("/list", function (req, res) {
 	}
 })
 
-router.post("/request", function (req, res) {
-	token.decode(req.cookies.token, _requestApp);
+router.route("/request")
+	.get(function (req, res) {
+		// res.render();
+	})
+	.post(function (req, res) {
+		// req.body
+		token.decode(req.cookies.token, _requestApp);
 
-	function _requestApp(decode) {
-		const account = decode.account;
-		application.requestForApplication(account, 2023, _redirect);
-	}
+		function _requestApp(decode) {
+			const account = decode.account;
+			application.requestForApplication(account, 2023, _redirect);
+		}
 
-	function _redirect(err, rows) {
-		res.redirect("/application/list");
-	}
-})
+		function _redirect(err, rows) {
+			res.redirect("/application/list");
+		}
+	})
 
 router.route("/approve")
 	.get(function (req, res) {
