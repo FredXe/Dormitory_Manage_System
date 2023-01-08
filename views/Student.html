@@ -44,7 +44,7 @@
 			<!-- <a class="application_status" href = 'javascript:;' onclick="javascript:show()">申請狀態查詢</a> -->
 		</div>
 
-		<form action = '/board/list' method="GET">
+		<form action = '/board' method="GET">
 			<input id="boarder" type="submit" name="button" value="布告欄" />
 			<!-- <a class = 'boarder' href = 'javascript:;' onclick="javascript:show_boarder()">布告欄</a> -->
         </form>
@@ -60,26 +60,6 @@
 		<div class="telephone">
 			</br>電話:</br>07-5919000
 		</div>
-
-		<!-- <div id="boarder_position" style="display: none;">
-			<div class='header container'>
-				<div class='page-header'>
-					<h1>留言板</h1>
-					<a class='btn btn-success' href="/chat">發表留言</a>
-				</div>
-			</div>
-
-			<div class='comments container'">
-                <ul class='list-group'>
-                    {{each comments}}
-                    <li class='list-group-item'>
-                        {{$value.name}}說 : {{$value.message}}
-                        <span class=" pull-right">{{$value.datetime}}</span>
-				</li>
-				{{/each}}
-				</ul>
-			</div>
-		</div> -->
 
         <div id="dormitory_info" style="display: none;">
             <ul>

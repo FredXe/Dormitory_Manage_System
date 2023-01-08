@@ -61,22 +61,29 @@
 			</br>電話:</br>07-5919000
 		</div>
 
-		<div id="boarder_position" style="display: block;">
-			<div class='header container'>
-				<form class='page-header' action="/board/list/post" method="post">
-					<h1>留言板</h1>
-					<input type = 'submit' value="發布公告"></input>
-                </form>
-			</div>
+		<div class="board_post">
 
-			<div class='comments container'">
-                <%for(let comment of comments){%>
-                    <li>
-                        <%= comment.b_id %> 說 : <%comment.title%>
-                    </li>
-                    <% } %>
-			</div>
-		</div>
+            <div class='page_header'>
+                <h1><a href='/'>留言板 <small>添加留言</small></a></h1>
+            </div>
+    
+            <div class='comments container'>
+                <form action='/board/list/post/update' method='post'>
+                    <div class='form-group'>
+                        <label for='name'>你的大名</label>
+                        <input tyep='text' id='name' name='ID' placeholder="請輸入姓名" required minlength="2" maxlength="10">
+                        <label for='title'>標題</label>
+                        <input tyep='text' id='name' name='title' placeholder="請輸入姓名" required minlength="2" maxlength="10">
+                    </div>
+                    <div class='form-group'>
+                        <label for='message'>留言內容</label>
+                        <textarea id='message' name='message' placeholder="請輸入留言內容" cols="30" rows="10" required
+                            minlength="5" maxlength="20"></textarea>
+                    </div>
+                    <button type='submit' class='btn btn-default'>發表</button>
+                </form>
+            </div>
+        </div>
 
         <div id="dormitory_info" style="display: none;">
             <ul>
@@ -213,6 +220,8 @@
                 </td>
             </tr>
         </table>
+
+
 	</div>
 
 </body>

@@ -14,14 +14,28 @@ router.get("/", function (req, res) {
 	// res.render('board' , comments);
 });
 
-var comments = {'comments' : []};
+var comments;
 
+// 顯示布告欄
 router.get("/list", function (req, res) {
-	// util.responseHtml('./views/board.html' , 200 , res);
-	board.selectPost(function(err , rows){
-		comments = rows;
+	board.selectPost(function(err , comments){
+		res.render('board' , {comments});
 	})
-	res.render('board' , comments);
+	
 })
+
+// 顯示新增公告的介面
+router.post('/list/post' , function (req , res) {
+	res.render('chat');
+})
+
+// 提交新增內容之後回到布告爛
+router.post('/list/post/update' , function(req , res){
+	comments = req.query;
+	board.post(comments['ID'] , comments['title'] , comments['message'] , (err , rows) => {
+		res.redirect('/board/list');
+	});
+	
+});
 
 module.exports = router;
