@@ -25,7 +25,6 @@ router.get("/list", function (req, res) {
 
 	function _getDormitoryInfo(err, applications) {
 		dormitory.showDormitory(function (err, dormitories) {
-			console.log(dormitories);
 			res.render("application", { applications, dormitories });
 		});
 	}

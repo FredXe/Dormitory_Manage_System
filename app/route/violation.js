@@ -22,6 +22,7 @@ router.get("/list", function (req, res) {
 			account = decode.account;
 		}
 		violation.showRecord(account, function (err, records) {
+			console.log(records);
 			res.render("violation", { records });
 		})
 	}

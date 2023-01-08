@@ -18,7 +18,6 @@
 
 
 <body class="background">
-
 	<div class="title">
 		<div class="student">
 			Student
@@ -61,15 +60,19 @@
 				<form class='page-header' method="get">
 					<h1>違規紀錄</h1>
 					<input type='submit' value="新增違規紀錄"></input>
+
+					<%for(let record of records){%>
+						<li>
+							<%= record.ID %> : <%= record.account %>
+									<%= record.type%>
+										<%= record.date%>
+						</li>
+						<% } %>
 				</form>
 			</div>
 
 			<div class='show_record'>
-				<%for(let record in records){%>
-					<li>
-						<%= record.ID %> : <%= record.account %>
-					</li>
-					<% } %>
+
 			</div>
 
 		</div>
