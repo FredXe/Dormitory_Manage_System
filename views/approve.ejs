@@ -19,71 +19,83 @@
 
 
 <body id="background">
-	<% for (let application of applications) { %>
-		<li>
-			<%= application.date %>
-				<%= application.studentUserID %>
-					<%= application.semester %>
-						<%= application.date %>
-							<%= application.approved %>
-								<%= application.paid %>
-									<%= application.adminUserID %>
+	
 
-		</li>
-		<% } %>
-
-			<div id="title">
-				<div id="student">
-					Student
-				</div>
+	<div id="title">
+		<div id="student">
+			Student
+		</div>
 
 
-				<div class="student">
-					Student
-				</div>
+		<form id="app_pos" action='/application/list' method="get">
+			<input id="application" type="submit" name="button" value="宿舍申請" />
+			<!-- <a class="application" href = 'javascript:;' onclick="javascript:show()">宿舍申請</a> -->
+		</form>
+
+		<form id="info_pos" action='/dormitory/list' method="get">
+			<input id="information" type="submit" name="button" value="宿舍資訊" />
+			<!-- <a class="information" href = 'javascript:;' onclick="javascript:show_dormitory_info()">宿舍資訊</a> -->
+		</form>
+
+		<form id="vio_pos" action='/violation/list' method="get">
+			<input id="violation_record" type="submit" name="button" value="違規紀錄" />
+			<!-- <a class="Violation_record" href = 'javascript:;' onclick="javascript:show()">違規紀錄查詢</a> -->
+		</form>
+
+		<form id="boarder_pos" action='/board/list' method="get">
+			<input id="board" type="submit" name="button" value="佈告欄" />
+			<!-- <a class = 'board' href = 'javascript:;' onclick="javascript:show_board()">布告欄</a> -->
+		</form>
 
 
-				<form id="app_pos" action='/application/list' method="get">
-					<input id="application" type="submit" name="button" value="宿舍申請" />
-					<!-- <a class="application" href = 'javascript:;' onclick="javascript:show()">宿舍申請</a> -->
-				</form>
+		<div id="line">
+			————————————
+		</div>
 
-				<form id="info_pos" action='/dormitory/list' method="get">
-					<input id="information" type="submit" name="button" value="宿舍資訊" />
-					<!-- <a class="information" href = 'javascript:;' onclick="javascript:show_dormitory_info()">宿舍資訊</a> -->
-				</form>
+		<div id="address_1">
+			地址:
+		</div>
 
-				<form id="vio_pos" action='/violation/list' method="get">
-					<input id="violation_record" type="submit" name="button" value="違規紀錄" />
-					<!-- <a class="Violation_record" href = 'javascript:;' onclick="javascript:show()">違規紀錄查詢</a> -->
-				</form>
+		<div id='address_2'>
+			高雄市楠梓區高雄大學路700號
+		</div>
 
-				<form id="boarder_pos" action='/board/list' method="get">
-					<input id="board" type="submit" name="button" value="佈告欄" />
-					<!-- <a class = 'board' href = 'javascript:;' onclick="javascript:show_board()">布告欄</a> -->
-				</form>
+		<div id="telephone_1">
+			電話:
+		</div>
 
+		<div id='telephone_2'>
+			07-5919000
+		</div>
 
-				<div id="line">
-					————————————
-				</div>
-
-				<div id="address_1">
-					地址:
-				</div>
-
-				<div id='address_2'>
-					高雄市楠梓區高雄大學路700號
-				</div>
-
-				<div id="telephone_1">
-					電話:
-				</div>
-
-				<div id='telephone_2'>
-					07-5919000
-				</div>
-
+			<div id = "approved">
+				<% for (let application of applications) { %>
+					<table style="border:3px #40a25f solid; " cellpadding="10" border='1'>
+						<tr>
+							<td>
+								<%= application.date %>
+							</td>
+							<td>
+							<%= application.studentUserID %>
+						</td>
+						<td>
+								<%= application.semester %>
+							</td>
+							<td>
+									<%= application.date %>
+								</td>
+								<td>
+										<%= application.approved %>
+									</td>
+									<td>
+											<%= application.paid %>
+										</td>
+										<td>
+												<%= application.adminUserID %>
+											</td>
+											</tr>
+					</table>
+					<% } %>
 
 				<!-- 申請列表顯示 -->
 				<!-- <table id="dormitory_application" cellpadding="25px">
@@ -103,8 +115,8 @@
 					</tr>
 				</table> -->
 
-			</div> -->
-			</div>
+			</div> 
+	</div>
 
 </body>
 
