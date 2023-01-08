@@ -24,6 +24,7 @@ var urlParser = util.urlParser;
 // Set Third-party middleware
 app.use(cookieParser());
 app.use(express.json());
+app.use(urlParser);
 // Set static route.
 app.use(express.static('public'));
 // Set Util middleware.

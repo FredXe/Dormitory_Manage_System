@@ -50,7 +50,7 @@ function verify(req, res, next) {
 	const _token = req.cookies.token;
 	const _url = req.cookies.url;
 
-	console.log(req.url);
+	console.log(req.method, req.url);
 	// Goto `next` if it's going to `/login`
 	if (req.url == "/login") {
 		next();
@@ -69,7 +69,7 @@ function verify(req, res, next) {
 	decode(_token, function (decode) {
 		// Go `next()` if decode isn't empty.
 		if (decode) {
-			res.clearCookie("url");
+			console.log("go next()");
 			next();
 			return;
 		}

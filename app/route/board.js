@@ -2,6 +2,7 @@ const express = require("express");
 
 const util = require("./util");
 const board = require('../model/board');
+const token = require("../middleware/token");
 
 const router = express.Router();
 var urlParser = util.urlParser;
@@ -30,20 +31,43 @@ router.route("/post")
 		res.render('chat');
 	})
 
-	// 提交新增內容之後回到布告爛
-	.post(urlParser, function (req, res) {
-		post = req.body;
-		board.post(post.ID, post.title, post.content, (err, rows) => {
-			res.redirect('/board/list');
+	// 提交新增內容之後回到布告欄
+	.post(function (req, res) {
+		token.decode(req.cookies.token, function (decode) {
+
+			const account = decode.account;
+			const post = req.body;
+			board.post(account, post.title, post.content, (err, rows) => {
+				res.redirect('/board/list');
+			});
 		});
 
+
 	});
 
-router.get("/:id", function (req, res) {
-	const id = req.params.id;
-	board.selectCommentByBID(id, function (err, comments) {
-		res.send(comments);
-	});
-})
+router.route("/:id")
+	.get(function (req, res) {
+		const id = req.params.id;
+		board.selectCommentByBID(id, function (err, comments) {
+			res.send(comments);
+		});
+	})
+	.post(function (req, res) {
+		token.decode(req.cookies.token, _comment);
+		const id = req.params.id;
+		const comment = req.body.comment;
+
+		function _comment(decode) {
+			const account = decode.account;
+			board.comment(account, id, comment, _redirectToPost);
+		}
+
+		function _redirectToPost(err, rows) {
+			if (err) {
+
+			}
+			res.redirect(`/board/${id}`);
+		}
+	})
 
 module.exports = router;
