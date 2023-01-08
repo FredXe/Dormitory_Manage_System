@@ -31,10 +31,11 @@ router.route("/login")
 		function _checkAccountExist(ret) {
 			if (!ret) {
 				res.send("Failed login");
-				res.end();
+				res.redirect("/login");
 				return;
 			};
 
+			res.cookie("account", ret.account, { maxAge: MAX_AGE });
 			token.sign(ret, _sendToken);
 		}
 

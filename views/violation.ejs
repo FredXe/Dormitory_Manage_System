@@ -7,6 +7,7 @@
 	<title>Student</title>
 	<link rel='shortcut icon' href="#" />
 	<link rel="stylesheet" type="text/css" href="/style/student.css" />
+	<script type="text/javascript" src="/src/setTitle.js"></script>
 	<!-- <script type="text/javascript" src="/src/student.js"></script> -->
 
 </head>
@@ -17,14 +18,14 @@
 </style>
 
 
-<body id ="background">
+<body id="background">
 
-	<div id = "title">
-		<div id = "student">
+	<div id="title">
+		<div id="student">
 			Student
 		</div>
 
-		<form id="app_pos"action='/application/list' method="get">
+		<form id="app_pos" action='/application/list' method="get">
 			<input id="application" type="submit" name="button" value="宿舍申請" />
 			<!-- <a class="application" href = 'javascript:;' onclick="javascript:show()">宿舍申請</a> -->
 		</form>
@@ -45,7 +46,7 @@
 		</form>
 
 
-		<div id ="line">
+		<div id="line">
 			————————————
 		</div>
 
@@ -53,43 +54,43 @@
 			地址:
 		</div>
 
-		<div id = 'address_2'>
+		<div id='address_2'>
 			高雄市楠梓區高雄大學路700號
 		</div>
 
-		<div id ="telephone_1">
+		<div id="telephone_1">
 			電話:
 		</div>
 
-		<div id = 'telephone_2'>
+		<div id='telephone_2'>
 			07-5919000
 		</div>
+	</div>
+	<div id="violation_1">
+		<div id='violation_2'>
+			<form id='violation_3' action='/violation/insert' method="post">
+				<h1>違規紀錄</h1>
+				<% if (privilege=="houseMaster" ) { %>
+					<input type='submit' value="新增違規紀錄"></input>
+					<input type='text' name="boarder" placeholder="違規人"></input>
+					<input type='text' name="type" placeholder="違規事項"></input>
+					<%}%>
+
+						<%for(let record of records){%>
+							<li>
+								<%= record.ID %> : <%= record.account %>
+										<%= record.type%>
+											<%= record.date%>
+							</li>
+							<% } %>
+			</form>
 		</div>
-		<div id="violation_1">
-			<div id='violation_2'>
-				<form id='violation_3' action='/violation/insert' method="post">
-					<h1>違規紀錄</h1>
-					<% if (privilege=="houseMaster" ) { %>
-						<input type='submit' value="新增違規紀錄"></input>
-						<input type='text' name="boarder" placeholder="違規人"></input>
-						<input type='text' name="type" placeholder="違規事項"></input>
-						<%}%>
 
-							<%for(let record of records){%>
-								<li>
-									<%= record.ID %> : <%= record.account %>
-											<%= record.type%>
-												<%= record.date%>
-								</li>
-								<% } %>
-				</form>
-			</div>
-
-		</div>
-	
+	</div>
 
 
-	
+
+
 
 </body>
 
