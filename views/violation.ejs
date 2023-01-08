@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+	<meta charset="utf-8" />
+	<title>Student</title>
+	<link rel='shortcut icon' href="#" />
+	<link rel="stylesheet" type="text/css" href="/style/student.css" />
+	<!-- <script type="text/javascript" src="/src/student.js"></script> -->
+
+</head>
+
+<!-- 匯入字體 -->
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Abel&family=East+Sea+Dokdo&family=Rubik+Bubbles&display=swap');
+</style>
+
+
+<body class="background">
+
+	<div class="title">
+		<div class="student">
+			Student
+		</div>
+
+		<div>
+			<input id="application" type="submit" name="button" value="宿舍申請" />
+			<!-- <a class="application" href = 'javascript:;' onclick="javascript:show()">宿舍申請</a> -->
+		</div>
+
+		<div>
+			<input id="information" type="submit" name="button" value="宿舍資訊" />
+			<!-- <a class="information" href = 'javascript:;' onclick="javascript:show_dormitory_info()">宿舍資訊</a> -->
+		</div>
+
+		<div>
+			<input id="violation_record" type="submit" name="button" value="違規紀錄查詢" />
+			<!-- <a class="Violation_record" href = 'javascript:;' onclick="javascript:show()">違規紀錄查詢</a> -->
+		</div>
+
+		<div>
+			<input id="application_status" type="submit" name="button" value="申請狀態查詢" />
+			<!-- <a class="application_status" href = 'javascript:;' onclick="javascript:show()">申請狀態查詢</a> -->
+		</div>
+
+		<form>
+			<input id="boarder" type="submit" name="button" value="布告欄" />
+			<!-- <a class = 'boarder' href = 'javascript:;' onclick="javascript:show_boarder()">布告欄</a> -->
+		</form>
+
+		<div class="line">
+			————————————
+		</div>
+
+		<div class="address">
+			地址:</br>高雄市楠梓區高雄大學路700號
+		</div>
+
+		<div class="telephone">
+			</br>電話:</br>07-5919000
+		</div>
+
+		<div class="violation">
+			<div class='header_container'>
+				<form class='page-header'  method="get">
+					<h1>違規紀錄</h1>
+					<input type='submit' value="新增違規紀錄"></input>
+				</form>
+			</div>
+
+			<div class = 'show_record'>
+				<%for(let post of posts){%>
+					<li>
+							<%post.title%>
+						</li>
+				<% } %>
+			</div>
+			
+		</div>
+	</div>
+
+	
+	<form></form>
+
+</body>
+
+</html>
