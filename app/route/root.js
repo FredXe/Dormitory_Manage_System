@@ -10,12 +10,12 @@ var urlParser = util.urlParser;
 
 // alias `/`=`/home`
 router.get('/', function (req, res) {
-	res.redirect("/home");
+	res.redirect("/board/list");
 });
 
 // Router of `/home`
 router.get("/home", function (req, res) {
-	util.responseHtml("./views/Student.html", 200, res);
+	res.redirect("/board/list");
 });
 
 // Router of `/login`
