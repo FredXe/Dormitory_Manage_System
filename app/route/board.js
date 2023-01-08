@@ -1,6 +1,5 @@
 const express = require("express");
 
-const util = require("./util");
 const board = require('../model/board');
 const token = require("../middleware/token");
 const { compareSync } = require("bcrypt");
@@ -18,10 +17,15 @@ router.get("/", function (req, res) {
 
 // 顯示布告欄
 router.get("/list", function (req, res) {
-	board.selectPost("%", function (err, posts) {
-		console.log(posts);
-		res.render('board', { posts });
-	})
+	token.decode(req.cookies.token, _render);
+
+	function _render(decode) {
+
+		board.selectPost("%", function (err, posts) {
+			const privilege = decode.privilege;
+			res.render('board', { posts, privilege });
+		})
+	}
 
 })
 

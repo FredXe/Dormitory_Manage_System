@@ -58,10 +58,12 @@
 
 		<div id="board_position" style="display: block;">
 			<div class='header container'>
-				<form class='page-header' action="/board/post" method="get">
-					<h1>留言板</h1>
-					<input type='submit' value="發布公告"></input>
-				</form>
+				<% if (privilege=="houseMaster" ) { %>
+					<form class='page-header' action="/board/post" method="get">
+						<h1>留言板</h1>
+						<input type='submit' value="發布公告"></input>
+					</form>
+					<% } %>
 			</div>
 
 			<div class='comments container'">

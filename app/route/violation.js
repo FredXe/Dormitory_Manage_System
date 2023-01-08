@@ -15,14 +15,10 @@ router.get("/list", function (req, res) {
 	token.decode(req.cookies.token, _selectRecord)
 
 	function _selectRecord(decode) {
-		var account;
-		if (["houseMaster", "admin"].includes(decode.privilege)) {
-			account = "%";
-		} else {
-			account = decode.account;
-		}
-		violation.showRecord(account, function (err, records) {
-			res.render("violation", { records });
+		const privilege = decode.privilege;
+		violation.showRecord("%", function (err, records) {
+			console.log(records);
+			res.render("violation", { records, privilege });
 		})
 	}
 })
