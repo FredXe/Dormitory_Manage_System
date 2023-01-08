@@ -18,7 +18,7 @@ router.get("/", function (req, res) {
 
 // 顯示布告欄
 router.get("/list", function (req, res) {
-	board.selectPost(function (err, posts) {
+	board.selectPost("%", function (err, posts) {
 		console.log(posts);
 		res.render('board', { posts });
 	})
@@ -49,8 +49,11 @@ router.route("/:id")
 	.get(function (req, res) {
 		const id = req.params.id;
 		board.selectCommentByBID(id, function (err, comments) {
-			console.log(comments);
-			res.render("article", { comments });
+			board.selectPost(id, function (err, post) {
+				post = post[0];
+				console.log(post);
+				res.render("article", { comments, post });
+			});
 		});
 	})
 	.post(function (req, res) {

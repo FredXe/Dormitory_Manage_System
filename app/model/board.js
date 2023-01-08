@@ -67,9 +67,10 @@ class Board {
 	 * @param {(err, rows)} callback `rows` will filled with
 	 * Posts formed as [{`Post1`}, {`Post2`}, ...]
 	 */
-	static selectPost(callback) {
+	static selectPost(id, callback) {
 		// SELECT all the bulletinBoard
-		const query = `SELECT b_ID AS ID, title, b_text AS content FROM bulletinBoard ORDER BY b_ID ASC;`;
+		const query = `SELECT b_ID AS ID, title, b_text AS content 
+		FROM bulletinBoard WHERE b_ID LIKE ${id} ORDER BY b_ID ASC;`;
 
 		Connections.admin.query(query, function (err, rows) {
 			if (err) {
