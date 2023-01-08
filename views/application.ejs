@@ -18,13 +18,7 @@
 
 
 <body class="background">
-	<%= applications[0].date %>
-		<%= applications[0].studentUserID %>
-			<%= applications[0].semester %>
-				<%= applications[0].date %>
-					<%= applications[0].approved %>
-						<%= applications[0].paid %>
-							<%= applications[0].adminUserID %>
+	
 								<div class="title">
 									<div class="student">
 										Student
@@ -66,7 +60,8 @@
 
 
 									<!-- 申請列表顯示 -->
-									<% if () { %>
+									 <% if (!applications[0]) { %>
+									
 									<table id="dormitory" cellpadding="25px">
 										<tr>
 											<td>
@@ -81,13 +76,24 @@
 																<%= dormitory.name %>
 															</option>
 															<% } %>
-													</select></td>
+													</select>
+													<input type="submit" onclick="alert('繳交成功!')">
+												</td>
 
-												<input type="submit" onclick="alert('繳交成功!')">
+												
 											</form>
 
 										</tr>
 									</table>
+									<%} else {%>
+										<%= applications[0].date %>
+										<%= applications[0].studentUserID %>
+											<%= applications[0].semester %>
+												<%= applications[0].date %>
+													<%= applications[0].approved %>
+														<%= applications[0].paid %>
+															<%= applications[0].adminUserID %>
+									<%}%>
 
 								</div> -->
 								</div>
