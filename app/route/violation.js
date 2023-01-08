@@ -8,9 +8,7 @@ const router = express.Router();
 var urlParser = util.urlParser;
 
 router.get("/", function (req, res) {
-	res.redirect("/board/list");
-	// console.log('suc');
-	// res.render('board' , comments);
+	res.redirect("/violation/list");
 });
 
 router.get("/list", function (req, res) {
@@ -29,7 +27,17 @@ router.get("/list", function (req, res) {
 	}
 })
 
-router.post("/insert")
+router.post("/insert", function (req, res) {
+	const record = req.body.record;
+
+	token.decode(req.cookies.token, _insertRecord);
+
+	function _insertRecord(decode) {
+		violation.insertRecord(decode.account, record.boarder, record.type, function (err, rows) {
+			res.render("/violation/list");
+		});
+	}
+})
 
 
 module.exports = router;

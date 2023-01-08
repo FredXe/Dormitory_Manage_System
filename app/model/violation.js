@@ -8,10 +8,19 @@ class Violation {
 	 * @param {string} type Violation record type.
 	 * @param {(err, rows)} callback 
 	 */
-	static insertRecord(account, type, callback) {
+	static insertRecord(houseMaster, account, type, callback) {
 		const query = `INSERT INTO violationRecord (UserID, v_type) VALUE ('${account}', '${type}');`;
 
-		Connections.admin.query(query, callback);
+		Connections.admin.query(query, _insertManageHV);
+
+		function _insertManageHV(err, rows) {
+			const query = `INSERT INTO manage_HV 
+				VALUE ('${houseMaster}', 
+				(SELECT LAST_INSERT_ID() FROM violationRecord LIMIT 1), 
+				'${account}');`;
+
+			Connections.admin.query(query, callback);
+		}
 	}
 
 	/**
