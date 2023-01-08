@@ -32,8 +32,8 @@ SELECT * FROM `nonBoarder`;
 SELECT * FROM ``;
 
 SHOW CREATE TABLE application;
-ALTER TABLE application DROP  FOREIGN KEY d_name;
-ALTER TABLE application CHANGE  FOREIGN KEY (`d_name`) REFERENCES room(`d_name`) ON DELETE CASCADE;
+ALTER TABLE application DROP  FOREIGN KEY `application_ibfk_3`;
+ALTER TABLE application ADD  FOREIGN KEY (`d_name`) REFERENCES dormitory(`d_name`) ON DELETE CASCADE;
 ALTER TABLE application ADD COLUMN `d_name` VARCHAR(30) NOT NULL;
 SELECT r_number, d_name, COUNT(r_number) FROM boarder GROUP BY r_number, d_name HAVING COUNT(r_number) < 4;
 SELECT r_number AS roomNum FROM room WHERE d_name = 'Node test Dormitory';
@@ -75,10 +75,10 @@ SELECT e_ID AS ID, e_condition AS `condition`, e_type AS type,
 		FROM equipment;
 DELETE FROM equipment WHERE e_ID<50;
 SELECT `UserID` `account`, `privilege` FROM `Users` WHERE `UserID`='fred' AND `Password`='test';
-SELECT (CASE WHEN UserID IN (SELECT UserID FROM `Student`) THEN 'Student'
-WHEN UserID IN (SELECT UserID FROM `HouseMaster`) THEN 'HouseMaster'
-WHEN UserID IN (SELECT UserID FROM `Admin`) THEN 'Admin'
-ELSE 'Unknown' END) AS privilege FROM `Users` WHERE `UserID`='testAdmin' AND `Password`='csie';
+SELECT (CASE WHEN UserID IN (SELECT UserID FROM `student`) THEN 'Student'
+WHEN UserID IN (SELECT UserID FROM `houseMaster`) THEN 'HouseMaster'
+WHEN UserID IN (SELECT UserID FROM `admin`) THEN 'Admin'
+ELSE 'Unknown' END) AS privilege FROM `users` WHERE `UserID`='testAdmin' AND `Password`='csie';
 
 ALTER TABLE bulletinBoard AUTO_INCREMENT=1;
 SELECT * FROM bulletinBoard NATURAL JOIN manage_HB;

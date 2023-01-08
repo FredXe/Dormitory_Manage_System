@@ -18,72 +18,78 @@
 
 
 <body class="background">
-
-	<div class="title">
-		<div class="student">
-			Student
-		</div>
-
-
-		<form action='/application' method="get">
-			<input id="application" type="submit" name="button" value="宿舍申請" />
-			<!-- <a class="application" href = 'javascript:;' onclick="javascript:show()">宿舍申請</a> -->
-		</form>
-
-		<form action='/dormitory/list' method="get">
-			<input id="information" type="submit" name="button" value="宿舍資訊" />
-			<!-- <a class="information" href = 'javascript:;' onclick="javascript:show_dormitory_info()">宿舍資訊</a> -->
-		</form>
-
-		<form action='/violation/list' method="get">
-			<input id="violation_record" type="submit" name="button" value="違規紀錄" />
-			<!-- <a class="Violation_record" href = 'javascript:;' onclick="javascript:show()">違規紀錄查詢</a> -->
-		</form>
-
-		<form action='/board/list' method="get">
-			<input id="board" type="submit" name="button" value="佈告欄" />
-			<!-- <a class = 'board' href = 'javascript:;' onclick="javascript:show_board()">布告欄</a> -->
-		</form>
+	<%= applications[0].date %>
+		<%= applications[0].studentUserID %>
+			<%= applications[0].semester %>
+				<%= applications[0].date %>
+					<%= applications[0].approved %>
+						<%= applications[0].paid %>
+							<%= applications[0].adminUserID %>
+								<div class="title">
+									<div class="student">
+										Student
+									</div>
 
 
-		<div class="line">
-			————————————
-		</div>
+									<form action='/applicationlist' method="get">
+										<input id="application" type="submit" name="button" value="宿舍申請" />
+										<!-- <a class="application" href = 'javascript:;' onclick="javascript:show()">宿舍申請</a> -->
+									</form>
 
-		<div class="address">
-			地址:</br>高雄市楠梓區高雄大學路700號
-		</div>
+									<form action='/dormitory/list' method="get">
+										<input id="information" type="submit" name="button" value="宿舍資訊" />
+										<!-- <a class="information" href = 'javascript:;' onclick="javascript:show_dormitory_info()">宿舍資訊</a> -->
+									</form>
 
-		<div class="telephone">
-			</br>電話:</br>07-5919000
-		</div>
+									<form action='/violation/list' method="get">
+										<input id="violation_record" type="submit" name="button" value="違規紀錄" />
+										<!-- <a class="Violation_record" href = 'javascript:;' onclick="javascript:show()">違規紀錄查詢</a> -->
+									</form>
+
+									<form action='/board/list' method="get">
+										<input id="board" type="submit" name="button" value="佈告欄" />
+										<!-- <a class = 'board' href = 'javascript:;' onclick="javascript:show_board()">布告欄</a> -->
+									</form>
 
 
-		<!-- 申請列表顯示 -->
-		<table id="dormitory" cellpadding="25px">
-			<tr>
-				<td>
-					申請宿舍大樓:
-				</td>
+									<div class="line">
+										————————————
+									</div>
 
-				<form action="/application/request" , method="post">
-					<td><select name="dormitory">
-							<% for (let dormitory of dormitories) {%>
+									<div class="address">
+										地址:</br>高雄市楠梓區高雄大學路700號
+									</div>
 
-								<option value="<%= dormitory.name %>">
-									<%= dormitory.name %>
-								</option>
-								<% } %>
-						</select></td>
+									<div class="telephone">
+										</br>電話:</br>07-5919000
+									</div>
 
-					<input type="submit" onclick="alert('繳交成功!')">
-				</form>
 
-			</tr>
-		</table>
+									<!-- 申請列表顯示 -->
+									<table id="dormitory" cellpadding="25px">
+										<tr>
+											<td>
+												申請宿舍大樓:
+											</td>
 
-	</div> -->
-	</div>
+											<form action="/application/request" , method="post">
+												<td><select name="dormitory">
+														<% for (let dormitory of dormitories) {%>
+
+															<option value="<%= dormitory.name %>">
+																<%= dormitory.name %>
+															</option>
+															<% } %>
+													</select></td>
+
+												<input type="submit" onclick="alert('繳交成功!')">
+											</form>
+
+										</tr>
+									</table>
+
+								</div> -->
+								</div>
 
 </body>
 
