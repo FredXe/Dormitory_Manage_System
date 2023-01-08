@@ -122,7 +122,9 @@ class Board {
 	 */
 	static selectCommentByBID(b_ID, callback) {
 		// SELECT comment has specific b_ID
-		const query = `SELECT * FROM comment WHERE b_ID=${b_ID} ORDER BY c_No ASC;`;
+		const query = `SELECT c_NO AS no, b_ID AS ID, c_text AS text,
+			UserID AS account, createTime, lastEdit
+			FROM comment WHERE b_ID=${b_ID} ORDER BY c_No ASC;`;
 
 		Connections.admin.query(query, function (err, rows) {
 			if (err) {

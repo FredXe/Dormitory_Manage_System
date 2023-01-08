@@ -49,7 +49,8 @@ router.route("/:id")
 	.get(function (req, res) {
 		const id = req.params.id;
 		board.selectCommentByBID(id, function (err, comments) {
-			res.send(comments);
+			console.log(comments);
+			res.render("article", { comments });
 		});
 	})
 	.post(function (req, res) {
