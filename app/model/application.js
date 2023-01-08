@@ -11,10 +11,10 @@ class Application {
 	 * @param {number} semester In AD year form.
 	 * @param {(err, rows)} callback 
 	 */
-	static requestForApplication(account, semester, callback) {
+	static requestForApplication(account, semester, dormitory, callback) {
 		// INSERT an `application`
-		const query = `INSERT INTO application (studentUserID, a_semester)
-			VALUE ('${account}', ${semester});`;
+		const query = `INSERT INTO application (studentUserID, a_semester, d_name)
+			VALUE ('${account}', ${semester}, '${dormitory}');`;
 
 		Connections.admin.query(query, callback);
 	}

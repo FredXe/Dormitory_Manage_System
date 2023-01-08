@@ -12,7 +12,16 @@ router.get("/", function (req, res) {
 })
 
 router.get("/list", function (req, res) {
-	application.showApplicationInfo("%", _getDormitoryInfo);
+	token.decode(req.cookies.token, _redirect);
+
+	function _redirect(decode) {
+		if (decode.privilege == "admin") {
+			console.log(decode);
+			res.redirect("/application/approve");
+			return;
+		}
+		application.showApplicationInfo(decode.account, _getDormitoryInfo);
+	}
 
 	function _getDormitoryInfo(err, applications) {
 		dormitory.showDormitory(function (err, dormitories) {
@@ -31,24 +40,26 @@ router.route("/request")
 	})
 	.post(function (req, res) {
 		console.log(req.body);
+		const dormitory = req.body.dormitory;
 		token.decode(req.cookies.token, _requestApp);
 
 		function _requestApp(decode) {
 			const account = decode.account;
-			application.requestForApplication(account, 2023, _redirect);
+			application.requestForApplication(account, 2023, dormitory, _redirect);
 		}
 
 		function _redirect(err, rows) {
+			console.log(err, rows);
 			res.redirect("/application/list");
 		}
 	})
 
 router.route("/approve")
 	.get(function (req, res) {
-		application.showNotAppliedYet(_func);
+		application.showNotAppliedYet(_render);
 
-		function _func(err, rows) {
-			console.log(rows);
+		function _render(err, applications) {
+			res.render("approve", { applications });
 		}
 	})
 	.post(function (req, res) {

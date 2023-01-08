@@ -18,7 +18,7 @@
 
 
 <body class="background">
-	<!-- <% for (let application of applications) { %>
+	<% for (let application of applications) { %>
 		<li>
 			<%= application.date %>
 				<%= application.studentUserID %>
@@ -29,7 +29,7 @@
 									<%= application.adminUserID %>
 
 		</li>
-		<% } %> -->
+		<% } %>
 
 			<div class="title">
 				<div class="student">
@@ -37,7 +37,7 @@
 				</div>
 
 
-				<form action='/application' method="get">
+				<form action='/application/list' method="get">
 					<input id="application" type="submit" name="button" value="宿舍申請" />
 					<!-- <a class="application" href = 'javascript:;' onclick="javascript:show()">宿舍申請</a> -->
 				</form>
@@ -72,29 +72,24 @@
 
 
 				<!-- 申請列表顯示 -->
-				<table id="dormitory_application" cellpadding="25px">
+				<!-- <table id="dormitory_application" cellpadding="25px">
 					<tr>
 						<td>
 							申請宿舍大樓:
 						</td>
-						
+
 						<form action="/application/request">
 							<td><select name="dormitory_building">
-								<% for (let dormitory of dormitories) {%>
 
-									<option value="<%= dormitory.name %>">
-										<%= dormitory.name %>
-									</option>
-									<% } %>
-							</select></td>
-							
+								</select></td>
+
 							<input type="submit">
 						</form>
-						
-					</tr>
-				</table>
 
-		</div> -->
+					</tr>
+				</table> -->
+
+			</div> -->
 			</div>
 
 </body>
