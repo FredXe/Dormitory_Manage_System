@@ -31,6 +31,11 @@ SELECT * FROM `boarder`;
 SELECT * FROM `nonBoarder`;
 SELECT * FROM ``;
 
+SHOW CREATE TABLE application;
+ALTER TABLE application ADD  FOREIGN KEY (`d_name`) REFERENCES room(`d_name`) ON DELETE CASCADE;
+ALTER TABLE application ADD COLUMN `d_name` VARCHAR(30) NOT NULL;
+SELECT r_number, d_name, COUNT(r_number) FROM boarder GROUP BY r_number, d_name HAVING COUNT(r_number) < 4;
+SELECT r_number AS roomNum FROM room WHERE d_name = 'Node test Dormitory';
 SELECT LAST_INSERT_ID() FROM violationRecord LIMIT 1;
 INSERT INTO violationRecord (UserID, v_type) VALUE ('a1095532', 'haha type');
 INSERT INTO manage_HV 
