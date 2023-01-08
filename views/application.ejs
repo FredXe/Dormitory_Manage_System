@@ -72,20 +72,14 @@
 
 
 				<!-- 申請列表顯示 -->
-				<table id="dormitory_application" cellpadding="19px" style="display: none;">
+				<table id="dormitory_application" cellpadding="25px">
 					<tr>
 						<td>
-							姓名:
+							申請宿舍大樓:
 						</td>
-						<td>
-							<input type="text" name="name" value="" placeholder="name">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							申請宿舍:
-						</td>
-						<td><select name="dormitory_building">
+						
+						<form action="/application/request">
+							<td><select name="dormitory_building">
 								<% for (let dormitory of dormitories) {%>
 
 									<option value="<%= dormitory.name %>">
@@ -93,20 +87,12 @@
 									</option>
 									<% } %>
 							</select></td>
-					</tr>
-
-					<tr>
-						<td>
-							聯絡電話:
-						</td>
-						<td>
-							<input type="text" name="cell phone" value="" placeholder="cell phone">
-						</td>
+							
+							<input type="submit">
+						</form>
+						
 					</tr>
 				</table>
-
-				<!-- 申請住宿資料 -->
-				<!-- <div class="application_student_info">
 
 		</div> -->
 			</div>
