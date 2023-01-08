@@ -31,6 +31,14 @@ SELECT * FROM `boarder`;
 SELECT * FROM `nonBoarder`;
 SELECT * FROM ``;
 
+SELECT LAST_INSERT_ID() FROM violationRecord LIMIT 1;
+INSERT INTO violationRecord (UserID, v_type) VALUE ('a1095532', 'haha type');
+INSERT INTO manage_HV 
+				VALUE ('a1095511', 
+				(SELECT LAST_INSERT_ID() FROM violationRecord LIMIT 1), 
+				'a1095532');
+DELETE FROM violationRecord WHERE v_ID < 50;
+ALTER TABLE violationRecord AUTO_INCREMENT=1;
 ALTER TABLE application ADD COLUMN `approveTS` TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP;
 ALTER TABLE application MODIFY COLUMN `adminUserID` CHAR(8) DEFAULT NULL;
 ALTER TABLE boarder MODIFY COLUMN `d_name` VARCHAR(30) NOT NULL;
