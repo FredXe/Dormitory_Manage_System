@@ -17,47 +17,57 @@
 </style>
 
 
-<body class="background">
-	<div class="title">
-		<div class="student">
+<body id ="background">
+
+	<div id = "title">
+		<div id = "student">
 			Student
 		</div>
 
-		<form action='/application/list' method="get">
+		<form id="app_pos"action='/application/list' method="get">
 			<input id="application" type="submit" name="button" value="宿舍申請" />
 			<!-- <a class="application" href = 'javascript:;' onclick="javascript:show()">宿舍申請</a> -->
 		</form>
 
-		<form action='/dormitory/list' method="get">
+		<form id="info_pos" action='/dormitory/list' method="get">
 			<input id="information" type="submit" name="button" value="宿舍資訊" />
 			<!-- <a class="information" href = 'javascript:;' onclick="javascript:show_dormitory_info()">宿舍資訊</a> -->
 		</form>
 
-		<form action='/violation/list' method="get">
+		<form id="vio_pos" action='/violation/list' method="get">
 			<input id="violation_record" type="submit" name="button" value="違規紀錄" />
 			<!-- <a class="Violation_record" href = 'javascript:;' onclick="javascript:show()">違規紀錄查詢</a> -->
 		</form>
 
-		<form action='/board/list' method="get">
+		<form id="boarder_pos" action='/board/list' method="get">
 			<input id="board" type="submit" name="button" value="佈告欄" />
 			<!-- <a class = 'board' href = 'javascript:;' onclick="javascript:show_board()">布告欄</a> -->
 		</form>
 
-		<div class="line">
+
+		<div id ="line">
 			————————————
 		</div>
 
-		<div class="address">
-			地址:</br>高雄市楠梓區高雄大學路700號
+		<div id="address_1">
+			地址:
 		</div>
 
-		<div class="telephone">
-			</br>電話:</br>07-5919000
+		<div id = 'address_2'>
+			高雄市楠梓區高雄大學路700號
 		</div>
 
-		<div class="violation">
-			<div class='header_container'>
-				<form class='page-header' action='/violation/insert' method="post">
+		<div id ="telephone_1">
+			電話:
+		</div>
+
+		<div id = 'telephone_2'>
+			07-5919000
+		</div>
+		</div>
+		<div id="violation_1">
+			<div id='violation_2'>
+				<form id='violation_3' action='/violation/insert' method="post">
 					<h1>違規紀錄</h1>
 					<input type='submit' value="新增違規紀錄"></input>
 					<input type='text' name="boarder" placeholder="違規人"></input>
@@ -73,15 +83,11 @@
 				</form>
 			</div>
 
-			<div class='show_record'>
-
-			</div>
-
 		</div>
-	</div>
+	
 
 
-	<form></form>
+	
 
 </body>
 
