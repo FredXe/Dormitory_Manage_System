@@ -56,7 +56,7 @@ router.route("/:id")
 			});
 		});
 	})
-	.post(function (req, res) {
+	.post("/comment", function (req, res) {
 		token.decode(req.cookies.token, _comment);
 		const id = req.params.id;
 		const comment = req.body.comment;
