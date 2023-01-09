@@ -31,7 +31,6 @@ router.route("/login")
 		function _checkAccountExist(ret) {
 			if (!ret) {
 				res.send("Failed login");
-				res.redirect("/login");
 				return;
 			};
 
