@@ -127,17 +127,17 @@ class Dormitory {
 			// Fill beds
 			for (var bedCnt = 1; bedCnt <= volume; bedCnt++) {
 				const eName = `bed${bedCnt}`;
-				equipments.push({ type: "furniture", eName: eName, condition: "normal", roomNumber: number, dormitoryName: "Node test Dormitory" });
+				equipments.push({ type: "furniture", eName: eName, condition: "normal", roomNumber: number, dormitoryName: d_name });
 			}
 			// Fill desks
 			for (var deskCnt = 0; deskCnt <= volume; deskCnt++) {
 				const eName = `desk${deskCnt}`;
-				equipments.push({ type: "furniture", eName: eName, condition: "normal", roomNumber: number, dormitoryName: "Node test Dormitory" });
+				equipments.push({ type: "furniture", eName: eName, condition: "normal", roomNumber: number, dormitoryName: d_name });
 			}
 			// Fill facilities
-			equipments.push({ type: "furniture", eName: "toilet", condition: "normal", roomNumber: number, dormitoryName: "Node test Dormitory" });
-			equipments.push({ type: "furniture", eName: "shower", condition: "normal", roomNumber: number, dormitoryName: "Node test Dormitory" });
-			equipments.push({ type: "furniture", eName: "aircon", condition: "normal", roomNumber: number, dormitoryName: "Node test Dormitory" });
+			equipments.push({ type: "furniture", eName: "toilet", condition: "normal", roomNumber: number, dormitoryName: d_name });
+			equipments.push({ type: "furniture", eName: "shower", condition: "normal", roomNumber: number, dormitoryName: d_name });
+			equipments.push({ type: "furniture", eName: "aircon", condition: "normal", roomNumber: number, dormitoryName: d_name });
 
 
 			Dormitory.insertEquipment(equipments, callback);
@@ -246,7 +246,7 @@ class Dormitory {
 	 */
 	static showEquipments(callback) {
 		const query = `SELECT e_ID AS ID, e_condition AS \`condition\`, e_type AS type,
-		r_number AS roomNumber, d_name AS dormitoryName
+		r_number AS roomNumber, d_name AS dormitoryName, e_name AS name
 		FROM equipment ORDER BY r_number ASC;`;
 
 		Connections.admin.query(query, function (err, rows) {
@@ -270,7 +270,7 @@ class Dormitory {
 	 */
 	static showProblemEquipment(condition, callback) {
 		const query = `SELECT e_ID AS ID, e_condition AS \`condition\`, e_type AS type,
-		r_number AS roomNumber, d_name AS dormitoryName
+		r_number AS roomNumber, d_name AS dormitoryName, e_name AS name
 		FROM equipment WHERE e_condition<>'normal' AND e_condition LIKE '${condition}';`;
 
 		Connections.admin.query(query, function (err, rows) {
