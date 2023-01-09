@@ -15,6 +15,11 @@ DESCRIBE application;
 DESCRIBE nonBoarder;
 DESCRIBE boarder;
 
+SELECT e_ID AS ID, e_condition AS `condition`,
+		r_number AS roomNumber, d_name AS dormitoryName
+		FROM equipment WHERE e_condition='normal' AND e_condition LIKE '%' GROUP BY d_name, r_number;
+
+
 SELECT e_ID AS ID, e_condition AS `condition`, e_type AS type,
 		r_number AS roomNumber, d_name AS dormitoryName, e_name AS name
 		FROM equipment ORDER BY r_number ASC;
@@ -60,7 +65,7 @@ ALTER TABLE application MODIFY COLUMN `a_Date` DATETIME NOT NULL DEFAULT (CURREN
 DELETE FROM boarder WHERE UserID='a1095532';
 DELETE FROM nonBoarder WHERE UserID='a1095532';
 DELETE FROM application WHERE studentUserID='a1095532';
-DELETE FROM equipment WHERE e_ID< 300;
+DELETE FROM equipment WHERE e_ID< 50;
 DELETE FROM dormitory WHERE d_name='Node test Dormitory';
 ALTER TABLE dormitory RENAME COLUMN UserID TO adminUserID;
 ALTER TABLE room MODIFY COLUMN `r_number` INT UNSIGNED NOT NULL AUTO_INCREMENT;

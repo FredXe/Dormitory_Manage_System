@@ -284,6 +284,22 @@ class Dormitory {
 		});
 	}
 
+	static showNormalEquipment(callback) {
+		const query = `SELECT e_ID AS ID, e_condition AS \`condition\`,
+		r_number AS roomNumber, d_name AS dormitoryName
+		FROM equipment WHERE e_condition='normal' GROUP BY d_name, r_number;`;
+
+		Connections.admin.query(query, function (err, rows) {
+			if (err) {
+				callback(err, rows);
+				return;
+			}
+
+			rows = Util.decodeRows(rows);
+			callback(err, rows);
+		});
+	}
+
 	/**
 	 * SELECT the equipment that are not 
 	 * locate in one room.

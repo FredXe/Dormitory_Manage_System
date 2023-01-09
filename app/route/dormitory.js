@@ -16,7 +16,8 @@ router.get("/list", function (req, res) {
 
 	function _getEquipment(decode) {
 		privilege = decode.privilege;
-		dormitory.showEquipments(_getDormitory);
+		dormitory.showNormalEquipment(_getDormitory);
+
 	}
 
 	function _getDormitory(err, _equipment) {
