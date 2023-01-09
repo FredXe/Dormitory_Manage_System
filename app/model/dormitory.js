@@ -245,7 +245,7 @@ class Dormitory {
 	 * `rows`: [{`ID`, `condition`, `type`, `roomNumber`, `dormitoryName`}, { }...]
 	 */
 	static showEquipments(callback) {
-		const query = `SELECT e_ID AS ID, e_condition AS \`condition\`, e_type AS type,
+		const query = `SELECT e_ID AS ID,e_condition AS \`condition\`, e_type AS type,
 		r_number AS roomNumber, d_name AS dormitoryName, e_name AS name
 		FROM equipment ORDER BY r_number ASC;`;
 

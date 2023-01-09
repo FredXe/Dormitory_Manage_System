@@ -69,7 +69,7 @@
 	<div id='chat_title'>
 		<div class='header container'>
 			<h1>留言板</h1>
-			<% if (privilege==" houseMaster" ) { %>
+			<% if (privilege=="houseMaster" ) { %>
 				<form class='page-header' action="/board/post" method="get">
 
 					<input type='submit' value="發布公告"></input>
@@ -94,7 +94,10 @@
 
 	</div>
 
-
+	<div>
+		<form id = 'logout' action ="/logout" method="post">
+			<input type="submit" value="登出"></input> 
+		</form>
 	</div>
 
 </body>
