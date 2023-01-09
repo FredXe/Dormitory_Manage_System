@@ -15,6 +15,10 @@ DESCRIBE application;
 DESCRIBE nonBoarder;
 DESCRIBE boarder;
 
+SELECT e_ID AS ID, e_condition AS `condition`, e_type AS type,
+		r_number AS roomNumber, d_name AS dormitoryName, e_name AS name
+		FROM equipment ORDER BY r_number ASC;
+
 SELECT * FROM `users`;
 SELECT * FROM `student`;
 SELECT * FROM `houseMaster`;
@@ -23,7 +27,7 @@ SELECT * FROM `room`;
 SELECT * FROM `bulletinBoard`;
 SELECT * FROM `comment`;
 SELECT * FROM `manage_HD`;
-SELECT * FROM `equipment`;
+SELECT * FROM `equipment`;	
 SELECT * FROM `violationRecord`;
 SELECT * FROM `manage_HV`;
 SELECT * FROM `application`;
@@ -31,6 +35,7 @@ SELECT * FROM `boarder`;
 SELECT * FROM `nonBoarder`;
 SELECT * FROM ``;
 
+DELETE FROM dormitory WHERE d_name LIKE 'Node%';
 SHOW CREATE TABLE application;
 ALTER TABLE application DROP  FOREIGN KEY `application_ibfk_3`;
 ALTER TABLE application ADD  FOREIGN KEY (`d_name`) REFERENCES dormitory(`d_name`) ON DELETE CASCADE;
