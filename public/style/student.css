@@ -306,3 +306,9 @@
 	top: 100px;
 	left: 300px;
 }
+
+#logout{
+	position: absolute;
+	top: 50px;
+	right: 100px;
+}
